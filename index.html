@@ -21,6 +21,7 @@
   .weight-toggle.visible .wt-dot{background:var(--accent);}
 
   .stats-bar{display:grid;grid-template-columns:repeat(3,1fr);gap:1px;background:var(--border);border:1px solid var(--border);border-radius:6px;overflow:hidden;margin-bottom:14px;}
+  .stats-bar .stat-cell[style*="span 3"]{grid-column:span 3;}
   .stat-cell{background:var(--surface);padding:11px 12px;}
   .stat-label{font-family:'DM Mono',monospace;font-size:8px;letter-spacing:1.5px;text-transform:uppercase;color:var(--muted);margin-bottom:3px;}
   .stat-value{font-family:'Barlow Condensed',sans-serif;font-weight:700;font-size:21px;letter-spacing:-0.5px;}
@@ -185,6 +186,155 @@
   .add-set-btn:active{background:rgba(249,115,22,0.08);}
   .ghost-lbs{color:rgba(59,130,246,0.5);font-size:10px;font-family:'DM Mono',monospace;white-space:nowrap;}
 
+  /* ── NUTRITION ── */
+  .nutr-header{background:var(--surface2);border:1px solid var(--border);border-radius:10px;padding:16px;margin-bottom:16px;}
+  .nutr-date{font-family:'DM Mono',monospace;font-size:8px;letter-spacing:2px;text-transform:uppercase;color:var(--muted);margin-bottom:12px;display:flex;justify-content:space-between;align-items:center;}
+  .nutr-date-nav{display:flex;gap:6px;align-items:center;}
+  .nutr-nav-btn{background:var(--surface);border:1px solid var(--border);border-radius:4px;padding:4px 10px;color:var(--text);font-family:'DM Mono',monospace;font-size:11px;cursor:pointer;}
+  .macro-rings{display:grid;grid-template-columns:repeat(4,1fr);gap:8px;margin-bottom:12px;}
+  .macro-ring-wrap{display:flex;flex-direction:column;align-items:center;gap:4px;}
+  .macro-ring-svg{transform:rotate(-90deg);}
+  .macro-ring-label{font-family:'DM Mono',monospace;font-size:8px;letter-spacing:1px;text-transform:uppercase;color:var(--muted);text-align:center;}
+  .macro-ring-val{font-family:'Barlow Condensed',sans-serif;font-weight:700;font-size:15px;text-align:center;line-height:1;}
+  .macro-ring-goal{font-family:'DM Mono',monospace;font-size:8px;color:var(--muted);text-align:center;}
+  .nutr-cal-bar{margin-top:4px;}
+  .nutr-cal-label{display:flex;justify-content:space-between;font-family:'DM Mono',monospace;font-size:9px;color:var(--muted);margin-bottom:4px;}
+  .nutr-cal-track{height:6px;background:var(--dim);border-radius:6px;overflow:hidden;}
+  .nutr-cal-fill{height:100%;border-radius:6px;background:linear-gradient(90deg,var(--accent),var(--accent2));transition:width 0.4s;}
+
+  .water-card{background:var(--surface);border:1px solid var(--border);border-radius:8px;padding:14px;margin-bottom:4px;}
+  .water-glasses{display:flex;gap:6px;flex-wrap:wrap;margin-bottom:10px;}
+  .water-glass{width:36px;height:44px;border-radius:4px;border:2px solid var(--dim);background:var(--bg);cursor:pointer;display:flex;align-items:flex-end;justify-content:center;padding-bottom:3px;transition:all 0.15s;font-size:18px;overflow:hidden;position:relative;}
+  .water-glass.filled{border-color:#3b82f6;background:rgba(59,130,246,0.15);}
+  .water-glass.filled::before{content:'';position:absolute;bottom:0;left:0;right:0;background:rgba(59,130,246,0.35);border-radius:0 0 2px 2px;height:70%;}
+  .water-glass .wg-icon{position:relative;z-index:1;font-size:20px;}
+  .water-info{display:flex;justify-content:space-between;align-items:center;}
+  .water-ml{font-family:'Barlow Condensed',sans-serif;font-weight:700;font-size:22px;color:var(--blue);}
+  .water-goal-label{font-family:'DM Mono',monospace;font-size:9px;color:var(--muted);}
+  .water-custom{display:flex;gap:6px;margin-top:10px;align-items:center;}
+  .water-custom input{background:var(--surface2);border:1px solid var(--border);border-radius:5px;padding:8px 10px;color:var(--text);font-family:'DM Mono',monospace;font-size:12px;width:100px;outline:none;-moz-appearance:textfield;}
+  .water-custom input::-webkit-inner-spin-button{-webkit-appearance:none;}
+  .water-custom-btn{background:var(--blue);border:none;border-radius:5px;padding:8px 14px;color:#fff;font-family:'DM Mono',monospace;font-size:11px;font-weight:600;cursor:pointer;}
+
+  .add-food-card{background:var(--surface2);border:1px solid var(--border);border-radius:8px;padding:14px;margin-bottom:14px;}
+  .food-search-row{display:flex;gap:6px;margin-bottom:10px;}
+  .food-search-input{flex:1;background:var(--bg);border:1px solid var(--border);border-radius:6px;padding:10px 12px;color:var(--text);font-family:'Barlow',sans-serif;font-size:13px;outline:none;}
+  .food-search-input:focus{border-color:var(--accent);}
+  .food-search-btn{background:var(--accent);border:none;border-radius:6px;padding:10px 14px;color:#000;font-family:'DM Mono',monospace;font-size:11px;font-weight:700;cursor:pointer;white-space:nowrap;}
+  .meal-type-row{display:flex;gap:5px;margin-bottom:10px;overflow-x:auto;scrollbar-width:none;}
+  .meal-type-row::-webkit-scrollbar{display:none;}
+  .meal-type-btn{font-family:'DM Mono',monospace;font-size:9px;letter-spacing:1px;padding:5px 10px;border:1px solid var(--border);background:var(--surface);color:var(--muted);border-radius:4px;cursor:pointer;white-space:nowrap;transition:all 0.15s;}
+  .meal-type-btn.active{background:var(--accent);color:#000;border-color:var(--accent);}
+  .food-suggestions{background:var(--bg);border:1px solid var(--border);border-radius:6px;overflow:hidden;margin-bottom:8px;display:none;}
+  .food-suggestion-item{padding:10px 12px;border-bottom:1px solid var(--border);cursor:pointer;transition:background 0.1s;}
+  .food-suggestion-item:last-child{border-bottom:none;}
+  .food-suggestion-item:active{background:var(--surface2);}
+  .fsi-name{font-size:13px;font-weight:500;margin-bottom:1px;}
+  .fsi-macros{font-family:'DM Mono',monospace;font-size:10px;color:var(--muted);}
+  .food-manual-row{display:grid;grid-template-columns:1fr 1fr 1fr 1fr;gap:5px;margin-bottom:8px;}
+  .food-manual-input{background:var(--bg);border:1px solid var(--border);border-radius:5px;padding:7px 6px;color:var(--text);font-family:'DM Mono',monospace;font-size:11px;text-align:center;outline:none;-moz-appearance:textfield;}
+  .food-manual-input::-webkit-inner-spin-button{-webkit-appearance:none;}
+  .food-manual-input:focus{border-color:var(--accent);}
+  .food-manual-label{font-family:'DM Mono',monospace;font-size:8px;color:var(--muted);text-align:center;margin-top:2px;}
+  .food-add-btn{width:100%;background:var(--green);border:none;border-radius:6px;padding:10px;color:#000;font-family:'Barlow Condensed',sans-serif;font-size:16px;font-weight:900;cursor:pointer;letter-spacing:0.5px;}
+
+  .meal-section{margin-bottom:14px;}
+  .meal-section-header{display:flex;justify-content:space-between;align-items:center;margin-bottom:6px;}
+  .meal-section-name{font-family:'Barlow Condensed',sans-serif;font-weight:700;font-size:16px;}
+  .meal-section-cals{font-family:'DM Mono',monospace;font-size:10px;color:var(--muted);}
+  .food-entry{display:flex;align-items:center;gap:10px;background:var(--surface);border:1px solid var(--border);border-radius:6px;padding:10px 12px;margin-bottom:5px;}
+  .fe-info{flex:1;min-width:0;}
+  .fe-name{font-size:13px;font-weight:500;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;}
+  .fe-macros{font-family:'DM Mono',monospace;font-size:9px;color:var(--muted);margin-top:2px;}
+  .fe-cals{font-family:'Barlow Condensed',sans-serif;font-weight:700;font-size:16px;color:var(--accent2);flex-shrink:0;}
+  .fe-del{background:transparent;border:1px solid var(--dim);border-radius:4px;padding:4px 7px;color:var(--muted);font-size:13px;cursor:pointer;flex-shrink:0;}
+  .fe-del:active{border-color:var(--red);color:var(--red);}
+
+  .protein-chart{background:var(--surface);border:1px solid var(--border);border-radius:8px;padding:14px;margin-bottom:20px;}
+  .pchart-bars{display:flex;gap:4px;align-items:flex-end;height:70px;margin-bottom:6px;}
+  .pchart-bar-wrap{flex:1;display:flex;flex-direction:column;align-items:center;gap:3px;}
+  .pchart-bar{width:100%;border-radius:3px 3px 0 0;background:var(--dim);transition:height 0.4s;min-height:3px;}
+  .pchart-bar.hit{background:var(--green);}
+  .pchart-bar.close{background:var(--accent2);}
+  .pchart-bar.low{background:var(--dim);}
+  .pchart-day{font-family:'DM Mono',monospace;font-size:8px;color:var(--muted);text-align:center;}
+  .pchart-val{font-family:'DM Mono',monospace;font-size:8px;color:var(--muted);text-align:center;}
+  .pchart-legend{display:flex;gap:10px;justify-content:center;font-family:'DM Mono',monospace;font-size:9px;color:var(--muted);}
+  .pchart-legend span{display:flex;align-items:center;gap:4px;}
+  .pchart-dot{width:7px;height:7px;border-radius:50%;}
+
+  /* ── RECIPE GENERATOR ── */
+  .recipe-gen-card{background:var(--surface);border:1px solid var(--border);border-radius:8px;padding:16px;margin-bottom:20px;}
+  .rg-intro{font-size:12px;color:var(--muted);line-height:1.6;margin-bottom:14px;padding:10px 12px;background:rgba(249,115,22,0.06);border-left:2px solid var(--accent);border-radius:0 5px 5px 0;}
+  .rg-input-label{font-family:'DM Mono',monospace;font-size:9px;letter-spacing:1.5px;text-transform:uppercase;color:var(--muted);margin-bottom:6px;}
+  .rg-textarea{width:100%;background:var(--surface2);border:1px solid var(--border);border-radius:6px;padding:12px;color:var(--text);font-family:'Barlow',sans-serif;font-size:13px;line-height:1.6;outline:none;resize:none;height:90px;margin-bottom:12px;}
+  .rg-textarea:focus{border-color:var(--accent);}
+  .rg-options-row{margin-bottom:12px;}
+  .rg-option-label{font-family:'DM Mono',monospace;font-size:9px;letter-spacing:1.5px;text-transform:uppercase;color:var(--muted);margin-bottom:6px;}
+  .rg-options{display:flex;gap:5px;flex-wrap:wrap;}
+  .rg-opt{font-family:'DM Mono',monospace;font-size:10px;padding:6px 12px;border:1px solid var(--border);background:var(--surface2);color:var(--muted);border-radius:4px;cursor:pointer;transition:all 0.15s;}
+  .rg-opt.active{background:var(--accent);color:#000;border-color:var(--accent);font-weight:600;}
+  .rg-opt:active{opacity:0.7;}
+  .rg-btn{width:100%;background:linear-gradient(135deg,var(--accent),var(--accent2));border:none;border-radius:6px;padding:14px;color:#000;font-family:'Barlow Condensed',sans-serif;font-size:18px;font-weight:900;cursor:pointer;letter-spacing:0.5px;transition:opacity 0.2s;margin-bottom:14px;}
+  .rg-btn:disabled{opacity:0.5;cursor:not-allowed;}
+  .rg-btn:active:not(:disabled){opacity:0.8;}
+  .rg-loading{display:flex;align-items:center;gap:10px;padding:16px;font-family:'DM Mono',monospace;font-size:11px;color:var(--muted);}
+  .rg-spinner{width:18px;height:18px;border:2px solid var(--dim);border-top-color:var(--accent);border-radius:50%;animation:spin 0.7s linear infinite;flex-shrink:0;}
+  @keyframes spin{to{transform:rotate(360deg)}}
+  .rg-recipe{background:var(--surface2);border:1px solid var(--border);border-radius:8px;overflow:hidden;}
+  .rg-recipe-header{background:linear-gradient(135deg,rgba(249,115,22,0.15),rgba(251,191,36,0.08));padding:14px 16px;border-bottom:1px solid var(--border);}
+  .rg-recipe-name{font-family:'Barlow Condensed',sans-serif;font-weight:900;font-size:24px;letter-spacing:-0.5px;margin-bottom:4px;}
+  .rg-recipe-tag{font-family:'DM Mono',monospace;font-size:9px;color:var(--muted);letter-spacing:1px;}
+  .rg-macros{display:grid;grid-template-columns:repeat(4,1fr);gap:1px;background:var(--border);border-top:1px solid var(--border);border-bottom:1px solid var(--border);}
+  .rg-macro-cell{background:var(--surface);padding:10px 8px;text-align:center;}
+  .rg-macro-val{font-family:'Barlow Condensed',sans-serif;font-weight:700;font-size:18px;}
+  .rg-macro-lbl{font-family:'DM Mono',monospace;font-size:8px;color:var(--muted);letter-spacing:1px;margin-top:2px;}
+  .rg-recipe-body{padding:14px 16px;}
+  .rg-section-title{font-family:'DM Mono',monospace;font-size:9px;letter-spacing:2px;text-transform:uppercase;color:var(--muted);margin-bottom:8px;margin-top:14px;}
+  .rg-section-title:first-child{margin-top:0;}
+  .rg-ingredient-list{list-style:none;display:flex;flex-direction:column;gap:5px;}
+  .rg-ingredient-item{display:flex;align-items:flex-start;gap:8px;font-size:13px;line-height:1.4;}
+  .rg-ingredient-dot{width:5px;height:5px;border-radius:50%;background:var(--accent);flex-shrink:0;margin-top:5px;}
+  .rg-steps{display:flex;flex-direction:column;gap:10px;}
+  .rg-step{display:flex;gap:10px;align-items:flex-start;}
+  .rg-step-num{font-family:'Barlow Condensed',sans-serif;font-weight:900;font-size:18px;color:var(--accent);line-height:1;flex-shrink:0;min-width:20px;}
+  .rg-step-text{font-size:13px;line-height:1.6;color:var(--text);}
+  .rg-notes{font-size:12px;color:var(--muted);line-height:1.7;padding:10px 12px;background:rgba(34,197,94,0.06);border-left:2px solid var(--green);border-radius:0 5px 5px 0;margin-top:12px;}
+  .rg-save-btn{width:100%;background:var(--surface);border:1px solid var(--border);border-radius:6px;padding:10px;color:var(--muted);font-family:'DM Mono',monospace;font-size:11px;cursor:pointer;margin-top:10px;transition:all 0.15s;}
+  .rg-save-btn.saved{color:var(--green);border-color:rgba(34,197,94,0.3);}
+  .rg-saved-list{display:flex;flex-direction:column;gap:8px;margin-top:12px;}
+  .rg-saved-item{background:var(--surface2);border:1px solid var(--border);border-radius:6px;padding:12px 14px;display:flex;justify-content:space-between;align-items:flex-start;gap:10px;}
+  .rg-saved-name{font-family:'Barlow Condensed',sans-serif;font-weight:700;font-size:16px;margin-bottom:2px;}
+  .rg-saved-meta{font-family:'DM Mono',monospace;font-size:9px;color:var(--muted);}
+  .rg-saved-del{background:transparent;border:1px solid var(--dim);border-radius:4px;padding:4px 8px;color:var(--muted);font-size:12px;cursor:pointer;flex-shrink:0;}
+
+  /* ── LIGHT FEET ── */
+  .lf-card{background:var(--surface);border:1px solid rgba(139,92,246,0.35);border-radius:8px;margin-bottom:14px;overflow:hidden;}
+  .lf-header{display:flex;align-items:center;justify-content:space-between;padding:12px 14px;cursor:pointer;user-select:none;}
+  .lf-header-left{display:flex;align-items:center;gap:10px;}
+  .lf-title{font-family:'Barlow Condensed',sans-serif;font-weight:900;font-size:18px;color:#a78bfa;}
+  .lf-subtitle{font-family:'DM Mono',monospace;font-size:9px;color:var(--muted);margin-top:1px;}
+  .lf-badge{font-family:'DM Mono',monospace;font-size:9px;background:rgba(139,92,246,0.15);color:#a78bfa;padding:3px 8px;border-radius:4px;letter-spacing:1px;flex-shrink:0;}
+  .lf-progress-row{display:flex;align-items:center;gap:8px;padding:0 14px 10px;}
+  .lf-progress-track{flex:1;height:3px;background:var(--dim);border-radius:3px;overflow:hidden;}
+  .lf-progress-fill{height:100%;background:linear-gradient(90deg,#a78bfa,#60a5fa);border-radius:3px;transition:width 0.3s;}
+  .lf-progress-label{font-family:'DM Mono',monospace;font-size:9px;color:var(--muted);white-space:nowrap;}
+  .lf-body{padding:0 14px 14px;display:none;}
+  .lf-body.open{display:block;}
+  .lf-why{font-size:11px;color:var(--muted);line-height:1.6;margin-bottom:12px;padding:8px 10px;background:rgba(139,92,246,0.06);border-radius:5px;border-left:2px solid #a78bfa;}
+  .lf-exercise{display:flex;align-items:flex-start;gap:9px;padding:9px 0;border-bottom:1px solid var(--border);}
+  .lf-exercise:last-child{border-bottom:none;}
+  .lf-ex-check{width:22px;height:22px;border:2px solid var(--dim);border-radius:5px;flex-shrink:0;cursor:pointer;display:flex;align-items:center;justify-content:center;transition:all 0.15s;background:var(--bg);margin-top:1px;}
+  .lf-ex-check:active{transform:scale(0.88);}
+  .lf-ex-check.checked{background:#a78bfa;border-color:#a78bfa;}
+  .lf-ex-check.checked::after{content:'✓';color:#000;font-size:11px;font-weight:800;}
+  .lf-ex-content{flex:1;}
+  .lf-ex-name{font-size:13px;font-weight:500;margin-bottom:1px;}
+  .lf-ex-sets{font-family:'DM Mono',monospace;font-size:10px;color:var(--muted);}
+  .lf-ex-why{font-size:11px;color:#a78bfa;font-style:italic;margin-top:2px;opacity:0.8;}
+  .lf-ex-yt{display:inline-flex;align-items:center;gap:4px;font-family:'DM Mono',monospace;font-size:9px;color:#ff5555;text-decoration:none;margin-top:4px;border:1px solid rgba(255,85,85,0.3);padding:2px 7px;border-radius:3px;}
+  .lf-done-banner{text-align:center;padding:10px;font-family:'Barlow Condensed',sans-serif;font-weight:700;font-size:16px;color:#a78bfa;letter-spacing:0.5px;}
+
   /* ── NINJA / XP SYSTEM ── */
   .ninja-rank-card{border-radius:10px;padding:18px;margin-bottom:16px;position:relative;overflow:hidden;border:1px solid var(--border);}
   .ninja-rank-card::before{content:'';position:absolute;inset:0;opacity:0.08;pointer-events:none;}
@@ -274,18 +424,34 @@
 
       <div class="logo-sub">BASKETBALL PERFORMANCE</div>
     </div>
-    <div class="weight-toggle" id="weightToggle" onclick="toggleWeight()">
-      <div class="wt-dot" id="wtDot"></div>
-      <span id="weightVal">••• lbs</span>
-    </div>
   </header>
 
   <!-- TODAY VIEW -->
   <div class="view active" id="view-today">
     <div class="stats-bar">
       <div class="stat-cell"><div class="stat-label">Height</div><div class="stat-value sv-o">6'0"</div></div>
-      <div class="stat-cell"><div class="stat-label">Weight</div><div class="stat-value sv-y" id="weightStat">•••</div></div>
-      <div class="stat-cell"><div class="stat-label">Flag</div><div class="stat-value sv-r">APT</div></div>
+      <div class="stat-cell" onclick="toggleWeight()" style="cursor:pointer;user-select:none;">
+        <div class="stat-label" style="display:flex;align-items:center;justify-content:space-between;">
+          <span>Weight</span>
+          <span id="wtToggleIcon" style="font-size:9px;color:var(--dim);">👁</span>
+        </div>
+        <div style="display:flex;align-items:baseline;gap:6px;flex-wrap:wrap;">
+          <div class="stat-value sv-y" id="weightStat">•••</div>
+          <div id="prevWeightStat" style="font-family:'DM Mono',monospace;font-size:9px;color:var(--muted);"></div>
+        </div>
+        <div id="weightArrowLabel" style="font-family:'DM Mono',monospace;font-size:9px;margin-top:2px;"></div>
+      </div>
+      <div class="stat-cell"><div class="stat-label">Goal</div><div class="stat-value sv-g">180</div></div>
+      <div class="stat-cell" style="grid-column:span 3;">
+        <div class="stat-label" style="margin-bottom:5px;">Focus Flags</div>
+        <div style="display:flex;flex-wrap:wrap;gap:4px;">
+          <span style="background:rgba(239,68,68,0.15);color:var(--red);font-family:'DM Mono',monospace;font-size:8px;padding:2px 7px;border-radius:3px;letter-spacing:0.5px;">APT</span>
+          <span style="background:rgba(59,130,246,0.15);color:var(--blue);font-family:'DM Mono',monospace;font-size:8px;padding:2px 7px;border-radius:3px;letter-spacing:0.5px;">CORE</span>
+          <span style="background:rgba(251,191,36,0.15);color:var(--accent2);font-family:'DM Mono',monospace;font-size:8px;padding:2px 7px;border-radius:3px;letter-spacing:0.5px;">LEGS</span>
+          <span style="background:rgba(34,197,94,0.15);color:var(--green);font-family:'DM Mono',monospace;font-size:8px;padding:2px 7px;border-radius:3px;letter-spacing:0.5px;">CONDITIONING</span>
+          <span style="background:rgba(139,92,246,0.15);color:#a78bfa;font-family:'DM Mono',monospace;font-size:8px;padding:2px 7px;border-radius:3px;letter-spacing:0.5px;">LIGHT FEET</span>
+        </div>
+      </div>
       <div class="stat-cell"><div class="stat-label">League</div><div class="stat-value sv-b">Apr 11</div></div>
       <div class="stat-cell"><div class="stat-label">Days Left</div><div class="stat-value sv-o" id="daysLeftStat">--</div></div>
       <div class="stat-cell"><div class="stat-label">Program</div><div class="stat-value sv-g">16 wk</div></div>
@@ -303,6 +469,10 @@
       <div class="apt-icon">⚠️</div>
       <p><strong>APT Protocol Active.</strong> Exercises marked <span style="color:var(--accent2);font-style:normal;font-weight:600;">▲ APT</span> are your highest priority. They fix the root issue and unlock your first-step power.</p>
     </div>
+
+    <!-- LIGHT FEET DAILY ROUTINE -->
+    <div id="lightFeetCard"></div>
+
     <div id="todaySection"></div>
   </div>
 
@@ -402,21 +572,65 @@
 
   <!-- NINJA VIEW -->
   <div class="view" id="view-ninja">
-
-    <!-- RANK CARD -->
     <div class="ninja-rank-card" id="ninjaRankCard"></div>
-
-    <!-- DAILY MILESTONES -->
     <div class="section-header"><div class="section-title">Daily Missions</div><div class="section-tag">reset at midnight</div></div>
     <div class="milestone-grid" id="milestoneGrid"></div>
-
-    <!-- BADGES -->
     <div class="section-header"><div class="section-title">Gym Badges</div><div class="section-tag">earned forever</div></div>
     <div class="badge-grid" id="badgeGrid"></div>
-
-    <!-- CALENDAR -->
     <div class="section-header"><div class="section-title">Training Log</div><div class="section-tag">since Mar 20</div></div>
     <div class="cal-wrap" id="calWrap"></div>
+  </div>
+
+  <!-- NUTRITION VIEW -->
+  <div class="view" id="view-nutrition">
+
+    <!-- DAILY SUMMARY RINGS -->
+    <div class="nutr-header" id="nutriHeader"></div>
+
+    <!-- WATER TRACKER -->
+    <div class="section-header"><div class="section-title">Water</div><div class="section-tag">goal: 3L</div></div>
+    <div class="water-card" id="waterCard"></div>
+
+    <!-- FOOD LOG -->
+    <div class="section-header" style="margin-top:18px;">
+      <div class="section-title">Food Log</div>
+      <div class="section-tag" id="nutrDateLabel"></div>
+    </div>
+
+    <!-- ADD FOOD -->
+    <div class="add-food-card" id="addFoodCard"></div>
+
+    <!-- LOGGED MEALS -->
+    <div id="mealLog"></div>
+
+    <!-- MACRO HISTORY MINI CHART -->
+    <div class="section-header" style="margin-top:18px;"><div class="section-title">7-Day Protein</div><div class="section-tag">trend</div></div>
+    <div class="protein-chart" id="proteinChart"></div>
+
+    <!-- AI RECIPE GENERATOR -->
+    <div class="section-header" style="margin-top:18px;">
+      <div class="section-title">Recipe Builder</div>
+      <div class="section-tag">AI powered</div>
+    </div>
+    <div class="recipe-gen-card">
+      <div class="rg-intro">Tell me what ingredients you have and I'll build you a high-protein meal optimized for your goals — weight loss toward 180 lbs, muscle repair, and tendon health.</div>
+      <div class="rg-input-label">Your ingredients</div>
+      <textarea id="ingredientInput" class="rg-textarea" placeholder="e.g. chicken breast, rice, broccoli, olive oil, garlic, eggs, Greek yogurt..."></textarea>
+      <div class="rg-options-row">
+        <div class="rg-option-label">Meal type</div>
+        <div class="rg-options">
+          <div class="rg-opt active" onclick="selectRecipeMeal('any',this)">Any</div>
+          <div class="rg-opt" onclick="selectRecipeMeal('breakfast',this)">Breakfast</div>
+          <div class="rg-opt" onclick="selectRecipeMeal('lunch',this)">Lunch</div>
+          <div class="rg-opt" onclick="selectRecipeMeal('dinner',this)">Dinner</div>
+          <div class="rg-opt" onclick="selectRecipeMeal('post-workout',this)">Post-WO</div>
+        </div>
+      </div>
+      <button class="rg-btn" id="recipeGenBtn" onclick="generateRecipe()">
+        <span id="recipeGenBtnText">🍳 Generate Recipe</span>
+      </button>
+      <div id="recipeOutput"></div>
+    </div>
 
   </div>
 
@@ -426,6 +640,7 @@
 <div class="bottom-nav">
   <div class="bn-item active" onclick="switchView('today',this)"><div class="bn-icon">🏀</div><span>Today</span></div>
   <div class="bn-item" onclick="switchView('program',this)"><div class="bn-icon">📋</div><span>Program</span></div>
+  <div class="bn-item" onclick="switchView('nutrition',this)"><div class="bn-icon">🥗</div><span>Nutrition</span></div>
   <div class="bn-item" onclick="switchView('body',this)"><div class="bn-icon">⚡</div><span>Body</span></div>
   <div class="bn-item" onclick="switchView('progress',this)"><div class="bn-icon">📈</div><span>Progress</span></div>
   <div class="bn-item" onclick="switchView('ninja',this)"><div class="bn-icon">🥷</div><span>Ninja</span></div>
@@ -436,8 +651,11 @@ const yt = q => `https://www.youtube.com/results?search_query=${encodeURICompone
 
 // ─── SCHEDULE DATA ───
 // Program starts Friday March 20. Days numbered from 0.
+// Split: Push / Pull / Rest / Legs / Plyo+Core / Footwork / Rest
+// No on-court work until after April 11 first game
 const DAYS = {
-  // WEEK 1
+
+  // ══════════ WEEK 1 ══════════
   'p1w1-0': {
     key:'p1w1-0', dayName:'Friday', date:'Mar 20', tag:'t-exp', tagLabel:'Movement + Intro Plyos',
     exercises:[
@@ -451,139 +669,293 @@ const DAYS = {
       {id:'a08',name:'Dead Bug',sets:'3 × 8 each side',note:'▲ APT — Low back pressed to floor the whole time.',apt:true,yt:yt('dead bug exercise anterior pelvic tilt core')},
     ]
   },
+
   'p1w1-1': {
-    key:'p1w1-1', dayName:'Saturday', date:'Mar 21', tag:'t-court', tagLabel:'Court Work',
+    key:'p1w1-1', dayName:'Saturday', date:'Mar 21', tag:'t-str', tagLabel:'Pull Day',
     exercises:[
-      {id:'b01',name:'Shooting Warm-Up (close range)',sets:'10–15 min',note:'Focus on footwork into every single shot.',yt:yt('basketball shooting footwork warm up drill')},
-      {id:'b02',name:'Jab Step → Dribble Drive (slow)',sets:'3 × 5 each direction',note:'NOT fast yet. Triple threat → jab → go. Groove it.',yt:yt('jab step drive basketball drill tutorial')},
-      {id:'b03',name:'Eurostep Walk-Through',sets:'3 × 5 each side',note:'No speed. Just feet. Learn the footwork without defense.',yt:yt('eurostep footwork basketball drill slow')},
-      {id:'b04',name:'Stationary Dribble Series',sets:'10 min',note:'Crossover, between legs, behind back. Keep it tight.',yt:yt('stationary basketball dribbling drills')},
-      {id:'b05',name:'Hip Flexor Stretch + Ankle Circles',sets:'5 min cooldown',note:'▲ APT — After every court session.',apt:true,yt:yt('hip flexor stretch cooldown after basketball')},
+      {id:'b01',name:'90/90 Hip Flexor Stretch',sets:'3 × 60s each side',note:'▲ APT — Every session.',apt:true,yt:yt('90 90 hip flexor stretch how to')},
+      {id:'b02',name:'Glute Bridge Activation',sets:'2 × 15',note:'▲ APT',apt:true,yt:yt('glute bridge activation before workout')},
+      {id:'b03',name:'DB Row (1-Arm)',sets:'3 × 10 each arm',note:'Pull elbow back, chest stays proud. No rotation.',weighted:true,yt:yt('single arm dumbbell row form')},
+      {id:'b04',name:'Chest-Supported DB Row',sets:'3 × 10',note:'Removes lower back from the equation. Pure back work.',weighted:true,yt:yt('chest supported dumbbell row form')},
+      {id:'b05',name:'Face Pull (band)',sets:'3 × 15',note:'Shoulder health. Non-negotiable if you shoot.',yt:yt('band face pull shoulder health')},
+      {id:'b06',name:'Band Pull-Apart',sets:'3 × 15',yt:yt('band pull apart shoulder health basketball')},
+      {id:'b07',name:'DB Bicep Curl',sets:'3 × 12',note:'Full range. Squeeze at top.',weighted:true,yt:yt('dumbbell bicep curl form tutorial')},
+      {id:'b08',name:'Dead Bug',sets:'3 × 10 each side',note:'▲ APT — Pull day core finisher.',apt:true,yt:yt('dead bug exercise anterior pelvic tilt core')},
     ]
   },
+
   'p1w1-2': {
     key:'p1w1-2', dayName:'Sunday', date:'Mar 22', tag:'t-rest', tagLabel:'Full Rest', isRest:true,
     exercises:[
       {id:'c01',name:'Sleep 8+ hours',sets:'',note:'This is when adaptation happens. Rest IS training.'},
-      {id:'c02',name:'Optional: Foam Roll',sets:'5 min calves + hip flexors',note:'▲ APT — Calves and hip flexors priority.',apt:true,yt:yt('foam rolling calves hip flexors recovery')},
+      {id:'c02',name:'Optional: Foam Roll',sets:'5–10 min',note:'▲ APT — Calves, hip flexors, lats.',apt:true,yt:yt('foam rolling calves hip flexors recovery')},
     ]
   },
+
   'p1w1-3': {
-    key:'p1w1-3', dayName:'Monday', date:'Mar 23', tag:'t-str', tagLabel:'Lower Foundation',
+    key:'p1w1-3', dayName:'Monday', date:'Mar 23', tag:'t-str', tagLabel:'Leg Day',
     exercises:[
-      {id:'d01',name:'90/90 Hip Flexor Stretch',sets:'3 × 60s each side',note:'▲ APT — Non-negotiable opener.',apt:true,yt:yt('90 90 hip flexor stretch how to')},
-      {id:'d02',name:'Glute Bridge (Bodyweight)',sets:'3 × 15, 2s hold at top',note:'▲ APT — Don\'t let lower back arch.',apt:true,yt:yt('glute bridge form tutorial')},
-      {id:'d03',name:'Goblet Squat',sets:'3 × 10 @ 20–30 lbs',note:'Upright torso, heel pressure. Learning the pattern.',weighted:true,yt:yt('goblet squat form tutorial beginner')},
-      {id:'d04',name:'Seated Calf Raise (slow)',sets:'3 × 15, 3s up / 3s down',note:'Tendon conditioning. Do NOT rush these.',weighted:true,yt:yt('seated calf raise slow eccentric tendon')},
-      {id:'d05',name:'Dead Bug',sets:'3 × 8 each side',note:'▲ APT — Core anti-extension.',apt:true,yt:yt('dead bug exercise anterior pelvic tilt core')},
-      {id:'d06',name:'Ankle Circles + Alphabet',sets:'2 × each foot',yt:yt('ankle alphabet mobility drill')},
+      {id:'d01',name:'90/90 Hip Flexor Stretch',sets:'3 × 60s each side',note:'▲ APT — Longer hold today. Legs need open hips.',apt:true,yt:yt('90 90 hip flexor stretch how to')},
+      {id:'d02',name:'Glute Bridge (Bodyweight → Weighted)',sets:'3 × 15, 2s hold at top',note:'▲ APT — Build to loaded version over weeks.',apt:true,yt:yt('glute bridge form tutorial')},
+      {id:'d03',name:'Goblet Squat',sets:'3 × 10',note:'Upright torso, heels down. Learning the pattern. Add weight weekly.',weighted:true,yt:yt('goblet squat form tutorial beginner')},
+      {id:'d04',name:'Romanian Deadlift (DB)',sets:'3 × 10',note:'Hinge at hips, soft knees. Hamstrings load the whole way down.',weighted:true,yt:yt('romanian deadlift dumbbell form tutorial')},
+      {id:'d05',name:'Reverse Lunge (DB)',sets:'3 × 8 each leg',note:'Step back, front knee tracks over toes. Builds single-leg stability.',weighted:true,yt:yt('reverse lunge dumbbell form tutorial')},
+      {id:'d06',name:'Seated Calf Raise (slow)',sets:'3 × 15, 3s up / 3s down',note:'Tendon conditioning. Never rush eccentrics.',weighted:true,yt:yt('seated calf raise slow eccentric tendon')},
+      {id:'d07',name:'Ankle Circles + Alphabet',sets:'2 × each foot',note:'Daily ankle health. Takes 2 minutes.',yt:yt('ankle alphabet mobility drill')},
+      {id:'d08',name:'Pallof Press',sets:'3 × 10 each side',note:'▲ APT — Anti-rotation. Key for first-step power transfer.',apt:true,yt:yt('pallof press anti rotation core APT')},
     ]
   },
+
   'p1w1-4': {
-    key:'p1w1-4', dayName:'Tuesday', date:'Mar 24', tag:'t-foot', tagLabel:'Footwork Intro',
+    key:'p1w1-4', dayName:'Tuesday', date:'Mar 24', tag:'t-exp', tagLabel:'Plyo + Core',
     exercises:[
-      {id:'e01',name:'Jump Rope (basic rhythm)',sets:'3 × 2 min, 60s rest',note:'Land on the balls of your feet. Build the habit now.',yt:yt('jump rope basics technique basketball conditioning')},
-      {id:'e02',name:'Defensive Slide (low & wide)',sets:'4 × 20 ft each direction',note:'Stay in low athletic stance. Feel the outside of your feet.',yt:yt('basketball defensive slide drill low wide')},
-      {id:'e03',name:'Jab Step Drill (stationary)',sets:'3 × 10 each side',note:'Triple threat. Short hard jab, weight shift, return. Control it.',yt:yt('jab step basketball drill stationary')},
-      {id:'e04',name:'Skater Step (slow, lateral)',sets:'3 × 8 each leg',note:'Land single-leg, hold balance 1 sec. Ankle stability focus.',yt:yt('skater step lateral single leg balance')},
-      {id:'e05',name:'Couch Stretch',sets:'2 × 60s each side',note:'▲ APT — After every footwork day.',apt:true,yt:yt('couch stretch hip flexor APT')},
+      {id:'e01',name:'90/90 Hip Stretch',sets:'2 × 60s each side',note:'▲ APT — Short activation before explosive work.',apt:true,yt:yt('90 90 hip flexor stretch how to')},
+      {id:'e02',name:'Glute Bridge Activation',sets:'2 × 12',note:'▲ APT — Prime glutes before any jumping.',apt:true,yt:yt('glute bridge activation before workout')},
+      {id:'e03',name:'Broad Jump (stick the landing)',sets:'4 × 4',note:'Jump forward, HOLD landing 2 sec. Mechanics over distance.',yt:yt('broad jump landing mechanics soft')},
+      {id:'e04',name:'Box Step-Up (controlled)',sets:'3 × 8 each leg',note:'12–16" box. Drive through heel. Zero momentum.',weighted:true,yt:yt('box step up exercise tutorial basketball')},
+      {id:'e05',name:'Lateral Bound (mini)',sets:'3 × 6 each side',note:'Short hop, stick landing. Ankle stability first.',yt:yt('lateral bound plyometric ankle basketball')},
+      {id:'e06',name:'Single-Leg Calf Raise (eccentric)',sets:'3 × 12 each, 4s down',note:'Achilles protection. Never skip.',yt:yt('eccentric single leg calf raise achilles tendon')},
+      {id:'e07',name:'Dead Bug',sets:'3 × 10 each side',note:'▲ APT — Core anti-extension.',apt:true,yt:yt('dead bug exercise anterior pelvic tilt core')},
+      {id:'e08',name:'Hollow Body Hold',sets:'3 × 25 sec',note:'▲ APT — Build time each week.',apt:true,yt:yt('hollow body hold anterior pelvic tilt')},
+      {id:'e09',name:'Plank (forearm)',sets:'3 × 30–40 sec',note:'▲ APT — Squeeze glutes hard. No arch in lower back.',apt:true,yt:yt('forearm plank perfect form glutes core')},
     ]
   },
+
   'p1w1-5': {
-    key:'p1w1-5', dayName:'Wednesday', date:'Mar 25', tag:'t-rec', tagLabel:'Active Recovery',
+    key:'p1w1-5', dayName:'Wednesday', date:'Mar 25', tag:'t-foot', tagLabel:'Footwork (Off-Court)',
     exercises:[
-      {id:'f01',name:'Light Walk (20–30 min)',sets:'Easy pace',note:'Get blood moving. No intensity.',yt:yt('active recovery walk benefits')},
-      {id:'f02',name:'Full Body Foam Roll',sets:'10 min',note:'Calves, IT band, quads, lats. Extra time on calves + hip flexors.',yt:yt('full body foam rolling routine calves hips')},
-      {id:'f03',name:"World's Greatest Stretch",sets:'3 reps each side, slow',note:'▲ APT — Opens hips and thoracic spine.',apt:true,yt:yt("world's greatest stretch hip thoracic")},
-      {id:'f04',name:'Ankle Banded Distraction',sets:'2 × 60s each ankle',note:'Band at ankle joint to open the capsule.',yt:yt('ankle banded distraction stretch mobility')},
+      {id:'f01',name:'Jump Rope (basic rhythm)',sets:'3 × 2 min, 60s rest',note:'Land on balls of feet. Build the habit now.',yt:yt('jump rope basics technique basketball conditioning')},
+      {id:'f02',name:'Defensive Slide (low & wide)',sets:'4 × 20 ft each direction',note:'Stay in low stance. Feel outside of feet loading.',yt:yt('basketball defensive slide drill low wide')},
+      {id:'f03',name:'Jab Step Drill (stationary)',sets:'3 × 10 each side',note:'Triple threat → short hard jab → weight shift → return.',yt:yt('jab step basketball drill stationary')},
+      {id:'f04',name:'Lateral Shuffle + Sprint (5–10–5)',sets:'4 rounds',note:'5 yards out, 10 back, 5 return. Change direction explosively.',yt:yt('5 10 5 shuttle drill basketball agility')},
+      {id:'f05',name:'Skater Step (slow, lateral)',sets:'3 × 8 each leg',note:'Land single-leg, hold 1 sec. Ankle stability focus.',yt:yt('skater step lateral single leg balance')},
+      {id:'f06',name:'Ankle Banded Distraction',sets:'2 × 60s each',note:'Open ankle capsule. Improves first-step range.',yt:yt('ankle banded distraction stretch mobility')},
+      {id:'f07',name:'Couch Stretch',sets:'2 × 60s each side',note:'▲ APT — After every footwork session.',apt:true,yt:yt('couch stretch hip flexor APT')},
     ]
   },
+
   'p1w1-6': {
-    key:'p1w1-6', dayName:'Thursday', date:'Mar 26', tag:'t-str', tagLabel:'Upper + Core',
+    key:'p1w1-6', dayName:'Thursday', date:'Mar 26', tag:'t-rec', tagLabel:'Active Recovery',
     exercises:[
-      {id:'g01',name:'Push-Up (controlled)',sets:'3 × 10–12, 3s lowering',note:'No flared elbows. Build shoulder and chest base.',yt:yt('push up perfect form slow eccentric')},
-      {id:'g02',name:'Dumbbell Row',sets:'3 × 10 each arm',note:'Posture matters in basketball. Build pulling strength.',weighted:true,yt:yt('dumbbell row form tutorial')},
-      {id:'g03',name:'Pallof Press',sets:'3 × 10 each side',note:'▲ APT — Anti-rotation core. Key for first-step drive without back strain.',apt:true,yt:yt('pallof press anti rotation core APT')},
-      {id:'g04',name:'Hollow Body Hold',sets:'3 × 20–30 sec',note:'▲ APT — Exact core pattern to reduce anterior tilt.',apt:true,yt:yt('hollow body hold anterior pelvic tilt')},
-      {id:'g05',name:'Band Pull-Apart',sets:'3 × 15',note:'Shoulder health. Essential if you shoot the ball.',yt:yt('band pull apart shoulder health basketball')},
+      {id:'g01',name:'Light Walk (20–30 min)',sets:'Easy pace',note:'Get blood moving. No intensity.',yt:yt('active recovery walk benefits')},
+      {id:'g02',name:'Full Body Foam Roll',sets:'10 min',note:'Calves, IT band, quads, lats. Extra time on hip flexors.',yt:yt('full body foam rolling routine calves hips')},
+      {id:'g03',name:"World's Greatest Stretch",sets:'3 reps each side, slow',note:'▲ APT — Opens hips and thoracic spine.',apt:true,yt:yt("world's greatest stretch hip thoracic")},
+      {id:'g04',name:'Thoracic Rotation',sets:'3 × 8 each side',yt:yt('thoracic spine rotation stretch mobility')},
+      {id:'g05',name:'Ankle Banded Distraction',sets:'2 × 60s each ankle',yt:yt('ankle banded distraction stretch mobility')},
     ]
   },
-  // WEEK 2 (starts Mon Mar 30)
+
+  // ══════════ WEEK 2 ══════════
   'p1w2-0': {
-    key:'p1w2-0', dayName:'Monday', date:'Mar 30', tag:'t-str', tagLabel:'Lower — Add Load',
+    key:'p1w2-0', dayName:'Friday', date:'Mar 27', tag:'t-str', tagLabel:'Push Day',
     exercises:[
-      {id:'h01',name:'90/90 Hip Stretch',sets:'3 × 60s each side',note:'▲ APT — Non-negotiable opener.',apt:true,yt:yt('90 90 hip flexor stretch how to')},
-      {id:'h02',name:'Hip Thrust (Barbell or DB)',sets:'3 × 12 — +10–20 lbs vs W1',note:'▲ APT — Glute power is your first step. Squeeze hard at top.',apt:true,weighted:true,yt:yt('hip thrust barbell form tutorial')},
-      {id:'h03',name:'Romanian Deadlift (DB)',sets:'3 × 10 moderate weight',note:'Hamstring + posterior chain. Critical for knee protection.',weighted:true,yt:yt('romanian deadlift dumbbell form tutorial')},
-      {id:'h04',name:'Goblet Squat',sets:'3 × 10 — slight weight increase',weighted:true,yt:yt('goblet squat form tutorial beginner')},
-      {id:'h05',name:'Seated Calf Raise',sets:'3 × 15 slow',note:'Add a little weight. Still 3s up/3s down.',weighted:true,yt:yt('seated calf raise slow eccentric tendon')},
-      {id:'h06',name:'Dead Bug',sets:'3 × 10 each side',apt:true,yt:yt('dead bug exercise anterior pelvic tilt core')},
+      {id:'h01',name:'90/90 Hip Flexor Stretch',sets:'3 × 60s each side',note:'▲ APT',apt:true,yt:yt('90 90 hip flexor stretch how to')},
+      {id:'h02',name:'Glute Bridge Activation',sets:'2 × 15',note:'▲ APT',apt:true,yt:yt('glute bridge activation before workout')},
+      {id:'h03',name:'Dumbbell Bench Press',sets:'3 × 10',note:'Add 5 lbs vs Week 1.',weighted:true,yt:yt('dumbbell bench press form tutorial')},
+      {id:'h04',name:'Incline DB Press',sets:'3 × 10',note:'Add 5 lbs vs Week 1.',weighted:true,yt:yt('incline dumbbell press form tutorial')},
+      {id:'h05',name:'Dumbbell Shoulder Press',sets:'3 × 10',note:'Slight weight increase if Week 1 felt easy.',weighted:true,yt:yt('dumbbell shoulder press form tutorial')},
+      {id:'h06',name:'Lateral Raise',sets:'3 × 12',weighted:true,yt:yt('lateral raise form no swinging')},
+      {id:'h07',name:'Tricep Pushdown',sets:'3 × 12',weighted:true,yt:yt('tricep pushdown band cable form')},
+      {id:'h08',name:'Hollow Body Hold',sets:'3 × 30 sec',note:'▲ APT — Add 5 seconds vs Week 1.',apt:true,yt:yt('hollow body hold anterior pelvic tilt')},
     ]
   },
+
   'p1w2-1': {
-    key:'p1w2-1', dayName:'Tuesday', date:'Mar 31', tag:'t-foot', tagLabel:'Footwork — Direction',
+    key:'p1w2-1', dayName:'Saturday', date:'Mar 28', tag:'t-str', tagLabel:'Pull Day',
     exercises:[
-      {id:'i01',name:'Jump Rope — Single Leg Alternating',sets:'3 × 90s',yt:yt('jump rope single leg alternating basketball')},
-      {id:'i02',name:'T-Drill / 3-Cone',sets:'4 rounds — moderate pace',note:'Change of direction. Feel where power leaks in your hips.',yt:yt('T drill 3 cone basketball agility drill')},
-      {id:'i03',name:'Jab Step → Crossover Drive',sets:'3 × 6 each way (half speed)',yt:yt('jab step crossover drive basketball drill')},
-      {id:'i04',name:'Defensive Slide + Close-Out',sets:'4 × 20 ft',yt:yt('defensive slide close out basketball drill')},
-      {id:'i05',name:'Couch Stretch',sets:'2 × 60s each side',note:'▲ APT',apt:true,yt:yt('couch stretch hip flexor APT')},
+      {id:'i01',name:'90/90 Hip Flexor Stretch',sets:'3 × 60s each side',note:'▲ APT',apt:true,yt:yt('90 90 hip flexor stretch how to')},
+      {id:'i02',name:'Glute Bridge Activation',sets:'2 × 15',note:'▲ APT',apt:true,yt:yt('glute bridge activation before workout')},
+      {id:'i03',name:'DB Row (1-Arm)',sets:'3 × 10 each',note:'Add 5 lbs vs Week 1.',weighted:true,yt:yt('single arm dumbbell row form')},
+      {id:'i04',name:'Chest-Supported DB Row',sets:'3 × 10',note:'Increase weight slightly.',weighted:true,yt:yt('chest supported dumbbell row form')},
+      {id:'i05',name:'Face Pull (band)',sets:'3 × 15',yt:yt('band face pull shoulder health')},
+      {id:'i06',name:'Band Pull-Apart',sets:'3 × 15',yt:yt('band pull apart shoulder health basketball')},
+      {id:'i07',name:'DB Bicep Curl',sets:'3 × 12',weighted:true,yt:yt('dumbbell bicep curl form tutorial')},
+      {id:'i08',name:'Dead Bug',sets:'3 × 10 each side',note:'▲ APT',apt:true,yt:yt('dead bug exercise anterior pelvic tilt core')},
     ]
   },
+
   'p1w2-2': {
-    key:'p1w2-2', dayName:'Wednesday', date:'Apr 1', tag:'t-rec', tagLabel:'Recovery',
+    key:'p1w2-2', dayName:'Sunday', date:'Mar 29', tag:'t-rest', tagLabel:'Full Rest', isRest:true,
     exercises:[
-      {id:'j01',name:'Walk + Foam Roll (same as W1)',sets:'',note:'Add thoracic spine rotations this week.',yt:yt('thoracic spine rotation mobility exercise')},
-      {id:'j02',name:'Thoracic Rotation',sets:'3 × 8 each side',yt:yt('thoracic spine rotation stretch mobility')},
-      {id:'j03',name:"World's Greatest Stretch",sets:'3 reps each side',apt:true,yt:yt("world's greatest stretch hip thoracic")},
+      {id:'j01',name:'Sleep 8+ hours',sets:'',note:'Rest is training.'},
+      {id:'j02',name:'Optional: Foam Roll',sets:'5 min',apt:true,yt:yt('foam rolling calves hip flexors recovery')},
     ]
   },
+
   'p1w2-3': {
-    key:'p1w2-3', dayName:'Thursday', date:'Apr 2', tag:'t-str', tagLabel:'Upper + Anti-Rotation Core',
+    key:'p1w2-3', dayName:'Monday', date:'Mar 30', tag:'t-str', tagLabel:'Leg Day',
     exercises:[
-      {id:'k01',name:'Dumbbell Bench Press',sets:'3 × 10',weighted:true,yt:yt('dumbbell bench press form tutorial')},
-      {id:'k02',name:'1-Arm DB Row',sets:'3 × 10 each',weighted:true,yt:yt('single arm dumbbell row form')},
-      {id:'k03',name:'Pallof Press + Hold',sets:'3 × 12 each side',note:'▲ APT',apt:true,yt:yt('pallof press anti rotation core APT')},
-      {id:'k04',name:'Forearm Plank',sets:'3 × 30–40 sec',note:'▲ APT — Squeeze glutes hard. Back arching = doing it wrong.',apt:true,yt:yt('forearm plank perfect form glutes core')},
-      {id:'k05',name:'Face Pull (band)',sets:'3 × 15',yt:yt('band face pull shoulder health')},
+      {id:'k01',name:'90/90 Hip Flexor Stretch',sets:'3 × 60s each side',note:'▲ APT',apt:true,yt:yt('90 90 hip flexor stretch how to')},
+      {id:'k02',name:'Hip Thrust (DB or Barbell)',sets:'3 × 12',note:'▲ APT — Load it up. This is your first step power.',apt:true,weighted:true,yt:yt('hip thrust barbell form tutorial')},
+      {id:'k03',name:'Goblet Squat',sets:'3 × 10',note:'Add 5–10 lbs vs Week 1.',weighted:true,yt:yt('goblet squat form tutorial beginner')},
+      {id:'k04',name:'Romanian Deadlift (DB)',sets:'3 × 10',note:'Increase weight slightly.',weighted:true,yt:yt('romanian deadlift dumbbell form tutorial')},
+      {id:'k05',name:'Reverse Lunge (DB)',sets:'3 × 8 each leg',note:'Add a little weight vs Week 1.',weighted:true,yt:yt('reverse lunge dumbbell form tutorial')},
+      {id:'k06',name:'Seated Calf Raise',sets:'3 × 15 slow',note:'Add small weight. Still 3s up/3s down.',weighted:true,yt:yt('seated calf raise slow eccentric tendon')},
+      {id:'k07',name:'Ankle Circles + Alphabet',sets:'2 × each foot',yt:yt('ankle alphabet mobility drill')},
+      {id:'k08',name:'Pallof Press',sets:'3 × 12 each side',note:'▲ APT',apt:true,yt:yt('pallof press anti rotation core APT')},
     ]
   },
+
   'p1w2-4': {
-    key:'p1w2-4', dayName:'Friday', date:'Apr 3', tag:'t-exp', tagLabel:'Plyos — Volume Up',
+    key:'p1w2-4', dayName:'Tuesday', date:'Mar 31', tag:'t-exp', tagLabel:'Plyo + Core',
     exercises:[
-      {id:'l01',name:'Box Jump (land soft)',sets:'4 × 5 — 18–20" box',note:'Step DOWN after. Do not jump down. Protect the tendons.',yt:yt('box jump soft landing technique basketball')},
-      {id:'l02',name:'Lateral Bound',sets:'4 × 6 each side',yt:yt('lateral bound plyometric basketball')},
-      {id:'l03',name:'Broad Jump × 2 (stick it)',sets:'4 × 4',yt:yt('broad jump landing mechanics soft')},
-      {id:'l04',name:'Single-Leg Calf Raise (eccentric)',sets:'3 × 12 each, 4s down',yt:yt('eccentric single leg calf raise achilles tendon')},
+      {id:'l01',name:'90/90 Hip Stretch',sets:'2 × 60s each side',note:'▲ APT',apt:true,yt:yt('90 90 hip flexor stretch how to')},
+      {id:'l02',name:'Glute Bridge Activation',sets:'2 × 12',note:'▲ APT',apt:true,yt:yt('glute bridge activation before workout')},
+      {id:'l03',name:'Box Jump (land soft)',sets:'4 × 5 — 18–20" box',note:'Step DOWN after. Do not jump down. Protect tendons.',yt:yt('box jump soft landing technique basketball')},
+      {id:'l04',name:'Lateral Bound',sets:'4 × 6 each side',note:'Distance increasing. Stick every landing.',yt:yt('lateral bound plyometric basketball')},
+      {id:'l05',name:'Broad Jump × 2 (stick it)',sets:'4 × 4',note:'Two jumps in a row, stick the second one.',yt:yt('broad jump landing mechanics soft')},
+      {id:'l06',name:'Single-Leg Calf Raise (eccentric)',sets:'3 × 12 each, 4s down',yt:yt('eccentric single leg calf raise achilles tendon')},
+      {id:'l07',name:'Dead Bug',sets:'3 × 10 each side',note:'▲ APT',apt:true,yt:yt('dead bug exercise anterior pelvic tilt core')},
+      {id:'l08',name:'Hollow Body Hold',sets:'3 × 30 sec',note:'▲ APT',apt:true,yt:yt('hollow body hold anterior pelvic tilt')},
+      {id:'l09',name:'Ab Wheel / Rollout',sets:'3 × 8',note:'▲ APT — Ultimate anti-extension. Start from knees.',apt:true,yt:yt('ab wheel rollout anterior pelvic tilt core')},
     ]
   },
+
   'p1w2-5': {
-    key:'p1w2-5', dayName:'Saturday', date:'Apr 4', tag:'t-court', tagLabel:'Court Work',
+    key:'p1w2-5', dayName:'Wednesday', date:'Apr 1', tag:'t-foot', tagLabel:'Footwork (Off-Court)',
     exercises:[
-      {id:'m01',name:'Ball Handling Warmup',sets:'10 min',yt:yt('basketball ball handling warm up drill')},
-      {id:'m02',name:'Jab Step Series → Drive or Pull-Up',sets:'3 × 5 each side, 50–60% speed',yt:yt('jab step pull up mid range basketball')},
-      {id:'m03',name:'Catch + Go Drill',sets:'4 × 5',note:'Simulate receive → attack immediately.',yt:yt('catch and go first step basketball drill')},
+      {id:'m01',name:'Jump Rope — Single Leg Alternating',sets:'3 × 90s',yt:yt('jump rope single leg alternating basketball')},
+      {id:'m02',name:'T-Drill / 3-Cone',sets:'4 rounds — push the pace',note:'Time yourself this week vs last. First COD test.',yt:yt('T drill 3 cone basketball agility drill')},
+      {id:'m03',name:'5-10-5 Shuttle',sets:'4 rounds',note:'Record your time. This is your baseline.',yt:yt('5 10 5 shuttle drill basketball speed')},
+      {id:'m04',name:'Defensive Slide + Close-Out',sets:'4 × 20 ft',yt:yt('defensive slide close out basketball drill')},
+      {id:'m05',name:'Jab Step → Crossover Drive (no ball)',sets:'3 × 6 each way',note:'Footwork pattern only. No ball yet.',yt:yt('jab step crossover drive basketball drill')},
+      {id:'m06',name:'Couch Stretch',sets:'2 × 60s each side',note:'▲ APT',apt:true,yt:yt('couch stretch hip flexor APT')},
     ]
   },
+
   'p1w2-6': {
-    key:'p1w2-6', dayName:'Sunday', date:'Apr 5', tag:'t-rest', tagLabel:'Full Rest', isRest:true,
+    key:'p1w2-6', dayName:'Thursday', date:'Apr 2', tag:'t-rec', tagLabel:'Active Recovery',
     exercises:[
-      {id:'n01',name:'Sleep 8+ hours',sets:'',note:'Rest is training.'},
+      {id:'n01',name:'Light Walk (20–30 min)',sets:'Easy pace',yt:yt('active recovery walk benefits')},
+      {id:'n02',name:'Full Body Foam Roll',sets:'10 min',note:'Calves, IT band, quads, lats, hip flexors.',yt:yt('full body foam rolling routine calves hips')},
+      {id:'n03',name:"World's Greatest Stretch",sets:'3 reps each side',note:'▲ APT',apt:true,yt:yt("world's greatest stretch hip thoracic")},
+      {id:'n04',name:'Ankle Banded Distraction',sets:'2 × 60s each',yt:yt('ankle banded distraction stretch mobility')},
+    ]
+  },
+
+  // ══════════ WEEK 3 — PRE-LEAGUE TAPER ══════════
+  'p1w3-0': {
+    key:'p1w3-0', dayName:'Friday', date:'Apr 3', tag:'t-str', tagLabel:'Push Day (Lighter)',
+    exercises:[
+      {id:'o01',name:'90/90 Hip Flexor Stretch',sets:'3 × 60s each side',note:'▲ APT',apt:true,yt:yt('90 90 hip flexor stretch how to')},
+      {id:'o02',name:'Glute Bridge Activation',sets:'2 × 15',note:'▲ APT',apt:true,yt:yt('glute bridge activation before workout')},
+      {id:'o03',name:'Dumbbell Bench Press',sets:'3 × 8',note:'Drop to 80% of W2 weight. Crisp reps.',weighted:true,yt:yt('dumbbell bench press form tutorial')},
+      {id:'o04',name:'DB Shoulder Press',sets:'3 × 8',note:'Light, sharp.',weighted:true,yt:yt('dumbbell shoulder press form tutorial')},
+      {id:'o05',name:'Lateral Raise',sets:'2 × 12',weighted:true,yt:yt('lateral raise form no swinging')},
+      {id:'o06',name:'Band Pull-Apart',sets:'3 × 15',yt:yt('band pull apart shoulder health basketball')},
+      {id:'o07',name:'Hollow Body Hold',sets:'2 × 30 sec',note:'▲ APT',apt:true,yt:yt('hollow body hold anterior pelvic tilt')},
+    ]
+  },
+
+  'p1w3-1': {
+    key:'p1w3-1', dayName:'Saturday', date:'Apr 4', tag:'t-str', tagLabel:'Pull Day (Lighter)',
+    exercises:[
+      {id:'p01',name:'90/90 Hip Flexor Stretch',sets:'3 × 60s each side',note:'▲ APT',apt:true,yt:yt('90 90 hip flexor stretch how to')},
+      {id:'p02',name:'DB Row (1-Arm)',sets:'3 × 8',note:'80% weight. Focus on form.',weighted:true,yt:yt('single arm dumbbell row form')},
+      {id:'p03',name:'Face Pull',sets:'3 × 15',yt:yt('band face pull shoulder health')},
+      {id:'p04',name:'Band Pull-Apart',sets:'3 × 15',yt:yt('band pull apart shoulder health basketball')},
+      {id:'p05',name:'DB Bicep Curl',sets:'2 × 12',weighted:true,yt:yt('dumbbell bicep curl form tutorial')},
+      {id:'p06',name:'Dead Bug',sets:'2 × 10 each side',note:'▲ APT',apt:true,yt:yt('dead bug exercise anterior pelvic tilt core')},
+    ]
+  },
+
+  'p1w3-2': {
+    key:'p1w3-2', dayName:'Sunday', date:'Apr 5', tag:'t-rest', tagLabel:'Full Rest', isRest:true,
+    exercises:[
+      {id:'q01',name:'Sleep 8+ hours',sets:'',note:'Rest is training.'},
+      {id:'q02',name:'Optional: Light foam roll',sets:'5 min',yt:yt('foam rolling calves hip flexors recovery')},
+    ]
+  },
+
+  'p1w3-3': {
+    key:'p1w3-3', dayName:'Monday', date:'Apr 6', tag:'t-str', tagLabel:'Leg Day (Lighter)',
+    exercises:[
+      {id:'r01',name:'90/90 Hip Flexor Stretch',sets:'3 × 60s each side',note:'▲ APT',apt:true,yt:yt('90 90 hip flexor stretch how to')},
+      {id:'r02',name:'Hip Thrust',sets:'3 × 10',note:'▲ APT — 80% weight. Glute activation priority.',apt:true,weighted:true,yt:yt('hip thrust barbell form tutorial')},
+      {id:'r03',name:'Goblet Squat',sets:'3 × 8',note:'Moderate weight. Clean reps.',weighted:true,yt:yt('goblet squat form tutorial beginner')},
+      {id:'r04',name:'Reverse Lunge (DB)',sets:'2 × 6 each leg',weighted:true,yt:yt('reverse lunge dumbbell form tutorial')},
+      {id:'r05',name:'Seated Calf Raise',sets:'3 × 12 slow',weighted:true,yt:yt('seated calf raise slow eccentric tendon')},
+      {id:'r06',name:'Ankle Circles + Alphabet',sets:'2 × each foot',yt:yt('ankle alphabet mobility drill')},
+      {id:'r07',name:'Pallof Press',sets:'2 × 10 each side',note:'▲ APT',apt:true,yt:yt('pallof press anti rotation core APT')},
+    ]
+  },
+
+  'p1w3-4': {
+    key:'p1w3-4', dayName:'Tuesday', date:'Apr 7', tag:'t-exp', tagLabel:'Plyo + Core (Easy)',
+    exercises:[
+      {id:'s01',name:'90/90 Hip Stretch',sets:'2 × 60s each side',note:'▲ APT',apt:true,yt:yt('90 90 hip flexor stretch how to')},
+      {id:'s02',name:'Broad Jump (stick)',sets:'3 × 4',note:'No max effort. Just movement pattern.',yt:yt('broad jump landing mechanics soft')},
+      {id:'s03',name:'Lateral Bound (mini)',sets:'3 × 5 each side',yt:yt('lateral bound plyometric ankle basketball')},
+      {id:'s04',name:'Single-Leg Calf Raise (eccentric)',sets:'3 × 10 each, 4s down',yt:yt('eccentric single leg calf raise achilles tendon')},
+      {id:'s05',name:'Dead Bug',sets:'2 × 10 each side',note:'▲ APT',apt:true,yt:yt('dead bug exercise anterior pelvic tilt core')},
+      {id:'s06',name:'Hollow Body Hold',sets:'2 × 25 sec',note:'▲ APT',apt:true,yt:yt('hollow body hold anterior pelvic tilt')},
+    ]
+  },
+
+  'p1w3-5': {
+    key:'p1w3-5', dayName:'Wednesday', date:'Apr 8', tag:'t-foot', tagLabel:'Footwork Sharpener',
+    exercises:[
+      {id:'t01',name:'Jump Rope',sets:'2 × 2 min',note:'Light. Get the feet moving.',yt:yt('jump rope basics technique basketball conditioning')},
+      {id:'t02',name:'Jab Step Drill (game speed)',sets:'3 × 8 each side',note:'This week push to 80%. Feel the power from the hips.',yt:yt('jab step basketball drill stationary')},
+      {id:'t03',name:'5-10-5 Shuttle',sets:'3 rounds — time it',note:'Compare to Week 2. Note the difference.',yt:yt('5 10 5 shuttle drill basketball speed')},
+      {id:'t04',name:'Defensive Slide',sets:'3 × 20 ft each direction',yt:yt('basketball defensive slide drill low wide')},
+      {id:'t05',name:'Couch Stretch',sets:'2 × 60s each side',note:'▲ APT',apt:true,yt:yt('couch stretch hip flexor APT')},
+    ]
+  },
+
+  'p1w3-6': {
+    key:'p1w3-6', dayName:'Thursday', date:'Apr 9', tag:'t-rec', tagLabel:'Pre-Game Recovery',
+    exercises:[
+      {id:'u01',name:'Light Walk only',sets:'15–20 min',note:'No intensity. Just blood flow.',yt:yt('active recovery walk benefits')},
+      {id:'u02',name:'Full Body Foam Roll',sets:'10 min',yt:yt('full body foam rolling routine calves hips')},
+      {id:'u03',name:'Hip Flexor Stretch',sets:'3 × 60s each side',note:'▲ APT — Go into game day with open hips.',apt:true,yt:yt('90 90 hip flexor stretch how to')},
+      {id:'u04',name:'Ankle Mobilization',sets:'2 × each foot',yt:yt('ankle mobility exercises basketball')},
+    ]
+  },
+
+  // ══════════ WEEK 3 EXTRA: GAME DAY ══════════
+  'p1w3-7': {
+    key:'p1w3-7', dayName:'Friday', date:'Apr 10', tag:'t-rec', tagLabel:'Pre-Game Activation',
+    exercises:[
+      {id:'v01',name:'Hip Flexor Stretch',sets:'2 × 60s each side',note:'▲ APT — Open hips before you play.',apt:true,yt:yt('90 90 hip flexor stretch how to')},
+      {id:'v02',name:'Glute Bridge Activation',sets:'2 × 10',note:'▲ APT — Prime glutes before game.',apt:true,yt:yt('glute bridge activation before workout')},
+      {id:'v03',name:'Ankle Circles + Calf Raise (slow)',sets:'2 × each',yt:yt('ankle mobility exercises basketball')},
+      {id:'v04',name:'Jab Step Walk-Through',sets:'5 each side',note:'Mental prep. Groove the movement.',yt:yt('jab step basketball drill stationary')},
+    ]
+  },
+
+  'p1w3-8': {
+    key:'p1w3-8', dayName:'Saturday', date:'Apr 11', tag:'t-court', tagLabel:'🏀 GAME DAY — League Starts',
+    exercises:[
+      {id:'w01',name:'Pre-game: Foam roll calves + hips',sets:'5 min',yt:yt('foam rolling calves hip flexors recovery')},
+      {id:'w02',name:'Pre-game: Glute activation',sets:'2 × 10 bridges',note:'▲ APT — Do this in the locker room.',apt:true,yt:yt('glute bridge activation before workout')},
+      {id:'w03',name:'Notice: First step off jab?',sets:'',note:'How explosive is it? Hips loading?'},
+      {id:'w04',name:'Notice: Stop-and-go ability?',sets:'',note:'Can you stop hard and re-accelerate?'},
+      {id:'w05',name:'Notice: Ankle/knee stability?',sets:'',note:'Any wobble on cuts? Take mental notes.'},
+      {id:'w06',name:'Notice: What fatigues first?',sets:'',note:'Legs? Lungs? This tells us Phase 2 priority.'},
+      {id:'w07',name:'Post-game: Stretch + foam roll',sets:'10 min',note:'Calves, hip flexors, quads.',yt:yt('post game basketball stretch routine')},
     ]
   },
 };
 
 // Map program day index -> schedule key
-// W1: day 0=Fri(Mar20), 1=Sat, 2=Sun, 3=Mon, 4=Tue, 5=Wed, 6=Thu
-// W2: day 7=Mon(Mar30), 8=Tue, 9=Wed, 10=Thu, 11=Fri, 12=Sat, 13=Sun
+// W1 starts Fri Mar 20: Push/Pull/Rest/Legs/Plyo+Core/Footwork/Recovery
+// W2 starts Fri Mar 27: Push/Pull/Rest/Legs/Plyo+Core/Footwork/Recovery
+// W3 starts Fri Apr 3:  Push(lite)/Pull(lite)/Rest/Legs(lite)/Plyo(easy)/Footwork/Pre-game recovery
+// Apr 10 = day 21: Pre-game activation
+// Apr 11 = day 22: GAME DAY
 const DAY_MAP = {
-  0:'p1w1-0',1:'p1w1-1',2:'p1w1-2',3:'p1w1-3',4:'p1w1-4',5:'p1w1-5',6:'p1w1-6',
-  7:'p1w2-0',8:'p1w2-1',9:'p1w2-2',10:'p1w2-3',11:'p1w2-4',12:'p1w2-5',13:'p1w2-6',
+  0:'p1w1-0', 1:'p1w1-1', 2:'p1w1-2', 3:'p1w1-3', 4:'p1w1-4', 5:'p1w1-5', 6:'p1w1-6',
+  7:'p1w2-0', 8:'p1w2-1', 9:'p1w2-2',10:'p1w2-3',11:'p1w2-4',12:'p1w2-5',13:'p1w2-6',
+ 14:'p1w3-0',15:'p1w3-1',16:'p1w3-2',17:'p1w3-3',18:'p1w3-4',19:'p1w3-5',20:'p1w3-6',
+ 21:'p1w3-7',22:'p1w3-8',
 };
+
 // Week panel -> day keys
 const WEEK_DAYS = {
   p1w1: ['p1w1-0','p1w1-1','p1w1-2','p1w1-3','p1w1-4','p1w1-5','p1w1-6'],
   p1w2: ['p1w2-0','p1w2-1','p1w2-2','p1w2-3','p1w2-4','p1w2-5','p1w2-6'],
+  p1w3: ['p1w3-0','p1w3-1','p1w3-2','p1w3-3','p1w3-4','p1w3-5','p1w3-6','p1w3-7','p1w3-8'],
 };
 
 const PROGRAM_START = new Date('2026-03-20T00:00:00');
@@ -899,8 +1271,8 @@ function buildToday() {
 
   if (!key || !DAYS[key]) {
     const dayNum = getDayNum();
-    if (dayNum >= 14) {
-      sec.innerHTML = `<div style="background:var(--surface2);border:2px solid var(--accent);border-radius:8px;padding:16px;"><div style="font-family:'DM Mono',monospace;font-size:9px;letter-spacing:2px;color:var(--accent);margin-bottom:6px;">WEEK 3 — PRE-LEAGUE</div><div style="font-family:'Barlow Condensed',sans-serif;font-weight:900;font-size:22px;margin-bottom:8px;">Final Prep Mode</div><div style="font-size:12px;color:var(--muted);line-height:1.7;">Push your numbers up Mon/Tue, then taper Wed–Fri. <strong style="color:var(--text)">April 11 is your first test.</strong> Notice your first step, stop-and-go, ankle stability, and what fatigues first. Take mental notes.</div></div>`;
+    if (dayNum >= 23) {
+      sec.innerHTML = `<div style="background:var(--surface2);border:2px solid var(--accent);border-radius:8px;padding:16px;"><div style="font-family:'DM Mono',monospace;font-size:9px;letter-spacing:2px;color:var(--accent);margin-bottom:6px;">PHASE 2 INCOMING</div><div style="font-family:'Barlow Condensed',sans-serif;font-weight:900;font-size:22px;margin-bottom:8px;">League Has Started 🏀</div><div style="font-size:12px;color:var(--muted);line-height:1.7;">You've played your first game. Phase 2 — Strength + Power Base — begins now. Check the Program tab for the Phase 2 overview.</div></div>`;
     } else {
       sec.innerHTML = `<div style="background:var(--surface);border:1px solid var(--border);border-radius:6px;padding:16px;color:var(--muted);font-size:13px;">Loading today's workout...</div>`;
     }
@@ -990,18 +1362,6 @@ function submitWeight() {
   refreshWeightDisplay();
 }
 
-function refreshWeightDisplay() {
-  const w = getDisplayWeight();
-  const label = w ? w.lbs + ' lbs' : '••• lbs';
-  const hidden = '••• lbs';
-  // Stats bar
-  const stat = document.getElementById('weightStat');
-  if (stat) stat.textContent = wtVisible ? (w ? w.lbs + ' lbs' : '—') : '•••';
-  // Toggle pill
-  const val = document.getElementById('weightVal');
-  if (val) val.textContent = wtVisible ? (w ? w.lbs + ' lbs' : 'Add weight') : '••• lbs';
-}
-
 function renderWeightCard() {
   const container = document.getElementById('weightCardContainer');
   if (!container) return;
@@ -1009,57 +1369,95 @@ function renderWeightCard() {
   const wk = getCurrentWeekKey();
   const weekNum = parseInt(wk.replace('week',''));
   const thisWeekEntry = log[wk];
-  const dayNum = getDayNum();
-  const isMonday = (dayNum % 7 === 3); // Mondays in the schedule
+  const GOAL = 180;
+  const START = 194;
 
-  // Sort entries by week number
   const entries = Object.values(log).sort((a,b) => a.week - b.week);
-  const startWeight = 194; // baseline
+  const prev = entries.length > 1 ? entries[entries.length - 2] : null;
+
+  // Arrow + quote helper
+  function arrowBlock(current, previous) {
+    if (!previous) return '';
+    const diff = current.lbs - previous.lbs;
+    const toGoal = current.lbs - GOAL;
+    const improved = diff < 0; // losing weight = moving toward 180
+    const arrow = improved ? '↓' : diff > 0 ? '↑' : '→';
+    const arrowColor = improved ? 'var(--green)' : 'var(--muted)';
+    const quotes = improved
+      ? ['Let\'s go. Keep that momentum.', 'Body responding. Stay consistent.', 'Down and moving. Trust the process.', 'Results don\'t lie. Keep working.']
+      : ['Watch your eating. Every meal counts.', 'Body up — dial in nutrition.', 'Check the food log. Adjustments needed.', 'Trending wrong. Tighten the diet.'];
+    const quote = quotes[Math.floor(Math.random() * quotes.length)];
+    const goalLine = toGoal > 0 ? `${toGoal} lbs to goal` : toGoal === 0 ? '🎯 Goal reached!' : `${Math.abs(toGoal)} lbs past goal`;
+    return `
+      <div style="display:flex;align-items:center;gap:10px;margin:10px 0 6px;padding:10px 12px;background:${improved?'rgba(34,197,94,0.06)':'rgba(102,102,128,0.06)'};border:1px solid ${improved?'rgba(34,197,94,0.2)':'var(--border)'};border-radius:6px;">
+        <div style="font-size:22px;color:${arrowColor};font-weight:900;line-height:1;">${arrow}</div>
+        <div style="flex:1;">
+          <div style="font-family:'Barlow Condensed',sans-serif;font-weight:700;font-size:16px;color:${arrowColor};">${Math.abs(diff)} lbs ${improved?'down':'up'} · ${goalLine}</div>
+          <div style="font-family:'DM Mono',monospace;font-size:10px;color:var(--muted);margin-top:2px;font-style:italic;">"${quote}"</div>
+        </div>
+      </div>`;
+  }
+
+  // Goal progress bar
+  function goalBar(current) {
+    const pct = Math.min(100, Math.max(0, ((START - current) / (START - GOAL)) * 100));
+    return `
+      <div style="margin-bottom:12px;">
+        <div style="display:flex;justify-content:space-between;font-family:'DM Mono',monospace;font-size:9px;color:var(--muted);margin-bottom:4px;">
+          <span>Start: ${START} lbs</span><span>Goal: ${GOAL} lbs</span>
+        </div>
+        <div style="height:5px;background:var(--dim);border-radius:5px;overflow:hidden;">
+          <div style="width:${pct}%;height:100%;background:linear-gradient(90deg,var(--accent),var(--green));border-radius:5px;transition:width 0.5s;"></div>
+        </div>
+        <div style="font-family:'DM Mono',monospace;font-size:9px;color:var(--green);margin-top:3px;text-align:right;">${Math.round(pct)}% to goal</div>
+      </div>`;
+  }
 
   if (thisWeekEntry) {
-    // Already logged this week — show history card
     const historyRows = entries.map(e => {
-      const diff = e.lbs - startWeight;
+      const diff = e.lbs - START;
       const sign = diff > 0 ? '+' : '';
       const color = diff < 0 ? 'var(--green)' : diff > 0 ? 'var(--red)' : 'var(--muted)';
       return `<div style="display:flex;justify-content:space-between;align-items:center;padding:8px 0;border-bottom:1px solid var(--border);">
         <div style="font-family:'DM Mono',monospace;font-size:10px;color:var(--muted);">Week ${e.week} · ${e.date}</div>
         <div style="display:flex;gap:10px;align-items:center;">
-          <div style="font-family:'Barlow Condensed',sans-serif;font-weight:700;font-size:18px;" class="wt-entry">${wtVisible ? e.lbs + ' lbs' : '••• lbs'}</div>
-          <div style="font-family:'DM Mono',monospace;font-size:10px;color:${color};" class="wt-diff">${wtVisible ? sign+diff+' lbs' : ''}</div>
+          <div style="font-family:'Barlow Condensed',sans-serif;font-weight:700;font-size:18px;" class="wt-entry" data-lbs="${e.lbs}">${wtVisible ? e.lbs + ' lbs' : '•••'}</div>
+          <div style="font-family:'DM Mono',monospace;font-size:10px;color:${color};" class="wt-diff" ${wtVisible?'':'style="display:none"'}>${sign}${diff} lbs</div>
         </div>
       </div>`;
     }).join('');
 
     container.innerHTML = `
       <div style="background:var(--surface);border:1px solid var(--border);border-radius:8px;padding:16px;margin-bottom:14px;">
-        <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:12px;">
+        <div style="display:flex;justify-content:space-between;align-items:flex-start;margin-bottom:10px;">
           <div>
             <div style="font-family:'DM Mono',monospace;font-size:8px;letter-spacing:2px;text-transform:uppercase;color:var(--muted);margin-bottom:3px;">WEIGHT LOG</div>
             <div style="font-family:'Barlow Condensed',sans-serif;font-weight:900;font-size:22px;">Week ${weekNum} Logged ✓</div>
           </div>
-          <div style="font-family:'Barlow Condensed',sans-serif;font-weight:900;font-size:28px;color:var(--accent);" class="wt-entry">${wtVisible ? thisWeekEntry.lbs + ' lbs' : '•••'}</div>
+          <div>
+            <div style="font-family:'Barlow Condensed',sans-serif;font-weight:900;font-size:28px;color:var(--accent);text-align:right;" class="wt-entry" data-lbs="${thisWeekEntry.lbs}">${wtVisible ? thisWeekEntry.lbs + ' lbs' : '•••'}</div>
+            ${prev ? `<div style="font-family:'DM Mono',monospace;font-size:9px;color:var(--muted);text-align:right;" class="wt-prev" data-lbs="${prev.lbs}">${wtVisible ? 'was ' + prev.lbs : ''}</div>` : ''}
+          </div>
         </div>
-        <div style="border-top:1px solid var(--border);padding-top:10px;">
-          ${historyRows}
-        </div>
+        ${goalBar(thisWeekEntry.lbs)}
+        ${arrowBlock(thisWeekEntry, prev || {lbs: START})}
+        <div style="border-top:1px solid var(--border);padding-top:10px;margin-top:10px;">${historyRows}</div>
         <div style="margin-top:12px;display:flex;gap:8px;align-items:center;">
           <input id="weightInput" type="number" placeholder="Update this week's weight" style="flex:1;background:var(--surface2);border:1px solid var(--border);border-radius:5px;padding:10px 12px;color:var(--text);font-family:'DM Mono',monospace;font-size:12px;outline:none;" inputmode="decimal"/>
           <button onclick="submitWeight()" style="background:var(--accent);border:none;border-radius:5px;padding:10px 16px;color:#000;font-family:'DM Mono',monospace;font-size:11px;font-weight:600;cursor:pointer;white-space:nowrap;">UPDATE</button>
         </div>
       </div>`;
   } else {
-    // Not logged yet this week — show big prompt
     container.innerHTML = `
       <div style="background:linear-gradient(135deg,rgba(249,115,22,0.12),rgba(251,191,36,0.06));border:2px solid var(--accent);border-radius:8px;padding:18px;margin-bottom:14px;">
         <div style="font-family:'DM Mono',monospace;font-size:8px;letter-spacing:2px;text-transform:uppercase;color:var(--accent);margin-bottom:6px;">📊 WEEKLY CHECK-IN</div>
         <div style="font-family:'Barlow Condensed',sans-serif;font-weight:900;font-size:26px;margin-bottom:4px;">Week ${weekNum} Weight</div>
-        <div style="font-size:12px;color:var(--muted);margin-bottom:16px;line-height:1.6;">Log your weight every Monday to track your body composition as you build. Consistency matters more than the number.</div>
+        <div style="font-size:12px;color:var(--muted);margin-bottom:16px;line-height:1.6;">Log your weight every Monday. Goal: <strong style="color:var(--green)">${GOAL} lbs</strong>. You started at ${START} lbs.</div>
         <div style="display:flex;gap:8px;align-items:center;">
           <input id="weightInput" type="number" placeholder="Enter weight in lbs" style="flex:1;background:var(--bg);border:2px solid var(--accent);border-radius:6px;padding:14px;color:var(--text);font-family:'Barlow Condensed',sans-serif;font-size:22px;font-weight:700;outline:none;letter-spacing:-0.5px;" inputmode="decimal"/>
           <button onclick="submitWeight()" style="background:var(--accent);border:none;border-radius:6px;padding:14px 18px;color:#000;font-family:'Barlow Condensed',sans-serif;font-size:18px;font-weight:900;cursor:pointer;letter-spacing:-0.5px;">LOG IT</button>
         </div>
-        ${entries.length > 0 ? `<div style="margin-top:10px;font-family:'DM Mono',monospace;font-size:10px;color:var(--muted);">Last logged: Week ${entries[entries.length-1].week} · <span class="wt-prev">${wtVisible ? entries[entries.length-1].lbs+' lbs' : '•••'}</span></div>` : ''}
+        ${entries.length > 0 ? `<div style="margin-top:10px;font-family:'DM Mono',monospace;font-size:10px;color:var(--muted);">Last logged: Week ${entries[entries.length-1].week} · <span class="wt-prev" data-lbs="${entries[entries.length-1].lbs}">${wtVisible ? entries[entries.length-1].lbs+' lbs' : '•••'}</span></div>` : ''}
       </div>`;
   }
 
@@ -1070,15 +1468,15 @@ function renderWeightCard() {
 let wtVisible = false;
 function toggleWeight() {
   wtVisible = !wtVisible;
-  document.getElementById('weightToggle').classList.toggle('visible', wtVisible);
-  // Update all weight displays
+  const icon = document.getElementById('wtToggleIcon');
+  if (icon) icon.style.color = wtVisible ? 'var(--accent)' : 'var(--dim)';
+  refreshWeightDisplay();
+  // still update wt-entry/wt-diff/wt-prev in weight card
   const w = getDisplayWeight();
-  document.getElementById('weightVal').textContent = wtVisible ? (w ? w.lbs + ' lbs' : 'Add weight') : '••• lbs';
-  document.getElementById('weightStat').textContent = wtVisible ? (w ? w.lbs + ' lbs' : '—') : '•••';
-  // Update all wt-entry elements in the weight card
   document.querySelectorAll('.wt-entry').forEach(el => {
-    const raw = el.textContent.replace(/[^0-9.]/g,'');
-    if (raw) el.textContent = wtVisible ? raw + ' lbs' : '•••';
+    const raw = el.getAttribute('data-lbs') || el.textContent.replace(/[^0-9.]/g,'');
+    el.setAttribute('data-lbs', raw);
+    el.textContent = wtVisible ? raw + ' lbs' : '•••';
   });
   document.querySelectorAll('.wt-diff').forEach(el => {
     el.style.display = wtVisible ? '' : 'none';
@@ -1090,9 +1488,191 @@ function toggleWeight() {
   });
 }
 
+function refreshWeightDisplay() {
+  const GOAL = 180;
+  const log = getWeightLog();
+  const entries = Object.values(log).sort((a,b) => a.week - b.week);
+  const latest  = entries.length ? entries[entries.length - 1] : null;
+  const prev    = entries.length > 1 ? entries[entries.length - 2] : null;
+
+  const statEl    = document.getElementById('weightStat');
+  const prevEl    = document.getElementById('prevWeightStat');
+  const arrowEl   = document.getElementById('weightArrowLabel');
+
+  if (!statEl) return;
+
+  if (!latest) {
+    statEl.textContent = '•••';
+    if (prevEl) prevEl.textContent = '';
+    if (arrowEl) arrowEl.textContent = '';
+    return;
+  }
+
+  // Main weight value
+  statEl.textContent = wtVisible ? latest.lbs + ' lbs' : '•••';
+
+  // Prev weight to the right
+  if (prevEl) {
+    prevEl.textContent = wtVisible && prev ? 'was ' + prev.lbs : '';
+  }
+
+  // Arrow + quote
+  if (arrowEl) {
+    if (!wtVisible) { arrowEl.textContent = ''; return; }
+    const diff = latest.lbs - (prev ? prev.lbs : 194);
+    const toGoal = latest.lbs - GOAL;
+    if (diff < 0) {
+      // Moving toward 180 (losing weight)
+      arrowEl.innerHTML = `<span style="color:var(--green)">↓ ${Math.abs(diff)} lbs ▲</span> <span style="color:var(--muted);font-size:8px;">${toGoal > 0 ? toGoal + ' to goal' : 'Goal reached!'}</span>`;
+    } else if (diff > 0) {
+      arrowEl.innerHTML = `<span style="color:var(--muted)">↑ ${diff} lbs ▼</span> <span style="color:var(--muted);font-size:8px;">${toGoal > 0 ? toGoal + ' above goal' : ''}</span>`;
+    } else {
+      arrowEl.innerHTML = `<span style="color:var(--muted)">→ No change</span>`;
+    }
+  }
+}
+
 // ══════════════════════════════════════════
-// ── NINJA / XP / BADGE / CALENDAR SYSTEM ──
+// ── LIGHT FEET DAILY ROUTINE ──
 // ══════════════════════════════════════════
+
+const LIGHT_FEET = [
+  {
+    id:'lf01', name:'Jump Rope — Fast Cadence',
+    sets:'3 × 60s, 20s rest',
+    why:'Trains ankle stiffness and fast ground contact. This is the single best drill for light feet.',
+    yt:'jump rope fast cadence light feet basketball'
+  },
+  {
+    id:'lf02', name:'Pogo Jumps (both feet)',
+    sets:'3 × 20 reps — minimal ground time',
+    why:'Forces your achilles and calf to act like a spring. The goal is to spend as little time on the ground as possible.',
+    yt:'pogo jumps achilles spring basketball'
+  },
+  {
+    id:'lf03', name:'Single-Leg Pogo (alternating)',
+    sets:'3 × 10 each leg',
+    why:'Builds independent ankle spring on each foot — critical for direction changes.',
+    yt:'single leg pogo hop basketball agility'
+  },
+  {
+    id:'lf04', name:'Ankle Circles + Alphabet',
+    sets:'1 × full alphabet each foot',
+    why:'Loosens the ankle capsule so your foot can move freely and react faster.',
+    yt:'ankle alphabet mobility drill'
+  },
+  {
+    id:'lf05', name:'Calf Stretch (straight + bent knee)',
+    sets:'2 × 45s each position each leg',
+    why:'Tight calves = heavy feet. Straight knee = gastrocnemius. Bent knee = soleus. Both matter.',
+    yt:'calf stretch gastrocnemius soleus basketball'
+  },
+  {
+    id:'lf06', name:'Foot Intrinsic Activation (Toe Spread + Short Foot)',
+    sets:'2 × 15 reps each foot',
+    why:'Weak foot muscles make you land flat and heavy. This wakes up the muscles inside your foot that create a natural spring arch.',
+    yt:'short foot exercise intrinsic foot muscles basketball'
+  },
+  {
+    id:'lf07', name:'A-Skip',
+    sets:'4 × 20 yards',
+    why:'Trains proper foot strike pattern — ball of foot first, fast snap off the ground. Directly translates to court movement.',
+    yt:'A skip drill track basketball light feet'
+  },
+  {
+    id:'lf08', name:'Quick Feet Ladder or Line Taps',
+    sets:'4 × 20s — maximum speed',
+    why:'Trains your nervous system to be fast off the ground. Not about strength here — it\'s about speed of foot response.',
+    yt:'quick feet ladder drill basketball agility'
+  },
+];
+
+let lfOpen = false;
+
+function getLFLog() { try { return JSON.parse(localStorage.getItem('fs2_lf')||'{}'); } catch(e) { return {}; } }
+function saveLFLog(o) { try { localStorage.setItem('fs2_lf', JSON.stringify(o)); } catch(e) {} }
+
+function isLFDoneToday(id) {
+  const log = getLFLog();
+  return log[id] === todayDateStr();
+}
+
+function toggleLFExercise(id) {
+  const log = getLFLog();
+  if (log[id] === todayDateStr()) {
+    delete log[id];
+  } else {
+    log[id] = todayDateStr();
+    // XP for completing a light feet exercise
+    const xpKey = 'lf_' + id + '_' + todayDateStr();
+    if (!window._exXpAwarded[xpKey]) {
+      window._exXpAwarded[xpKey] = true;
+      addXP(8, 'Light feet drill');
+    }
+  }
+  saveLFLog(log);
+  renderLightFeet();
+  // Bonus XP for full routine
+  const allDone = LIGHT_FEET.every(e => getLFLog()[e.id] === todayDateStr());
+  if (allDone) {
+    const bonusKey = 'lf_full_' + todayDateStr();
+    if (!window._exXpAwarded[bonusKey]) {
+      window._exXpAwarded[bonusKey] = true;
+      addXP(40, 'Full light feet routine!');
+    }
+    markDayActive(todayDateStr());
+  }
+}
+
+function renderLightFeet() {
+  const card = document.getElementById('lightFeetCard');
+  if (!card) return;
+
+  const done = LIGHT_FEET.filter(e => isLFDoneToday(e.id)).length;
+  const total = LIGHT_FEET.length;
+  const pct = Math.round((done / total) * 100);
+  const allDone = done === total;
+
+  const exRows = LIGHT_FEET.map((ex, i) => {
+    const checked = isLFDoneToday(ex.id);
+    return `
+      <div class="lf-exercise">
+        <div class="lf-ex-check ${checked ? 'checked' : ''}" onclick="toggleLFExercise('${ex.id}')"></div>
+        <div class="lf-ex-content">
+          <div class="lf-ex-name" style="${checked ? 'text-decoration:line-through;opacity:0.45;' : ''}">${ex.name}</div>
+          <div class="lf-ex-sets">${ex.sets}</div>
+          <div class="lf-ex-why">${ex.why}</div>
+          <a class="lf-ex-yt" href="https://www.youtube.com/results?search_query=${encodeURIComponent(ex.yt)}" target="_blank" rel="noopener">▶ Watch on YouTube</a>
+        </div>
+      </div>`;
+  }).join('');
+
+  card.innerHTML = `
+    <div class="lf-card">
+      <div class="lf-header" onclick="lfOpen=!lfOpen;renderLightFeet()">
+        <div class="lf-header-left">
+          <span style="font-size:20px;">🪶</span>
+          <div>
+            <div class="lf-title">Light Feet Protocol</div>
+            <div class="lf-subtitle">Daily · 8–10 min · Do this every day</div>
+          </div>
+        </div>
+        <div class="lf-badge">${done}/${total} ${lfOpen ? '▲' : '▼'}</div>
+      </div>
+      <div class="lf-progress-row">
+        <div class="lf-progress-track"><div class="lf-progress-fill" style="width:${pct}%"></div></div>
+        <div class="lf-progress-label">${pct}%</div>
+      </div>
+      <div class="lf-body ${lfOpen ? 'open' : ''}">
+        <div class="lf-why">Heavy feet on court come from tight ankles, slow calf response, flat foot strike, and a nervous system that hasn't been trained to be quick off the ground. This 8-minute routine fixes all four — daily. Do it in the morning, before your workout, or before games. Never skip it.</div>
+        ${allDone
+          ? `<div class="lf-done-banner">🪶 Light Feet Complete! +40 XP earned today</div>`
+          : exRows}
+      </div>
+    </div>`;
+}
+
+
 
 // ── RANK DEFINITIONS ──
 const RANKS = [
@@ -1147,6 +1727,7 @@ const MILESTONES = [
   { id:'ms_noSkip',    icon:'🔥', name:'Didn\'t skip the hard parts',  xp:25,  desc:'Did the APT work without cutting corners' },
   { id:'ms_court',     icon:'🏀', name:'Got shots up / court work',    xp:30,  desc:'Skills don\'t build themselves' },
   { id:'ms_collagen',  icon:'💊', name:'Took collagen + Vitamin C',    xp:15,  desc:'30–45 min before training' },
+  { id:'ms_lightfeet', icon:'🪶', name:'Completed Light Feet Protocol', xp:35,  desc:'All 8 drills — every day counts' },
 ];
 
 function getMilestoneLog() { try { return JSON.parse(localStorage.getItem('fs2_milestones') || '{}'); } catch(e) { return {}; } }
@@ -1267,6 +1848,8 @@ const BADGE_DEFS = [
   { id:'total20',     icon:'📅', name:'Committed',      desc:'20 total training days',  check: () => Object.keys(getActivityLog()).length >= 20 },
   { id:'total50',     icon:'🎯', name:'Dedicated',      desc:'50 total training days',  check: () => Object.keys(getActivityLog()).length >= 50 },
   { id:'league_day',  icon:'🏅', name:'League Ready',   desc:'Trained on League Day',   check: () => !!getActivityLog()['2026-04-11'] },
+  { id:'lightfeet7',  icon:'🪶', name:'Featherfoot',    desc:'7 days of light feet',    check: () => { const l=getLFLog(); const dates=new Set(Object.values(l)); return dates.size>=7; } },
+  { id:'lightfeet30', icon:'🌊', name:'Ghost Step',     desc:'30 days of light feet',   check: () => { const l=getLFLog(); const dates=new Set(Object.values(l)); return dates.size>=30; } },
 ];
 
 function getEarnedBadges() { try { return JSON.parse(localStorage.getItem('fs2_badges') || '[]'); } catch(e) { return []; } }
@@ -1472,15 +2055,650 @@ styleEl.textContent = `
 document.head.appendChild(styleEl);
 
 
+// ══════════════════════════════════════════
+// ── NUTRITION TRACKER ──
+// ══════════════════════════════════════════
+
+// ── FOOD DATABASE (common foods with macros per 100g or per serving) ──
+const FOOD_DB = [
+  // Proteins
+  {name:'Chicken Breast (cooked)',   cal:165, protein:31, carbs:0,  fat:3.6, serving:100, unit:'g'},
+  {name:'Ground Beef 90/10',         cal:218, protein:26, carbs:0,  fat:13,  serving:100, unit:'g'},
+  {name:'Salmon (cooked)',           cal:208, protein:20, carbs:0,  fat:13,  serving:100, unit:'g'},
+  {name:'Eggs (large)',              cal:70,  protein:6,  carbs:0.5,fat:5,   serving:1,   unit:'egg'},
+  {name:'Egg Whites',                cal:17,  protein:3.6,carbs:0.2,fat:0.1, serving:1,   unit:'egg white'},
+  {name:'Tuna (canned in water)',    cal:109, protein:25, carbs:0,  fat:1,   serving:100, unit:'g'},
+  {name:'Shrimp (cooked)',           cal:99,  protein:24, carbs:0,  fat:0.3, serving:100, unit:'g'},
+  {name:'Turkey Breast',             cal:135, protein:30, carbs:0,  fat:1,   serving:100, unit:'g'},
+  {name:'Cottage Cheese',            cal:98,  protein:11, carbs:3.4,fat:4.3, serving:100, unit:'g'},
+  {name:'Greek Yogurt (plain)',      cal:59,  protein:10, carbs:3.6,fat:0.4, serving:100, unit:'g'},
+  {name:'Protein Shake (whey)',      cal:120, protein:25, carbs:3,  fat:1.5, serving:1,   unit:'scoop'},
+  {name:'Steak (sirloin)',           cal:207, protein:26, carbs:0,  fat:11,  serving:100, unit:'g'},
+  // Carbs
+  {name:'White Rice (cooked)',       cal:130, protein:2.7,carbs:28, fat:0.3, serving:100, unit:'g'},
+  {name:'Brown Rice (cooked)',       cal:123, protein:2.7,carbs:26, fat:1,   serving:100, unit:'g'},
+  {name:'Oatmeal (cooked)',          cal:71,  protein:2.5,carbs:12, fat:1.5, serving:100, unit:'g'},
+  {name:'Sweet Potato (cooked)',     cal:90,  protein:2,  carbs:21, fat:0.1, serving:100, unit:'g'},
+  {name:'White Bread (slice)',       cal:79,  protein:2.7,carbs:15, fat:1,   serving:1,   unit:'slice'},
+  {name:'Banana',                    cal:89,  protein:1.1,carbs:23, fat:0.3, serving:1,   unit:'medium'},
+  {name:'Apple',                     cal:52,  protein:0.3,carbs:14, fat:0.2, serving:1,   unit:'medium'},
+  {name:'Pasta (cooked)',            cal:158, protein:5.8,carbs:31, fat:0.9, serving:100, unit:'g'},
+  {name:'Tortilla (flour 10in)',     cal:218, protein:5.6,carbs:36, fat:5.5, serving:1,   unit:'tortilla'},
+  // Fats
+  {name:'Peanut Butter',             cal:588, protein:25, carbs:20, fat:50,  serving:100, unit:'g'},
+  {name:'Almonds',                   cal:579, protein:21, carbs:22, fat:50,  serving:100, unit:'g'},
+  {name:'Avocado',                   cal:160, protein:2,  carbs:9,  fat:15,  serving:1,   unit:'half'},
+  {name:'Olive Oil',                 cal:119, protein:0,  carbs:0,  fat:14,  serving:1,   unit:'tbsp'},
+  {name:'Cheese (cheddar)',          cal:403, protein:25, carbs:1.3,fat:33,  serving:100, unit:'g'},
+  // Meals / Fast food estimates
+  {name:'McDonald\'s Big Mac',       cal:550, protein:25, carbs:45, fat:30,  serving:1,   unit:'sandwich'},
+  {name:'Chipotle Burrito Bowl (chicken)', cal:665, protein:50, carbs:70, fat:18, serving:1, unit:'bowl'},
+  {name:'Subway 6in Turkey',          cal:280, protein:18, carbs:38, fat:4.5, serving:1,   unit:'sandwich'},
+  {name:'Pizza Slice (cheese)',      cal:285, protein:12, carbs:36, fat:10,  serving:1,   unit:'slice'},
+  {name:'Chick-fil-A Sandwich',      cal:440, protein:28, carbs:40, fat:19,  serving:1,   unit:'sandwich'},
+  // Drinks
+  {name:'Whole Milk (1 cup)',        cal:149, protein:8,  carbs:12, fat:8,   serving:1,   unit:'cup'},
+  {name:'Orange Juice (1 cup)',      cal:112, protein:1.7,carbs:26, fat:0.5, serving:1,   unit:'cup'},
+  {name:'Gatorade (20oz)',           cal:140, protein:0,  carbs:36, fat:0,   serving:1,   unit:'bottle'},
+  // Extras
+  {name:'Collagen Powder (1 scoop)', cal:35,  protein:9,  carbs:0,  fat:0,   serving:1,   unit:'scoop'},
+  {name:'Rice Cakes (plain)',        cal:35,  protein:0.7,carbs:7.3,fat:0.3, serving:1,   unit:'cake'},
+  {name:'Cliff Bar',                 cal:250, protein:9,  carbs:44, fat:5,   serving:1,   unit:'bar'},
+];
+
+// Goals
+const NUTR_GOALS = { calories:2800, protein:170, carbs:320, fat:80, water:3000 };
+
+// ── STORAGE ──
+function getNutrLog() { try { return JSON.parse(localStorage.getItem('fs2_nutr')||'{}'); } catch(e) { return {}; } }
+function saveNutrLog(o) { try { localStorage.setItem('fs2_nutr', JSON.stringify(o)); } catch(e) {} }
+function getWaterLog() { try { return JSON.parse(localStorage.getItem('fs2_water')||'{}'); } catch(e) { return {}; } }
+function saveWaterLog(o) { try { localStorage.setItem('fs2_water', JSON.stringify(o)); } catch(e) {} }
+
+let nutrViewDate = todayDateStr();
+let selectedMealType = 'Breakfast';
+let pendingFood = null; // food selected from search
+
+function getNutrTotals(dateStr) {
+  const log = getNutrLog();
+  const entries = log[dateStr] || [];
+  return entries.reduce((acc, e) => {
+    acc.calories += e.calories || 0;
+    acc.protein  += e.protein  || 0;
+    acc.carbs    += e.carbs    || 0;
+    acc.fat      += e.fat      || 0;
+    return acc;
+  }, {calories:0, protein:0, carbs:0, fat:0});
+}
+
+function getWaterMl(dateStr) {
+  const log = getWaterLog();
+  return log[dateStr] || 0;
+}
+
+// ── MACRO RING ──
+function macroRingHTML(label, val, goal, color, unit) {
+  const pct = Math.min(100, goal ? (val / goal) * 100 : 0);
+  const r = 22; const circ = 2 * Math.PI * r;
+  const dash = (pct / 100) * circ;
+  return `
+    <div class="macro-ring-wrap">
+      <svg class="macro-ring-svg" width="54" height="54" viewBox="0 0 54 54">
+        <circle cx="27" cy="27" r="${r}" fill="none" stroke="var(--dim)" stroke-width="5"/>
+        <circle cx="27" cy="27" r="${r}" fill="none" stroke="${color}" stroke-width="5"
+          stroke-dasharray="${dash} ${circ}" stroke-linecap="round"/>
+      </svg>
+      <div class="macro-ring-val" style="color:${color}">${Math.round(val)}${unit}</div>
+      <div class="macro-ring-goal">/ ${goal}${unit}</div>
+      <div class="macro-ring-label">${label}</div>
+    </div>`;
+}
+
+// ── RENDER NUTRITION HEADER ──
+function renderNutrHeader() {
+  const el = document.getElementById('nutriHeader');
+  if (!el) return;
+  const t = getNutrTotals(nutrViewDate);
+  const calPct = Math.min(100, NUTR_GOALS.calories ? (t.calories / NUTR_GOALS.calories) * 100 : 0);
+  const isToday = nutrViewDate === todayDateStr();
+  const displayDate = isToday ? 'Today' : new Date(nutrViewDate + 'T12:00:00').toLocaleDateString('en-US',{weekday:'short',month:'short',day:'numeric'});
+
+  el.innerHTML = `
+    <div class="nutr-date">
+      <span>${displayDate}</span>
+      <div class="nutr-date-nav">
+        <button class="nutr-nav-btn" onclick="nutrNav(-1)">‹</button>
+        <button class="nutr-nav-btn" onclick="nutrNav(0)" style="${isToday?'color:var(--accent);border-color:var(--accent)':''}">Today</button>
+        <button class="nutr-nav-btn" onclick="nutrNav(1)">›</button>
+      </div>
+    </div>
+    <div class="macro-rings">
+      ${macroRingHTML('Protein', t.protein, NUTR_GOALS.protein, '#3b82f6', 'g')}
+      ${macroRingHTML('Carbs',   t.carbs,   NUTR_GOALS.carbs,   '#f97316', 'g')}
+      ${macroRingHTML('Fat',     t.fat,     NUTR_GOALS.fat,     '#fbbf24', 'g')}
+      ${macroRingHTML('Cals',    t.calories,NUTR_GOALS.calories,'#22c55e', '')}
+    </div>
+    <div class="nutr-cal-bar">
+      <div class="nutr-cal-label">
+        <span>${Math.round(t.calories)} cal eaten</span>
+        <span>${Math.max(0, NUTR_GOALS.calories - Math.round(t.calories))} remaining</span>
+      </div>
+      <div class="nutr-cal-track"><div class="nutr-cal-fill" style="width:${calPct}%"></div></div>
+    </div>`;
+
+  const lbl = document.getElementById('nutrDateLabel');
+  if (lbl) lbl.textContent = displayDate;
+}
+
+// ── RENDER WATER ──
+function renderWater() {
+  const el = document.getElementById('waterCard');
+  if (!el) return;
+  const ml = getWaterMl(nutrViewDate);
+  const glasses = 8; // each = 375ml ≈ 3L total
+  const mlPerGlass = 375;
+  const filledCount = Math.min(glasses, Math.floor(ml / mlPerGlass));
+
+  let glassHTML = '';
+  for (let i = 0; i < glasses; i++) {
+    const filled = i < filledCount;
+    glassHTML += `<div class="water-glass ${filled?'filled':''}" onclick="addWaterGlass(${i})">
+      <span class="wg-icon">💧</span>
+    </div>`;
+  }
+
+  el.innerHTML = `
+    <div class="water-glasses">${glassHTML}</div>
+    <div class="water-info">
+      <div>
+        <div class="water-ml">${(ml/1000).toFixed(2)}L</div>
+        <div class="water-goal-label">Goal: ${NUTR_GOALS.water/1000}L · Tap glass to log 375ml</div>
+      </div>
+      <div style="text-align:right;">
+        <div style="font-family:'Barlow Condensed',sans-serif;font-size:18px;font-weight:700;color:${ml>=NUTR_GOALS.water?'var(--green)':'var(--muted)'}">
+          ${ml >= NUTR_GOALS.water ? '✓ Goal Hit' : `${Math.max(0, NUTR_GOALS.water - ml)}ml to go`}
+        </div>
+      </div>
+    </div>
+    <div class="water-custom">
+      <input type="number" id="waterCustomInput" placeholder="Custom ml" inputmode="numeric" min="1" max="2000"/>
+      <button class="water-custom-btn" onclick="addWaterCustom()">+ Add</button>
+    </div>`;
+}
+
+function addWaterGlass(idx) {
+  const log = getWaterLog();
+  const cur = log[nutrViewDate] || 0;
+  const mlPerGlass = 375;
+  const newFilled = idx + 1;
+  const newMl = Math.max(cur, newFilled * mlPerGlass);
+  // Toggle: if already filled past this, reduce to just before this glass
+  if (cur >= newFilled * mlPerGlass) {
+    log[nutrViewDate] = idx * mlPerGlass;
+  } else {
+    log[nutrViewDate] = newMl;
+  }
+  saveWaterLog(log);
+  renderWater();
+  // XP for hitting water goal
+  const updated = log[nutrViewDate];
+  if (updated >= NUTR_GOALS.water) {
+    const xpKey = 'water_goal_' + nutrViewDate;
+    if (!window._exXpAwarded[xpKey]) {
+      window._exXpAwarded[xpKey] = true;
+      addXP(20, 'Water goal hit!');
+    }
+  }
+}
+
+function addWaterCustom() {
+  const inp = document.getElementById('waterCustomInput');
+  const ml = parseInt(inp.value);
+  if (!ml || ml < 1) return;
+  const log = getWaterLog();
+  log[nutrViewDate] = (log[nutrViewDate] || 0) + ml;
+  saveWaterLog(log);
+  inp.value = '';
+  renderWater();
+}
+
+// ── FOOD SEARCH ──
+function renderAddFood() {
+  const el = document.getElementById('addFoodCard');
+  if (!el) return;
+  const meals = ['Breakfast','Lunch','Dinner','Snack','Pre-Workout','Post-Workout'];
+  el.innerHTML = `
+    <div class="meal-type-row">
+      ${meals.map(m => `<div class="meal-type-btn${m===selectedMealType?' active':''}" onclick="selectMealType('${m}',this)">${m}</div>`).join('')}
+    </div>
+    <div class="food-search-row">
+      <input class="food-search-input" id="foodSearchInput" placeholder="Search food or type custom…" oninput="searchFood(this.value)" autocomplete="off"/>
+      <button class="food-search-btn" onclick="showManualEntry()">Manual</button>
+    </div>
+    <div class="food-suggestions" id="foodSuggestions"></div>
+    <div id="manualEntryArea" style="display:none;">
+      <div style="font-family:'DM Mono',monospace;font-size:9px;color:var(--muted);margin-bottom:6px;letter-spacing:1px;">MANUAL ENTRY</div>
+      <input style="width:100%;background:var(--bg);border:1px solid var(--border);border-radius:5px;padding:8px 10px;color:var(--text);font-family:'Barlow',sans-serif;font-size:13px;outline:none;margin-bottom:8px;" id="manualFoodName" placeholder="Food name" />
+      <div class="food-manual-row">
+        <div><input class="food-manual-input" id="mCal"  type="number" placeholder="0" inputmode="decimal"/><div class="food-manual-label">Calories</div></div>
+        <div><input class="food-manual-input" id="mProt" type="number" placeholder="0" inputmode="decimal"/><div class="food-manual-label">Protein g</div></div>
+        <div><input class="food-manual-input" id="mCarb" type="number" placeholder="0" inputmode="decimal"/><div class="food-manual-label">Carbs g</div></div>
+        <div><input class="food-manual-input" id="mFat"  type="number" placeholder="0" inputmode="decimal"/><div class="food-manual-label">Fat g</div></div>
+      </div>
+      <div style="display:flex;gap:6px;margin-bottom:8px;">
+        <input class="food-manual-input" id="mQty" type="number" placeholder="1" inputmode="decimal" style="width:70px;"/>
+        <div class="food-manual-label" style="display:flex;align-items:center;font-size:10px;">× Qty / Serving</div>
+      </div>
+    </div>
+    <div id="selectedFoodPreview" style="display:none;background:rgba(34,197,94,0.07);border:1px solid rgba(34,197,94,0.3);border-radius:6px;padding:10px 12px;margin-bottom:8px;">
+      <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:4px;">
+        <div id="sfpName" style="font-size:13px;font-weight:500;"></div>
+        <div id="sfpCals" style="font-family:'Barlow Condensed',sans-serif;font-weight:700;font-size:18px;color:var(--accent2);"></div>
+      </div>
+      <div id="sfpMacros" style="font-family:'DM Mono',monospace;font-size:10px;color:var(--muted);margin-bottom:8px;"></div>
+      <div style="display:flex;gap:6px;align-items:center;">
+        <div style="font-family:'DM Mono',monospace;font-size:10px;color:var(--muted);">Qty:</div>
+        <input type="number" id="sfpQty" value="1" min="0.1" step="0.5" inputmode="decimal" style="width:70px;background:var(--bg);border:1px solid var(--border);border-radius:5px;padding:6px 8px;color:var(--text);font-family:'DM Mono',monospace;font-size:12px;outline:none;-moz-appearance:textfield;" oninput="updateFoodPreview()"/>
+        <div id="sfpUnit" style="font-family:'DM Mono',monospace;font-size:10px;color:var(--muted);"></div>
+      </div>
+    </div>
+    <button class="food-add-btn" onclick="logFood()">+ LOG TO ${selectedMealType.toUpperCase()}</button>
+  `;
+}
+
+function selectMealType(type, el) {
+  selectedMealType = type;
+  document.querySelectorAll('.meal-type-btn').forEach(b => b.classList.remove('active'));
+  el.classList.add('active');
+  const btn = document.querySelector('.food-add-btn');
+  if (btn) btn.textContent = `+ LOG TO ${type.toUpperCase()}`;
+}
+
+function searchFood(query) {
+  const box = document.getElementById('foodSuggestions');
+  if (!box) return;
+  if (!query || query.length < 2) { box.style.display = 'none'; return; }
+  const q = query.toLowerCase();
+  const results = FOOD_DB.filter(f => f.name.toLowerCase().includes(q)).slice(0, 6);
+  if (!results.length) { box.style.display = 'none'; return; }
+  box.style.display = 'block';
+  box.innerHTML = results.map((f,i) => `
+    <div class="food-suggestion-item" onclick="selectFood(${FOOD_DB.indexOf(f)})">
+      <div class="fsi-name">${f.name}</div>
+      <div class="fsi-macros">${f.cal} cal · P:${f.protein}g · C:${f.carbs}g · F:${f.fat}g per ${f.serving} ${f.unit}</div>
+    </div>`).join('');
+}
+
+function selectFood(idx) {
+  pendingFood = FOOD_DB[idx];
+  document.getElementById('foodSuggestions').style.display = 'none';
+  document.getElementById('foodSearchInput').value = pendingFood.name;
+  document.getElementById('manualEntryArea').style.display = 'none';
+  const preview = document.getElementById('selectedFoodPreview');
+  preview.style.display = 'block';
+  document.getElementById('sfpQty').value = 1;
+  updateFoodPreview();
+}
+
+function updateFoodPreview() {
+  if (!pendingFood) return;
+  const qty = parseFloat(document.getElementById('sfpQty')?.value) || 1;
+  document.getElementById('sfpName').textContent = pendingFood.name;
+  document.getElementById('sfpCals').textContent = Math.round(pendingFood.cal * qty) + ' cal';
+  document.getElementById('sfpMacros').textContent = `P:${Math.round(pendingFood.protein*qty)}g  C:${Math.round(pendingFood.carbs*qty)}g  F:${Math.round(pendingFood.fat*qty)}g`;
+  document.getElementById('sfpUnit').textContent = pendingFood.unit;
+}
+
+function showManualEntry() {
+  pendingFood = null;
+  document.getElementById('selectedFoodPreview').style.display = 'none';
+  document.getElementById('foodSuggestions').style.display = 'none';
+  const area = document.getElementById('manualEntryArea');
+  area.style.display = area.style.display === 'none' ? 'block' : 'none';
+}
+
+function logFood() {
+  const log = getNutrLog();
+  if (!log[nutrViewDate]) log[nutrViewDate] = [];
+
+  let entry = null;
+
+  if (pendingFood) {
+    const qty = parseFloat(document.getElementById('sfpQty')?.value) || 1;
+    entry = {
+      id: Date.now(),
+      name: pendingFood.name,
+      meal: selectedMealType,
+      calories: Math.round(pendingFood.cal * qty),
+      protein:  Math.round(pendingFood.protein * qty * 10) / 10,
+      carbs:    Math.round(pendingFood.carbs * qty * 10) / 10,
+      fat:      Math.round(pendingFood.fat * qty * 10) / 10,
+    };
+  } else {
+    // Manual entry
+    const name = document.getElementById('manualFoodName')?.value || 'Custom Food';
+    const cal  = parseFloat(document.getElementById('mCal')?.value)  || 0;
+    const prot = parseFloat(document.getElementById('mProt')?.value) || 0;
+    const carb = parseFloat(document.getElementById('mCarb')?.value) || 0;
+    const fat  = parseFloat(document.getElementById('mFat')?.value)  || 0;
+    const qty  = parseFloat(document.getElementById('mQty')?.value)  || 1;
+    if (!cal && !prot && !carb && !fat) return;
+    entry = { id: Date.now(), name, meal: selectedMealType,
+      calories: Math.round(cal*qty), protein: Math.round(prot*qty*10)/10,
+      carbs: Math.round(carb*qty*10)/10, fat: Math.round(fat*qty*10)/10 };
+  }
+
+  if (!entry) return;
+  log[nutrViewDate].push(entry);
+  saveNutrLog(log);
+
+  // Reset
+  pendingFood = null;
+  const inp = document.getElementById('foodSearchInput');
+  if (inp) inp.value = '';
+  document.getElementById('selectedFoodPreview').style.display = 'none';
+  document.getElementById('manualEntryArea').style.display = 'none';
+  ['manualFoodName','mCal','mProt','mCarb','mFat','mQty'].forEach(id => {
+    const el = document.getElementById(id); if (el) el.value = '';
+  });
+
+  // Award XP
+  const xpKey = 'food_log_' + nutrViewDate;
+  if (!window._exXpAwarded[xpKey]) {
+    window._exXpAwarded[xpKey] = true;
+    addXP(5, 'Food logged');
+  }
+  // Bonus for hitting protein goal
+  const t = getNutrTotals(nutrViewDate);
+  if (t.protein >= NUTR_GOALS.protein) {
+    const pk = 'protein_goal_' + nutrViewDate;
+    if (!window._exXpAwarded[pk]) {
+      window._exXpAwarded[pk] = true;
+      addXP(25, 'Protein goal hit!');
+    }
+  }
+
+  renderNutrition();
+}
+
+function deleteFood(dateStr, id) {
+  const log = getNutrLog();
+  if (!log[dateStr]) return;
+  log[dateStr] = log[dateStr].filter(e => e.id !== id);
+  saveNutrLog(log);
+  renderNutrition();
+}
+
+// ── RENDER MEAL LOG ──
+function renderMealLog() {
+  const el = document.getElementById('mealLog');
+  if (!el) return;
+  const log = getNutrLog();
+  const entries = log[nutrViewDate] || [];
+  if (!entries.length) {
+    el.innerHTML = `<div style="text-align:center;padding:20px;font-family:'DM Mono',monospace;font-size:10px;color:var(--muted);">No food logged yet today.<br>Search above or add manually.</div>`;
+    return;
+  }
+  const meals = ['Breakfast','Lunch','Dinner','Pre-Workout','Post-Workout','Snack'];
+  let html = '';
+  meals.forEach(meal => {
+    const items = entries.filter(e => e.meal === meal);
+    if (!items.length) return;
+    const mealCals = items.reduce((s,e) => s + (e.calories||0), 0);
+    html += `<div class="meal-section">
+      <div class="meal-section-header">
+        <div class="meal-section-name">${meal}</div>
+        <div class="meal-section-cals">${mealCals} cal</div>
+      </div>
+      ${items.map(e => `
+        <div class="food-entry">
+          <div class="fe-info">
+            <div class="fe-name">${e.name}</div>
+            <div class="fe-macros">P:${e.protein}g · C:${e.carbs}g · F:${e.fat}g</div>
+          </div>
+          <div class="fe-cals">${e.calories}</div>
+          <button class="fe-del" onclick="deleteFood('${nutrViewDate}',${e.id})">×</button>
+        </div>`).join('')}
+    </div>`;
+  });
+  el.innerHTML = html;
+}
+
+// ── PROTEIN CHART ──
+function renderProteinChart() {
+  const el = document.getElementById('proteinChart');
+  if (!el) return;
+  const days = [];
+  for (let i = 6; i >= 0; i--) {
+    const d = new Date(); d.setDate(d.getDate() - i);
+    const ds = d.toISOString().slice(0,10);
+    const t = getNutrTotals(ds);
+    days.push({ ds, protein: Math.round(t.protein), label: d.toLocaleDateString('en-US',{weekday:'short'}).slice(0,2) });
+  }
+  const maxP = Math.max(...days.map(d => d.protein), NUTR_GOALS.protein);
+  const bars = days.map(d => {
+    const h = Math.max(4, Math.round((d.protein / maxP) * 60));
+    const cls = d.protein >= NUTR_GOALS.protein ? 'hit' : d.protein >= NUTR_GOALS.protein * 0.7 ? 'close' : 'low';
+    return `<div class="pchart-bar-wrap">
+      <div class="pchart-val">${d.protein ? d.protein+'g' : ''}</div>
+      <div class="pchart-bar ${cls}" style="height:${h}px"></div>
+      <div class="pchart-day">${d.label}</div>
+    </div>`;
+  }).join('');
+  el.innerHTML = `
+    <div style="font-family:'DM Mono',monospace;font-size:9px;color:var(--muted);margin-bottom:8px;">Goal: ${NUTR_GOALS.protein}g/day</div>
+    <div class="pchart-bars">${bars}</div>
+    <div class="pchart-legend">
+      <span><div class="pchart-dot" style="background:var(--green)"></div>Goal hit</span>
+      <span><div class="pchart-dot" style="background:var(--accent2)"></div>Close</span>
+      <span><div class="pchart-dot" style="background:var(--dim)"></div>Low</span>
+    </div>`;
+}
+
+function nutrNav(dir) {
+  if (dir === 0) { nutrViewDate = todayDateStr(); }
+  else {
+    const d = new Date(nutrViewDate + 'T12:00:00');
+    d.setDate(d.getDate() + dir);
+    if (d > new Date()) return; // no future
+    nutrViewDate = d.toISOString().slice(0,10);
+  }
+  renderNutrition();
+}
+
+function renderNutrition() {
+  renderNutrHeader();
+  renderWater();
+  renderAddFood();
+  renderMealLog();
+  renderProteinChart();
+}
+
+// ══════════════════════════════════════════
+// ── RECIPE GENERATOR (AI) ──
+// ══════════════════════════════════════════
+
+let selectedRecipeMeal = 'any';
+
+function selectRecipeMeal(type, el) {
+  selectedRecipeMeal = type;
+  document.querySelectorAll('.rg-opt').forEach(b => b.classList.remove('active'));
+  el.classList.add('active');
+}
+
+function getSavedRecipes() { try { return JSON.parse(localStorage.getItem('fs2_recipes') || '[]'); } catch(e) { return []; } }
+function saveSavedRecipes(a) { try { localStorage.setItem('fs2_recipes', JSON.stringify(a)); } catch(e) {} }
+
+async function generateRecipe() {
+  const ingredients = document.getElementById('ingredientInput')?.value?.trim();
+  if (!ingredients) {
+    document.getElementById('ingredientInput').style.borderColor = 'var(--red)';
+    setTimeout(() => { document.getElementById('ingredientInput').style.borderColor = ''; }, 1500);
+    return;
+  }
+
+  const btn = document.getElementById('recipeGenBtn');
+  const btnText = document.getElementById('recipeGenBtnText');
+  const output = document.getElementById('recipeOutput');
+
+  btn.disabled = true;
+  btnText.textContent = 'Generating...';
+  output.innerHTML = `<div class="rg-loading"><div class="rg-spinner"></div><span>Building your recipe...</span></div>`;
+
+  const mealCtx = selectedRecipeMeal === 'any' ? '' : ` This should be a ${selectedRecipeMeal} meal.`;
+  const prompt = `You are a sports nutritionist and chef helping a 6'0", 194 lb basketball player lose weight toward 180 lbs while building muscle. Their daily goals: 2800 calories, 170g protein, 320g carbs, 80g fat. They have APT so focus on anti-inflammatory ingredients when possible. Tendon health is important — collagen-supporting foods (vitamin C, glycine-rich proteins) are a bonus.
+
+The athlete has these ingredients available: ${ingredients}.${mealCtx}
+
+Create ONE high-protein recipe using primarily these ingredients. Respond ONLY with a valid JSON object — no markdown, no backticks, no explanation. Use this exact structure:
+{
+  "name": "Recipe Name",
+  "servings": 1,
+  "prepTime": "10 min",
+  "cookTime": "20 min",
+  "calories": 650,
+  "protein": 52,
+  "carbs": 45,
+  "fat": 18,
+  "ingredients": ["200g chicken breast", "1 cup brown rice", "1 tbsp olive oil"],
+  "steps": ["Step 1 text", "Step 2 text", "Step 3 text"],
+  "notes": "Why this meal fits your goals and any substitutions or tips.",
+  "goalAlignment": "Brief note on how this helps weight loss + muscle building"
+}`;
+
+  try {
+    const response = await fetch('https://api.anthropic.com/v1/messages', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({
+        model: 'claude-sonnet-4-20250514',
+        max_tokens: 1000,
+        messages: [{ role: 'user', content: prompt }]
+      })
+    });
+
+    const data = await response.json();
+    const raw = data.content?.[0]?.text || '';
+    // Strip any accidental markdown fences
+    const clean = raw.replace(/```json|```/g, '').trim();
+    const recipe = JSON.parse(clean);
+    renderRecipeOutput(recipe);
+
+    // XP reward
+    const xpKey = 'recipe_gen_' + todayDateStr();
+    if (!window._exXpAwarded[xpKey]) {
+      window._exXpAwarded[xpKey] = true;
+      addXP(10, 'Recipe generated');
+    }
+
+  } catch (err) {
+    output.innerHTML = `<div style="padding:14px;font-family:'DM Mono',monospace;font-size:11px;color:var(--red);background:rgba(239,68,68,0.06);border:1px solid rgba(239,68,68,0.2);border-radius:6px;">Could not generate recipe. Check your connection and try again.</div>`;
+  }
+
+  btn.disabled = false;
+  btnText.textContent = '🍳 Generate Another';
+}
+
+function renderRecipeOutput(recipe) {
+  const output = document.getElementById('recipeOutput');
+  if (!output) return;
+
+  const ingList = (recipe.ingredients || []).map(i =>
+    `<li class="rg-ingredient-item"><div class="rg-ingredient-dot"></div><span>${i}</span></li>`
+  ).join('');
+
+  const steps = (recipe.steps || []).map((s, i) =>
+    `<div class="rg-step"><div class="rg-step-num">${i+1}</div><div class="rg-step-text">${s}</div></div>`
+  ).join('');
+
+  output.innerHTML = `
+    <div class="rg-recipe">
+      <div class="rg-recipe-header">
+        <div class="rg-recipe-name">${recipe.name || 'Your Recipe'}</div>
+        <div class="rg-recipe-tag">${recipe.servings || 1} serving · Prep ${recipe.prepTime || '—'} · Cook ${recipe.cookTime || '—'}</div>
+      </div>
+      <div class="rg-macros">
+        <div class="rg-macro-cell"><div class="rg-macro-val" style="color:var(--accent2)">${recipe.calories || 0}</div><div class="rg-macro-lbl">CAL</div></div>
+        <div class="rg-macro-cell"><div class="rg-macro-val" style="color:var(--blue)">${recipe.protein || 0}g</div><div class="rg-macro-lbl">PROTEIN</div></div>
+        <div class="rg-macro-cell"><div class="rg-macro-val" style="color:var(--accent)">${recipe.carbs || 0}g</div><div class="rg-macro-lbl">CARBS</div></div>
+        <div class="rg-macro-cell"><div class="rg-macro-val" style="color:var(--accent2)">${recipe.fat || 0}g</div><div class="rg-macro-lbl">FAT</div></div>
+      </div>
+      <div class="rg-recipe-body">
+        <div class="rg-section-title">Ingredients</div>
+        <ul class="rg-ingredient-list">${ingList}</ul>
+        <div class="rg-section-title">Instructions</div>
+        <div class="rg-steps">${steps}</div>
+        ${recipe.notes ? `<div class="rg-notes">💡 ${recipe.notes}</div>` : ''}
+        ${recipe.goalAlignment ? `<div class="rg-notes" style="margin-top:6px;border-left-color:var(--blue);background:rgba(59,130,246,0.05);">🎯 ${recipe.goalAlignment}</div>` : ''}
+      </div>
+    </div>
+    <button class="rg-save-btn" id="recipeSaveBtn" onclick="saveRecipe(${JSON.stringify(recipe).replace(/"/g,'&quot;')})">
+      ＋ Save this recipe
+    </button>
+    ${renderSavedRecipes()}
+  `;
+}
+
+function renderSavedRecipes() {
+  const saved = getSavedRecipes();
+  if (!saved.length) return '';
+  const items = saved.map((r, i) => `
+    <div class="rg-saved-item">
+      <div>
+        <div class="rg-saved-name">${r.name}</div>
+        <div class="rg-saved-meta">${r.calories} cal · P:${r.protein}g · C:${r.carbs}g · F:${r.fat}g</div>
+      </div>
+      <button class="rg-saved-del" onclick="deleteSavedRecipe(${i})">×</button>
+    </div>`).join('');
+  return `
+    <div style="margin-top:16px;">
+      <div style="font-family:'DM Mono',monospace;font-size:9px;letter-spacing:2px;text-transform:uppercase;color:var(--muted);margin-bottom:8px;">SAVED RECIPES</div>
+      <div class="rg-saved-list">${items}</div>
+    </div>`;
+}
+
+function saveRecipe(recipe) {
+  const saved = getSavedRecipes();
+  // avoid duplicates by name
+  if (!saved.find(r => r.name === recipe.name)) {
+    saved.unshift(recipe);
+    saveSavedRecipes(saved.slice(0, 20)); // keep max 20
+  }
+  const btn = document.getElementById('recipeSaveBtn');
+  if (btn) { btn.textContent = '✓ Saved!'; btn.classList.add('saved'); btn.disabled = true; }
+}
+
+function deleteSavedRecipe(idx) {
+  const saved = getSavedRecipes();
+  saved.splice(idx, 1);
+  saveSavedRecipes(saved);
+  // re-render saved list portion
+  const output = document.getElementById('recipeOutput');
+  if (output) {
+    const savedSection = output.querySelector('.rg-saved-list')?.closest('div[style*="margin-top:16px"]');
+    if (savedSection) savedSection.outerHTML = renderSavedRecipes();
+  }
+}
+
+// Show saved recipes on load when nutrition tab opens
+function renderSavedRecipesStandalone() {
+  const output = document.getElementById('recipeOutput');
+  if (!output || output.innerHTML) return;
+  const saved = getSavedRecipes();
+  if (saved.length) output.innerHTML = renderSavedRecipes();
+}
+
+
 // ─── VIEW SWITCH ───
 function switchView(name, el) {
   document.querySelectorAll('.view').forEach(v => v.classList.remove('active'));
   document.querySelectorAll('.bn-item').forEach(b => b.classList.remove('active'));
   document.getElementById('view-'+name).classList.add('active');
   el.classList.add('active');
-  if (name === 'program') buildWeekPanel('p1w1');
-  if (name === 'progress') { renderWeightCard(); refreshWeightDisplay(); }
-  if (name === 'ninja') renderNinja();
+  if (name === 'program')   buildWeekPanel('p1w1');
+  if (name === 'progress')  { renderWeightCard(); refreshWeightDisplay(); }
+  if (name === 'ninja')     renderNinja();
+  if (name === 'nutrition') { renderNutrition(); renderSavedRecipesStandalone(); }
   window.scrollTo(0,0);
 }
 
@@ -1506,6 +2724,7 @@ renderWeightCard();
 refreshWeightDisplay();
 buildToday();
 renderNinja();
+renderLightFeet();
 </script>
 </body>
 </html>
