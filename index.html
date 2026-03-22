@@ -4,8 +4,6 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0">
 <title>FIRST.STEP</title>
-<link rel="apple-touch-icon" href="applogo.png">
-<link rel="icon" href="applogo.png" type="image/png">
 <link href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@400;600;700;900&family=DM+Mono:wght@400;500&family=Barlow:wght@300;400;500&display=swap" rel="stylesheet">
 <style>
   :root{--bg:#0a0a0c;--surface:#111116;--surface2:#18181f;--border:#222230;--accent:#f97316;--accent2:#fbbf24;--blue:#3b82f6;--green:#22c55e;--red:#ef4444;--text:#e8e8f0;--muted:#666680;--dim:#33334a;}
@@ -433,7 +431,7 @@
   <div class="view active" id="view-today">
     <div class="stats-bar">
       <div class="stat-cell"><div class="stat-label">Height</div><div class="stat-value sv-o">6'0"</div></div>
-      <div class="stat-cell" onclick="toggleWeight()" style="cursor:pointer;user-select:none;">
+      <button class="stat-cell" onclick="toggleWeight()" style="cursor:pointer;user-select:none;background:var(--surface);border:none;border-radius:0;text-align:left;padding:11px 12px;-webkit-tap-highlight-color:rgba(249,115,22,0.15);">
         <div class="stat-label" style="display:flex;align-items:center;justify-content:space-between;">
           <span>Weight</span>
           <span id="wtToggleIcon" style="font-size:9px;color:var(--dim);">👁</span>
@@ -443,7 +441,7 @@
           <div id="prevWeightStat" style="font-family:'DM Mono',monospace;font-size:9px;color:var(--muted);"></div>
         </div>
         <div id="weightArrowLabel" style="font-family:'DM Mono',monospace;font-size:9px;margin-top:2px;"></div>
-      </div>
+      </button>
       <div class="stat-cell"><div class="stat-label">Goal</div><div class="stat-value sv-g">180</div></div>
       <div class="stat-cell" style="grid-column:span 3;">
         <div class="stat-label" style="margin-bottom:5px;">Focus Flags</div>
@@ -2328,6 +2326,17 @@ refreshWeightDisplay();
 buildToday();
 renderNinja();
 renderLightFeet();
+
+// iOS touch fix for weight toggle
+document.addEventListener('DOMContentLoaded', function() {
+  const wtBtn = document.querySelector('button.stat-cell[onclick="toggleWeight()"]');
+  if (wtBtn) {
+    wtBtn.addEventListener('touchend', function(e) {
+      e.preventDefault();
+      toggleWeight();
+    }, { passive: false });
+  }
+});
 </script>
 </body>
 </html>
