@@ -335,6 +335,7 @@
   .lf-ex-yt{display:inline-flex;align-items:center;gap:4px;font-family:'DM Mono',monospace;font-size:9px;color:#ff5555;text-decoration:none;margin-top:4px;border:1px solid rgba(255,85,85,0.3);padding:2px 7px;border-radius:3px;}
   .lf-done-banner{text-align:center;padding:10px;font-family:'Barlow Condensed',sans-serif;font-weight:700;font-size:16px;color:#a78bfa;letter-spacing:0.5px;}
 
+
   /* ── NINJA / XP SYSTEM ── */
   .ninja-rank-card{border-radius:10px;padding:18px;margin-bottom:16px;position:relative;overflow:hidden;border:1px solid var(--border);}
   .ninja-rank-card::before{content:'';position:absolute;inset:0;opacity:0.08;pointer-events:none;}
@@ -565,14 +566,28 @@
       <div class="nut-card"><div class="nut-label">Sleep</div><div class="nut-text"><span>8 hours is training.</span> HGH and tissue repair happen during sleep. Cheapest performance edge you have.</div></div>
     </div>
     <div style="font-family:'DM Mono',monospace;font-size:9px;color:var(--muted);text-align:center;line-height:2.2;padding:14px 0;">
-      FIRST.STEP · 16 WEEKS · START: MARCH 20, 2026<br>
+      OLD MAN PROGRAM · 16 WEEKS · START: MARCH 20, 2026<br>
       <span style="color:var(--accent);">Progress is earned in the weeks nobody sees.</span>
+    </div>
+    <div style="padding:0 0 8px;">
+      <button onclick="showResetConfirm()" style="width:100%;background:transparent;border:1px solid rgba(239,68,68,0.3);border-radius:8px;padding:12px;color:var(--red);font-family:'DM Mono',monospace;font-size:11px;cursor:pointer;letter-spacing:1px;opacity:0.7;">
+        ↺ Reset All Progress
+      </button>
     </div>
   </div>
 
   <!-- NINJA VIEW -->
   <div class="view" id="view-ninja">
     <div class="ninja-rank-card" id="ninjaRankCard"></div>
+
+    <!-- RANK PROGRESSION -->
+    <div class="section-header"><div class="section-title">Rank Path</div><div class="section-tag">7 tiers</div></div>
+    <div style="background:var(--surface);border:1px solid var(--border);border-radius:8px;padding:14px;margin-bottom:16px;" id="rankProgressTable"></div>
+
+    <!-- EXAMS -->
+    <div class="section-header"><div class="section-title">Rank Exams</div><div class="section-tag">required for promotion</div></div>
+    <div id="examSection"></div>
+
     <div class="section-header"><div class="section-title">Daily Missions</div><div class="section-tag">reset at midnight</div></div>
     <div class="milestone-grid" id="milestoneGrid"></div>
     <div class="section-header"><div class="section-title">Gym Badges</div><div class="section-tag">earned forever</div></div>
@@ -693,21 +708,24 @@ const DAYS = {
   },
 
   'p1w1-3': {
-    key:'p1w1-3', dayName:'Monday', date:'Mar 23', tag:'t-str', tagLabel:'Leg Day',
+    key:'p1w1-3', dayName:'Monday', date:'Mar 23', tag:'t-str', tagLabel:'Leg Day + Endurance',
     exercises:[
       {id:'d01',name:'90/90 Hip Flexor Stretch',sets:'3 × 60s each side',note:'▲ APT — Longer hold today. Legs need open hips.',apt:true,yt:yt('90 90 hip flexor stretch how to')},
       {id:'d02',name:'Glute Bridge (Bodyweight → Weighted)',sets:'3 × 15, 2s hold at top',note:'▲ APT — Build to loaded version over weeks.',apt:true,yt:yt('glute bridge form tutorial')},
-      {id:'d03',name:'Goblet Squat',sets:'3 × 10',note:'Upright torso, heels down. Learning the pattern. Add weight weekly.',weighted:true,yt:yt('goblet squat form tutorial beginner')},
-      {id:'d04',name:'Romanian Deadlift (DB)',sets:'3 × 10',note:'Hinge at hips, soft knees. Hamstrings load the whole way down.',weighted:true,yt:yt('romanian deadlift dumbbell form tutorial')},
-      {id:'d05',name:'Reverse Lunge (DB)',sets:'3 × 8 each leg',note:'Step back, front knee tracks over toes. Builds single-leg stability.',weighted:true,yt:yt('reverse lunge dumbbell form tutorial')},
-      {id:'d06',name:'Seated Calf Raise (slow)',sets:'3 × 15, 3s up / 3s down',note:'Tendon conditioning. Never rush eccentrics.',weighted:true,yt:yt('seated calf raise slow eccentric tendon')},
-      {id:'d07',name:'Ankle Circles + Alphabet',sets:'2 × each foot',note:'Daily ankle health. Takes 2 minutes.',yt:yt('ankle alphabet mobility drill')},
-      {id:'d08',name:'Pallof Press',sets:'3 × 10 each side',note:'▲ APT — Anti-rotation. Key for first-step power transfer.',apt:true,yt:yt('pallof press anti rotation core APT')},
+      {id:'d03',name:'Goblet Squat',sets:'4 × 12',note:'Up to 4 sets, higher reps. 60s rest only. Builds leg endurance for full games.',weighted:true,yt:yt('goblet squat form tutorial beginner')},
+      {id:'d04',name:'Romanian Deadlift (DB)',sets:'3 × 12',note:'Hamstrings loaded. Crucial for deceleration endurance.',weighted:true,yt:yt('romanian deadlift dumbbell form tutorial')},
+      {id:'d05',name:'Reverse Lunge (DB)',sets:'3 × 10 each leg',note:'Short 45s rest between legs. Trains single-leg endurance.',weighted:true,yt:yt('reverse lunge dumbbell form tutorial')},
+      {id:'d06',name:'Wall Sit',sets:'3 × 30–45 sec',note:'Pure leg endurance. This is what keeps you on offense late in games.',yt:yt('wall sit exercise basketball endurance')},
+      {id:'d07',name:'Step-Up + Hold (bodyweight)',sets:'2 × 10 each leg, hold 1s at top',note:'Single-leg stability endurance. Mimics cutting and driving.',yt:yt('step up hold single leg basketball')},
+      {id:'d08',name:'Seated Calf Raise (slow)',sets:'3 × 15, 3s up / 3s down',note:'Tendon conditioning. Never rush eccentrics.',weighted:true,yt:yt('seated calf raise slow eccentric tendon')},
+      {id:'d09',name:'Ankle Circles + Alphabet',sets:'2 × each foot',note:'Daily ankle health.',yt:yt('ankle alphabet mobility drill')},
+      {id:'d10',name:'Pallof Press',sets:'3 × 10 each side',note:'▲ APT — Anti-rotation core.',apt:true,yt:yt('pallof press anti rotation core APT')},
+      {id:'d11',name:'Conditioning Finisher — Bodyweight Circuit',sets:'2 rounds: 15 squats → 10 lunges each → 20s wall sit → 30s rest',note:'Do this at the end. No rest between exercises within a round. This trains your legs to keep firing when tired — exactly what you need on offense.',yt:yt('basketball conditioning bodyweight circuit leg endurance')},
     ]
   },
 
   'p1w1-4': {
-    key:'p1w1-4', dayName:'Tuesday', date:'Mar 24', tag:'t-exp', tagLabel:'Plyo + Core',
+    key:'p1w1-4', dayName:'Tuesday', date:'Mar 24', tag:'t-exp', tagLabel:'Plyo + Core + Conditioning',
     exercises:[
       {id:'e01',name:'90/90 Hip Stretch',sets:'2 × 60s each side',note:'▲ APT — Short activation before explosive work.',apt:true,yt:yt('90 90 hip flexor stretch how to')},
       {id:'e02',name:'Glute Bridge Activation',sets:'2 × 12',note:'▲ APT — Prime glutes before any jumping.',apt:true,yt:yt('glute bridge activation before workout')},
@@ -718,6 +736,7 @@ const DAYS = {
       {id:'e07',name:'Dead Bug',sets:'3 × 10 each side',note:'▲ APT — Core anti-extension.',apt:true,yt:yt('dead bug exercise anterior pelvic tilt core')},
       {id:'e08',name:'Hollow Body Hold',sets:'3 × 25 sec',note:'▲ APT — Build time each week.',apt:true,yt:yt('hollow body hold anterior pelvic tilt')},
       {id:'e09',name:'Plank (forearm)',sets:'3 × 30–40 sec',note:'▲ APT — Squeeze glutes hard. No arch in lower back.',apt:true,yt:yt('forearm plank perfect form glutes core')},
+      {id:'e10',name:'Jump Rope — Endurance Block',sets:'5 min continuous (slow steady pace)',note:'This is pure leg endurance conditioning. Slow and steady, never stop. Trains your legs to stay loose and active when fatigued — exactly what you need on offense in the 4th quarter.',yt:yt('jump rope endurance conditioning basketball')},
     ]
   },
 
@@ -783,21 +802,23 @@ const DAYS = {
   },
 
   'p1w2-3': {
-    key:'p1w2-3', dayName:'Monday', date:'Mar 30', tag:'t-str', tagLabel:'Leg Day',
+    key:'p1w2-3', dayName:'Monday', date:'Mar 30', tag:'t-str', tagLabel:'Leg Day + Endurance',
     exercises:[
       {id:'k01',name:'90/90 Hip Flexor Stretch',sets:'3 × 60s each side',note:'▲ APT',apt:true,yt:yt('90 90 hip flexor stretch how to')},
-      {id:'k02',name:'Hip Thrust (DB or Barbell)',sets:'3 × 12',note:'▲ APT — Load it up. This is your first step power.',apt:true,weighted:true,yt:yt('hip thrust barbell form tutorial')},
-      {id:'k03',name:'Goblet Squat',sets:'3 × 10',note:'Add 5–10 lbs vs Week 1.',weighted:true,yt:yt('goblet squat form tutorial beginner')},
-      {id:'k04',name:'Romanian Deadlift (DB)',sets:'3 × 10',note:'Increase weight slightly.',weighted:true,yt:yt('romanian deadlift dumbbell form tutorial')},
-      {id:'k05',name:'Reverse Lunge (DB)',sets:'3 × 8 each leg',note:'Add a little weight vs Week 1.',weighted:true,yt:yt('reverse lunge dumbbell form tutorial')},
-      {id:'k06',name:'Seated Calf Raise',sets:'3 × 15 slow',note:'Add small weight. Still 3s up/3s down.',weighted:true,yt:yt('seated calf raise slow eccentric tendon')},
-      {id:'k07',name:'Ankle Circles + Alphabet',sets:'2 × each foot',yt:yt('ankle alphabet mobility drill')},
-      {id:'k08',name:'Pallof Press',sets:'3 × 12 each side',note:'▲ APT',apt:true,yt:yt('pallof press anti rotation core APT')},
+      {id:'k02',name:'Hip Thrust (DB or Barbell)',sets:'3 × 12',note:'▲ APT — Load it up. First step power.',apt:true,weighted:true,yt:yt('hip thrust barbell form tutorial')},
+      {id:'k03',name:'Goblet Squat',sets:'4 × 12',note:'Higher reps than W1, 60s rest. Endurance focus.',weighted:true,yt:yt('goblet squat form tutorial beginner')},
+      {id:'k04',name:'Romanian Deadlift (DB)',sets:'3 × 12',note:'Hamstring endurance — key for staying explosive late in games.',weighted:true,yt:yt('romanian deadlift dumbbell form tutorial')},
+      {id:'k05',name:'Reverse Lunge (DB)',sets:'3 × 10 each leg',note:'45s rest between sets. Push through the burn.',weighted:true,yt:yt('reverse lunge dumbbell form tutorial')},
+      {id:'k06',name:'Wall Sit',sets:'3 × 40 sec',note:'Pure quad endurance. Hold position — this is what keeps you moving on offense.',yt:yt('wall sit exercise basketball endurance')},
+      {id:'k07',name:'Seated Calf Raise',sets:'3 × 15 slow',note:'Add small weight. Still 3s up/3s down.',weighted:true,yt:yt('seated calf raise slow eccentric tendon')},
+      {id:'k08',name:'Ankle Circles + Alphabet',sets:'2 × each foot',yt:yt('ankle alphabet mobility drill')},
+      {id:'k09',name:'Pallof Press',sets:'3 × 12 each side',note:'▲ APT',apt:true,yt:yt('pallof press anti rotation core APT')},
+      {id:'k10',name:'Conditioning Finisher — Bodyweight Circuit',sets:'3 rounds: 15 squats → 12 lunges each → 25s wall sit → 30s rest',note:'Harder than W1. This is your endurance engine. Push through the burn on round 3.',yt:yt('basketball conditioning bodyweight circuit leg endurance')},
     ]
   },
 
   'p1w2-4': {
-    key:'p1w2-4', dayName:'Tuesday', date:'Mar 31', tag:'t-exp', tagLabel:'Plyo + Core',
+    key:'p1w2-4', dayName:'Tuesday', date:'Mar 31', tag:'t-exp', tagLabel:'Plyo + Core + Conditioning',
     exercises:[
       {id:'l01',name:'90/90 Hip Stretch',sets:'2 × 60s each side',note:'▲ APT',apt:true,yt:yt('90 90 hip flexor stretch how to')},
       {id:'l02',name:'Glute Bridge Activation',sets:'2 × 12',note:'▲ APT',apt:true,yt:yt('glute bridge activation before workout')},
@@ -808,6 +829,7 @@ const DAYS = {
       {id:'l07',name:'Dead Bug',sets:'3 × 10 each side',note:'▲ APT',apt:true,yt:yt('dead bug exercise anterior pelvic tilt core')},
       {id:'l08',name:'Hollow Body Hold',sets:'3 × 30 sec',note:'▲ APT',apt:true,yt:yt('hollow body hold anterior pelvic tilt')},
       {id:'l09',name:'Ab Wheel / Rollout',sets:'3 × 8',note:'▲ APT — Ultimate anti-extension. Start from knees.',apt:true,yt:yt('ab wheel rollout anterior pelvic tilt core')},
+      {id:'l10',name:'Jump Rope — Endurance Block',sets:'6 min continuous (steady pace)',note:'Longer than W1. Legs should feel it. This trains your cardiovascular base for offensive endurance.',yt:yt('jump rope endurance conditioning basketball')},
     ]
   },
 
@@ -969,6 +991,11 @@ function getTodayKey() {
   const n = getDayNum();
   return DAY_MAP[n] || null;
 }
+function todayDateStr() {
+  const d = new Date();
+  return d.toISOString().slice(0,10);
+}
+
 
 // ─── STORAGE ───
 function getChecked() { try { return JSON.parse(localStorage.getItem('fs2_checked')||'{}'); } catch(e) { return {}; } }
@@ -1011,11 +1038,6 @@ function refreshTodayProgress() {
 // Key: exId  →  array of sessions: [{date, sets:[{lbs,reps,done}]}]
 function getSetLog() { try { return JSON.parse(localStorage.getItem('fs2_setlog')||'{}'); } catch(e) { return {}; } }
 function saveSetLog(o) { try { localStorage.setItem('fs2_setlog', JSON.stringify(o)); } catch(e) {} }
-
-function todayDateStr() {
-  const d = new Date();
-  return d.toISOString().slice(0,10); // YYYY-MM-DD
-}
 
 // Get last session data for an exercise (most recent date that isn't today)
 function getLastSession(exId) {
@@ -1533,583 +1555,467 @@ function refreshWeightDisplay() {
 }
 
 // ══════════════════════════════════════════
-// ── LIGHT FEET DAILY ROUTINE ──
+// ── ACTIVITY LOG & STREAK ──
 // ══════════════════════════════════════════
-
-const LIGHT_FEET = [
-  {
-    id:'lf01', name:'Jump Rope — Fast Cadence',
-    sets:'3 × 60s, 20s rest',
-    why:'Trains ankle stiffness and fast ground contact. This is the single best drill for light feet.',
-    yt:'jump rope fast cadence light feet basketball'
-  },
-  {
-    id:'lf02', name:'Pogo Jumps (both feet)',
-    sets:'3 × 20 reps — minimal ground time',
-    why:'Forces your achilles and calf to act like a spring. The goal is to spend as little time on the ground as possible.',
-    yt:'pogo jumps achilles spring basketball'
-  },
-  {
-    id:'lf03', name:'Single-Leg Pogo (alternating)',
-    sets:'3 × 10 each leg',
-    why:'Builds independent ankle spring on each foot — critical for direction changes.',
-    yt:'single leg pogo hop basketball agility'
-  },
-  {
-    id:'lf04', name:'Ankle Circles + Alphabet',
-    sets:'1 × full alphabet each foot',
-    why:'Loosens the ankle capsule so your foot can move freely and react faster.',
-    yt:'ankle alphabet mobility drill'
-  },
-  {
-    id:'lf05', name:'Calf Stretch (straight + bent knee)',
-    sets:'2 × 45s each position each leg',
-    why:'Tight calves = heavy feet. Straight knee = gastrocnemius. Bent knee = soleus. Both matter.',
-    yt:'calf stretch gastrocnemius soleus basketball'
-  },
-  {
-    id:'lf06', name:'Foot Intrinsic Activation (Toe Spread + Short Foot)',
-    sets:'2 × 15 reps each foot',
-    why:'Weak foot muscles make you land flat and heavy. This wakes up the muscles inside your foot that create a natural spring arch.',
-    yt:'short foot exercise intrinsic foot muscles basketball'
-  },
-  {
-    id:'lf07', name:'A-Skip',
-    sets:'4 × 20 yards',
-    why:'Trains proper foot strike pattern — ball of foot first, fast snap off the ground. Directly translates to court movement.',
-    yt:'A skip drill track basketball light feet'
-  },
-  {
-    id:'lf08', name:'Quick Feet Ladder or Line Taps',
-    sets:'4 × 20s — maximum speed',
-    why:'Trains your nervous system to be fast off the ground. Not about strength here — it\'s about speed of foot response.',
-    yt:'quick feet ladder drill basketball agility'
-  },
-];
-
-let lfOpen = false;
-
-function getLFLog() { try { return JSON.parse(localStorage.getItem('fs2_lf')||'{}'); } catch(e) { return {}; } }
-function saveLFLog(o) { try { localStorage.setItem('fs2_lf', JSON.stringify(o)); } catch(e) {} }
-
-function isLFDoneToday(id) {
-  const log = getLFLog();
-  return log[id] === todayDateStr();
-}
-
-function toggleLFExercise(id) {
-  const log = getLFLog();
-  if (log[id] === todayDateStr()) {
-    delete log[id];
-  } else {
-    log[id] = todayDateStr();
-    // XP for completing a light feet exercise
-    const xpKey = 'lf_' + id + '_' + todayDateStr();
-    if (!window._exXpAwarded[xpKey]) {
-      window._exXpAwarded[xpKey] = true;
-      addXP(8, 'Light feet drill');
-    }
-  }
-  saveLFLog(log);
-  renderLightFeet();
-  // Bonus XP for full routine
-  const allDone = LIGHT_FEET.every(e => getLFLog()[e.id] === todayDateStr());
-  if (allDone) {
-    const bonusKey = 'lf_full_' + todayDateStr();
-    if (!window._exXpAwarded[bonusKey]) {
-      window._exXpAwarded[bonusKey] = true;
-      addXP(40, 'Full light feet routine!');
-    }
-    markDayActive(todayDateStr());
-  }
-}
-
-function renderLightFeet() {
-  const card = document.getElementById('lightFeetCard');
-  if (!card) return;
-
-  const done = LIGHT_FEET.filter(e => isLFDoneToday(e.id)).length;
-  const total = LIGHT_FEET.length;
-  const pct = Math.round((done / total) * 100);
-  const allDone = done === total;
-
-  const exRows = LIGHT_FEET.map((ex, i) => {
-    const checked = isLFDoneToday(ex.id);
-    return `
-      <div class="lf-exercise">
-        <div class="lf-ex-check ${checked ? 'checked' : ''}" onclick="toggleLFExercise('${ex.id}')"></div>
-        <div class="lf-ex-content">
-          <div class="lf-ex-name" style="${checked ? 'text-decoration:line-through;opacity:0.45;' : ''}">${ex.name}</div>
-          <div class="lf-ex-sets">${ex.sets}</div>
-          <div class="lf-ex-why">${ex.why}</div>
-          <a class="lf-ex-yt" href="https://www.youtube.com/results?search_query=${encodeURIComponent(ex.yt)}" target="_blank" rel="noopener">▶ Watch on YouTube</a>
-        </div>
-      </div>`;
-  }).join('');
-
-  card.innerHTML = `
-    <div class="lf-card">
-      <div class="lf-header" onclick="lfOpen=!lfOpen;renderLightFeet()">
-        <div class="lf-header-left">
-          <span style="font-size:20px;">🪶</span>
-          <div>
-            <div class="lf-title">Light Feet Protocol</div>
-            <div class="lf-subtitle">Daily · 8–10 min · Do this every day</div>
-          </div>
-        </div>
-        <div class="lf-badge">${done}/${total} ${lfOpen ? '▲' : '▼'}</div>
-      </div>
-      <div class="lf-progress-row">
-        <div class="lf-progress-track"><div class="lf-progress-fill" style="width:${pct}%"></div></div>
-        <div class="lf-progress-label">${pct}%</div>
-      </div>
-      <div class="lf-body ${lfOpen ? 'open' : ''}">
-        <div class="lf-why">Heavy feet on court come from tight ankles, slow calf response, flat foot strike, and a nervous system that hasn't been trained to be quick off the ground. This 8-minute routine fixes all four — daily. Do it in the morning, before your workout, or before games. Never skip it.</div>
-        ${allDone
-          ? `<div class="lf-done-banner">🪶 Light Feet Complete! +40 XP earned today</div>`
-          : exRows}
-      </div>
-    </div>`;
-}
-
-
-
-// ── RANK DEFINITIONS ──
-const RANKS = [
-  { name:'Academy Student', kanji:'学', color:'#94a3b8', glow:'rgba(148,163,184,0.4)', xpNeeded:0,   maxXP:200,  desc:'You\'ve just enrolled. Every legend starts here.' },
-  { name:'Genin',           kanji:'下', color:'#4ade80', glow:'rgba(74,222,128,0.4)',  xpNeeded:200,  maxXP:500,  desc:'First real missions. Building the foundation.' },
-  { name:'Chunin',          kanji:'中', color:'#60a5fa', glow:'rgba(96,165,250,0.4)',  xpNeeded:700,  maxXP:800,  desc:'Proven in the field. Real strength forming.' },
-  { name:'Jonin',           kanji:'上', color:'#a78bfa', glow:'rgba(167,139,250,0.4)', xpNeeded:1500, maxXP:1000, desc:'Elite. Your body moves before your mind thinks.' },
-  { name:'Anbu',            kanji:'暗', color:'#f472b6', glow:'rgba(244,114,182,0.4)', xpNeeded:2500, maxXP:1500, desc:'Operating at a different level than everyone else.' },
-  { name:'Kage',            kanji:'影', color:'#fbbf24', glow:'rgba(251,191,36,0.4)',  xpNeeded:4000, maxXP:2000, desc:'Shadow of the village. Others follow your footsteps.' },
-  { name:'Hokage',          kanji:'火', color:'#f97316', glow:'rgba(249,115,22,0.6)',  xpNeeded:6000, maxXP:9999, desc:'The best there ever was. Built from nothing.' },
-];
-
-function getRankFromXP(xp) {
-  let rank = RANKS[0];
-  for (const r of RANKS) { if (xp >= r.xpNeeded) rank = r; }
-  return rank;
-}
-function getNextRank(xp) {
-  for (let i = 0; i < RANKS.length - 1; i++) {
-    if (xp < RANKS[i+1].xpNeeded) return RANKS[i+1];
-  }
-  return null;
-}
-
-// ── XP STORAGE ──
-function getXPData() { try { return JSON.parse(localStorage.getItem('fs2_xp') || '{"total":0,"log":[]}'); } catch(e) { return {total:0,log:[]}; } }
-function saveXPData(o) { try { localStorage.setItem('fs2_xp', JSON.stringify(o)); } catch(e) {} }
-function addXP(amount, reason) {
-  const d = getXPData();
-  d.total += amount;
-  d.log.push({ xp: amount, reason, date: todayDateStr(), ts: Date.now() });
-  saveXPData(d);
-  // Flash XP gain
-  showXPFlash('+' + amount + ' XP');
-  checkBadges();
-}
-function showXPFlash(text) {
-  const el = document.createElement('div');
-  el.textContent = text;
-  el.style.cssText = `position:fixed;top:80px;right:16px;z-index:9999;background:var(--accent2);color:#000;font-family:'Barlow Condensed',sans-serif;font-weight:900;font-size:20px;padding:8px 14px;border-radius:8px;pointer-events:none;animation:xpPop 1.6s forwards;`;
-  document.body.appendChild(el);
-  setTimeout(() => el.remove(), 1700);
-}
-
-// ── MILESTONES ──
-const MILESTONES = [
-  { id:'ms_workout',   icon:'🏋️', name:'Complete today\'s workout',    xp:50,  desc:'Finish every exercise on today\'s list' },
-  { id:'ms_water',     icon:'💧', name:'Drink 3+ liters of water',     xp:20,  desc:'Hydration = tendon health' },
-  { id:'ms_stretch',   icon:'🧘', name:'Hip flexor stretch (both sides)', xp:25, desc:'APT correction — non-negotiable' },
-  { id:'ms_sleep',     icon:'😴', name:'Slept 8+ hours last night',    xp:30,  desc:'Rest is training' },
-  { id:'ms_protein',   icon:'🥩', name:'Hit protein goal (150g+)',     xp:20,  desc:'Fuel the muscle repair' },
-  { id:'ms_noSkip',    icon:'🔥', name:'Didn\'t skip the hard parts',  xp:25,  desc:'Did the APT work without cutting corners' },
-  { id:'ms_court',     icon:'🏀', name:'Got shots up / court work',    xp:30,  desc:'Skills don\'t build themselves' },
-  { id:'ms_collagen',  icon:'💊', name:'Took collagen + Vitamin C',    xp:15,  desc:'30–45 min before training' },
-  { id:'ms_lightfeet', icon:'🪶', name:'Completed Light Feet Protocol', xp:35,  desc:'All 8 drills — every day counts' },
-];
-
-function getMilestoneLog() { try { return JSON.parse(localStorage.getItem('fs2_milestones') || '{}'); } catch(e) { return {}; } }
-function saveMilestoneLog(o) { try { localStorage.setItem('fs2_milestones', JSON.stringify(o)); } catch(e) {} }
-function isMilestoneDoneToday(id) {
-  const log = getMilestoneLog();
-  return log[id] === todayDateStr();
-}
-function toggleMilestone(id, xp) {
-  const log = getMilestoneLog();
-  if (log[id] === todayDateStr()) {
-    delete log[id]; // untoggle
-  } else {
-    log[id] = todayDateStr();
-    addXP(xp, 'Daily mission: ' + id);
-    markDayActive(todayDateStr());
-  }
-  saveMilestoneLog(log);
-  renderNinja();
-}
-
-// ── TRAINING CALENDAR / ACTIVITY ──
 function getActivityLog() { try { return JSON.parse(localStorage.getItem('fs2_activity') || '{}'); } catch(e) { return {}; } }
 function saveActivityLog(o) { try { localStorage.setItem('fs2_activity', JSON.stringify(o)); } catch(e) {} }
+
+function checkAndMarkDayActive(dateStr) {
+  const start = new Date('2026-03-20T00:00:00');
+  const target = new Date(dateStr + 'T12:00:00');
+  const dayNum = Math.floor((target - start) / 86400000);
+  const dayKey = DAY_MAP[dayNum];
+  if (!dayKey || !DAYS[dayKey]) return;
+  const day = DAYS[dayKey];
+  if (day.isRest) {
+    const ch = getChecked();
+    if (day.exercises.filter(e => ch[e.id]).length >= 1) markDayActive(dateStr);
+    return;
+  }
+  const ch = getChecked();
+  const total = day.exercises.length;
+  const done = day.exercises.filter(e => ch[e.id]).length;
+  if (total > 0 && done / total >= 0.8) {
+    markDayActive(dateStr);
+  } else {
+    const log = getActivityLog();
+    if (log[dateStr]) { delete log[dateStr]; saveActivityLog(log); }
+  }
+}
+
 function markDayActive(dateStr) {
   const log = getActivityLog();
   log[dateStr] = true;
   saveActivityLog(log);
 }
 
-// Hook into exercise check — mark day active and award XP when workout exercises are checked
-const _origToggleEx = toggleEx;
+// ── TOGGLE EXERCISE (XP-AWARE) ──
 window._exXpAwarded = window._exXpAwarded || {};
 function toggleEx(id) {
   const ch = getChecked();
   const wasChecked = !!ch[id];
-  // Call original
-  const d = getChecked();
-  d[id] = !d[id];
-  saveChecked(d);
-  document.querySelectorAll(`[data-exid="${id}"]`).forEach(item => item.classList.toggle('done', !!d[id]));
-  document.querySelectorAll(`[data-checkid="${id}"]`).forEach(box => box.classList.toggle('checked', !!d[id]));
+  ch[id] = !ch[id];
+  saveChecked(ch);
+  document.querySelectorAll(`[data-exid="${id}"]`).forEach(item => item.classList.toggle('done', !!ch[id]));
+  document.querySelectorAll(`[data-checkid="${id}"]`).forEach(box => box.classList.toggle('checked', !!ch[id]));
   document.querySelectorAll(`[data-exid="${id}"]`).forEach(item => {
     const card = item.closest('[data-daykey]');
     if (card) refreshDayProgress(card);
   });
   refreshTodayProgress();
-
-  // Award XP for checking (not unchecking)
-  if (!wasChecked && d[id]) {
+  if (!wasChecked && ch[id]) {
     const xpKey = 'ex_' + id + '_' + todayDateStr();
     if (!window._exXpAwarded[xpKey]) {
       window._exXpAwarded[xpKey] = true;
-      addXP(10, 'Exercise: ' + id);
-      markDayActive(todayDateStr());
+      addXP(5, 'Exercise: ' + id);
+      checkAndMarkDayActive(todayDateStr());
     }
-    // Check if all exercises done today → bonus XP
     const key = getTodayKey();
     if (key && DAYS[key]) {
-      const exs = DAYS[key].exercises;
       const freshCh = getChecked();
-      const allDone = exs.every(e => freshCh[e.id]);
-      if (allDone) {
+      if (DAYS[key].exercises.every(e => freshCh[e.id])) {
         const bonusKey = 'fullday_' + todayDateStr();
         if (!window._exXpAwarded[bonusKey]) {
           window._exXpAwarded[bonusKey] = true;
-          addXP(50, 'Full workout complete!');
+          addXP(30, 'Full workout complete!');
         }
       }
     }
   }
 }
 
-// ── STREAK CALCULATION ──
+// ── STREAK ──
 function getStreakData() {
   const log = getActivityLog();
   const dates = Object.keys(log).sort();
-  if (!dates.length) return { current: 0, longest: 0, total: dates.length };
-
-  // Current streak — count backwards from today
+  if (!dates.length) return { current: 0, longest: 0, total: 0 };
   let current = 0;
-  const today = new Date(); today.setHours(0,0,0,0);
-  let check = new Date(today);
+  const todayD = new Date(); todayD.setHours(0,0,0,0);
+  let check = new Date(todayD);
   while (true) {
     const ds = check.toISOString().slice(0,10);
-    if (log[ds]) { current++; check.setDate(check.getDate()-1); }
-    else break;
+    if (log[ds]) { current++; check.setDate(check.getDate()-1); } else break;
   }
-
-  // Longest streak
   let longest = 0, run = 1;
   for (let i = 1; i < dates.length; i++) {
     const prev = new Date(dates[i-1]); prev.setHours(12,0,0,0);
-    const curr = new Date(dates[i]);   curr.setHours(12,0,0,0);
-    const diff = (curr - prev) / 86400000;
-    if (diff === 1) { run++; longest = Math.max(longest, run); }
-    else run = 1;
+    const curr = new Date(dates[i]); curr.setHours(12,0,0,0);
+    if ((curr - prev) / 86400000 === 1) { run++; longest = Math.max(longest, run); } else run = 1;
   }
   longest = Math.max(longest, run, current);
-
   return { current, longest, total: dates.length };
+}
+
+// ══════════════════════════════════════════
+// ── RANK SYSTEM WITH EXAMS ──
+// ══════════════════════════════════════════
+const RANKS = [
+  { id:'academy', name:'Academy Student', kanji:'学', color:'#94a3b8', glow:'rgba(148,163,184,0.4)', xpNeeded:0, maxXP:1700, desc:'You just enrolled. Show up every day. No shortcuts.', examRequired:false },
+  { id:'genin', name:'Genin', kanji:'下', color:'#4ade80', glow:'rgba(74,222,128,0.4)', xpNeeded:1700, maxXP:2240, desc:'First real missions. Foundation is forming.', examRequired:false },
+  { id:'chunin', name:'Chunin', kanji:'中', color:'#60a5fa', glow:'rgba(96,165,250,0.4)', xpNeeded:3940, maxXP:2800, desc:'Passed the exam. Proven under pressure.', examRequired:true, examId:'chunin_exam' },
+  { id:'jonin', name:'Jonin', kanji:'上', color:'#a78bfa', glow:'rgba(167,139,250,0.4)', xpNeeded:6740, maxXP:3360, desc:'Elite. Your body moves before your mind thinks.', examRequired:false },
+  { id:'anbu', name:'Anbu Black Ops', kanji:'暗', color:'#f472b6', glow:'rgba(244,114,182,0.4)', xpNeeded:10100, maxXP:3920, desc:'Operating in the shadows. A different level.', examRequired:false },
+  { id:'sannin', name:'Legendary Sannin', kanji:'仙', color:'#fbbf24', glow:'rgba(251,191,36,0.4)', xpNeeded:14020, maxXP:4480, desc:"Three warriors. One legendary title.", examRequired:true, examId:'sannin_exam' },
+  { id:'hokage', name:'Hokage', kanji:'火', color:'#f97316', glow:'rgba(249,115,22,0.8)', xpNeeded:18500, maxXP:99999, desc:'The strongest. Built from nothing. Proved it daily.', examRequired:false },
+];
+
+const EXAMS = {
+  chunin_exam: {
+    name:'The Chunin Exam', subtitle:'Prove yourself on and off the court', color:'#60a5fa',
+    intro:"The Chunin Exam isn't just a test — it's a rite of passage. XP alone won't promote you. Complete all 4 tasks.",
+    tasks:[
+      { id:'ce_sprint', icon:'⚡', name:'100m in 13 seconds', desc:'Run 100 meters, time yourself. 13.0s or faster.', tip:'Your footwork training should be showing here.', inputType:'number', inputLabel:'Your time (seconds)', inputPlaceholder:'13.2', validate:(val)=>parseFloat(val)<=13.0, failMsg:'Need 13.0s or faster. Keep training.' },
+      { id:'ce_shooting', icon:'🏀', name:'2 threes in a game OR 3 steals in a game', desc:'In your next league game — hit 2 three-pointers, or record 3 steals.', tip:'Use your footwork to create space.', inputType:'select', inputLabel:'What did you accomplish?', options:['2 threes in one game','3 steals in one game','Both'], validate:(val)=>!!val, failMsg:'' },
+      { id:'ce_streak', icon:'🔥', name:'7 consecutive training days (80%+)', desc:'Complete at least 80% of each workout for 7 days in a row.', tip:'Check your calendar. You need 7 consecutive 🔥 days.', inputType:'auto', autoCheck:()=>getStreakData().longest>=7, validate:()=>getStreakData().longest>=7, failMsg:'Build a 7-day streak first.' },
+      { id:'ce_protein', icon:'🥩', name:'Hit protein goal 5 days in one week', desc:'Log food and hit your daily protein target for 5 days in any single week.', tip:'Use the Nutrition tab.', inputType:'auto',
+        autoCheck:()=>{ const goals=getNutrGoals(); const tgt=goals.protein*0.9; const log=getNutrLog(); const dates=Object.keys(log).sort(); for(let i=0;i<=dates.length-5;i++){const w=dates.slice(i,i+7);const pd=w.filter(d=>(log[d]||[]).reduce((s,e)=>s+(e.protein||0),0)>=tgt);if(pd.length>=5)return true;}return false; },
+        validate:function(){return this.autoCheck();}, failMsg:'Log food in Nutrition tab. Hit protein goal for 5 days in a week.' },
+    ]
+  },
+  sannin_exam: {
+    name:'The Sannin Trial', subtitle:'Legendary status requires legendary proof', color:'#fbbf24',
+    intro:'Three legendary ninja. One title. Demonstrate mastery across all pillars.',
+    tasks:[
+      { id:'se_sprint', icon:'⚡', name:'100m in 12 seconds', desc:'A full second faster than the Chunin standard.', tip:'Months of training have built this.', inputType:'number', inputLabel:'Your time (seconds)', inputPlaceholder:'11.8', validate:(val)=>parseFloat(val)<=12.0, failMsg:'Need 12.0s or faster.' },
+      { id:'se_game', icon:'🏀', name:'Dominate in a league game', desc:'Pick your weapon — any one of these in a single game counts: 15+ points, 10+ rebounds, 5+ steals, or 4+ three-pointers.', tip:'Play to your strengths. Your jab step creates threes. Your conditioning keeps you crashing boards late.', inputType:'select', inputLabel:'What did you accomplish?', options:['15+ points','10+ rebounds','5+ steals','4+ three-pointers'], validate:(val)=>!!val, failMsg:'' },
+      { id:'se_streak', icon:'🔥', name:'30-day training streak', desc:'30 consecutive days of 80%+ workout completion.', tip:'No excuses. 30 days.', inputType:'auto', autoCheck:()=>getStreakData().longest>=30, validate:()=>getStreakData().longest>=30, failMsg:'Need a 30-day streak.' },
+    ]
+  }
+};
+
+function getExamData() { try { return JSON.parse(localStorage.getItem('fs2_exams')||'{}'); } catch(e) { return {}; } }
+function saveExamData(o) { try { localStorage.setItem('fs2_exams', JSON.stringify(o)); } catch(e) {} }
+function isExamPassed(examId) { const d=getExamData(); return d[examId]&&d[examId].passed===true; }
+function getExamTaskResult(examId,taskId) { const d=getExamData(); return d[examId]?.tasks?.[taskId]||null; }
+
+function setExamTaskResult(examId, taskId, value, passed) {
+  const data = getExamData();
+  if (!data[examId]) data[examId] = { tasks:{}, passed:false };
+  data[examId].tasks[taskId] = { value, passed, date:todayDateStr() };
+  const exam = EXAMS[examId];
+  const allPassed = exam.tasks.every(t => {
+    if (t.inputType==='auto') return t.autoCheck ? t.autoCheck() : false;
+    return data[examId]?.tasks?.[t.id]?.passed===true;
+  });
+  if (allPassed) {
+    data[examId].passed = true;
+    showExamPassedCelebration(exam);
+    addXP(200, 'Exam passed: '+exam.name);
+  }
+  saveExamData(data);
+  renderNinja();
+}
+
+function showExamPassedCelebration(exam) {
+  const el = document.createElement('div');
+  el.innerHTML = `<div style="font-size:40px;margin-bottom:8px;">🎉</div><div style="font-family:'Barlow Condensed',sans-serif;font-weight:900;font-size:22px;color:${exam.color};margin-bottom:4px;">EXAM PASSED</div><div style="font-family:'Barlow Condensed',sans-serif;font-weight:900;font-size:18px;">${exam.name}</div><div style="font-family:'DM Mono',monospace;font-size:10px;color:var(--muted);margin-top:6px;">+200 XP · Rank up unlocked</div>`;
+  el.style.cssText=`position:fixed;top:50%;left:50%;transform:translate(-50%,-50%);z-index:9999;background:var(--surface2);border:2px solid ${exam.color};border-radius:14px;padding:24px 32px;text-align:center;box-shadow:0 0 60px ${exam.color}44;animation:badgePop 3s forwards;pointer-events:none;`;
+  document.body.appendChild(el);
+  setTimeout(()=>el.remove(),3100);
+}
+
+function getCurrentRank() {
+  const xp = getXPData().total;
+  let rank = RANKS[0];
+  for (const r of RANKS) {
+    if (xp < r.xpNeeded) break;
+    if (r.examRequired && !isExamPassed(r.examId)) break;
+    rank = r;
+  }
+  return rank;
+}
+function getNextRankInfo() {
+  const current = getCurrentRank();
+  const idx = RANKS.findIndex(r=>r.id===current.id);
+  if (idx >= RANKS.length-1) return null;
+  return RANKS[idx+1];
+}
+
+function getXPData() { try { return JSON.parse(localStorage.getItem('fs2_xp')||'{"total":0,"log":[]}'); } catch(e) { return {total:0,log:[]}; } }
+function saveXPData(o) { try { localStorage.setItem('fs2_xp', JSON.stringify(o)); } catch(e) {} }
+function addXP(amount, reason) {
+  const d = getXPData(); d.total += amount;
+  d.log.push({xp:amount,reason,date:todayDateStr(),ts:Date.now()});
+  saveXPData(d);
+  showXPFlash('+'+amount+' XP');
+  checkBadges();
+}
+function showXPFlash(text) {
+  const el = document.createElement('div');
+  el.textContent = text;
+  el.style.cssText=`position:fixed;top:80px;right:16px;z-index:9999;background:var(--accent2);color:#000;font-family:'Barlow Condensed',sans-serif;font-weight:900;font-size:20px;padding:8px 14px;border-radius:8px;pointer-events:none;animation:xpPop 1.6s forwards;`;
+  document.body.appendChild(el);
+  setTimeout(()=>el.remove(),1700);
+}
+
+function submitExamTask(examId, taskId) {
+  const inp = document.getElementById('exam_'+taskId);
+  const val = inp?.value?.trim();
+  if (!val) { if(inp) inp.style.borderColor='var(--red)'; return; }
+  const task = EXAMS[examId].tasks.find(t=>t.id===taskId);
+  setExamTaskResult(examId, taskId, val, task.validate(val));
+}
+function submitExamTaskSelect(examId, taskId, val) {
+  const task = EXAMS[examId].tasks.find(t=>t.id===taskId);
+  setExamTaskResult(examId, taskId, val, task.validate(val));
+}
+
+// ── MILESTONES ──
+const MILESTONES = [
+  { id:'ms_workout', icon:'🏋️', name:"Complete today's workout", xp:30, desc:'Finish every exercise on today\'s list' },
+  { id:'ms_water', icon:'💧', name:'Drink 3+ liters of water', xp:10, desc:'Hydration = tendon health' },
+  { id:'ms_stretch', icon:'🧘', name:'Hip flexor stretch (both sides)', xp:12, desc:'APT correction — non-negotiable' },
+  { id:'ms_sleep', icon:'😴', name:'Slept 8+ hours last night', xp:15, desc:'Rest is training' },
+  { id:'ms_protein', icon:'🥩', name:'Hit protein goal', xp:10, desc:'Reach your daily protein target (0.85× bodyweight)' },
+  { id:'ms_noSkip', icon:'🔥', name:"Didn't skip the hard parts", xp:12, desc:'Did the APT work without cutting corners' },
+  { id:'ms_court', icon:'🏀', name:'Got shots up / court work', xp:15, desc:"Skills don't build themselves" },
+  { id:'ms_collagen', icon:'💊', name:'Took collagen + Vitamin C', xp:8, desc:'30–45 min before training' },
+  { id:'ms_lightfeet', icon:'🪶', name:'Completed Light Feet Protocol', xp:18, desc:'All 8 drills — every day counts' },
+];
+
+function getMilestoneLog() { try { return JSON.parse(localStorage.getItem('fs2_milestones')||'{}'); } catch(e) { return {}; } }
+function saveMilestoneLog(o) { try { localStorage.setItem('fs2_milestones', JSON.stringify(o)); } catch(e) {} }
+function isMilestoneDoneToday(id) { return getMilestoneLog()[id] === todayDateStr(); }
+function toggleMilestone(id, xp) {
+  const log = getMilestoneLog();
+  if (log[id] === todayDateStr()) { delete log[id]; }
+  else { log[id] = todayDateStr(); addXP(xp,'Daily mission: '+id); markDayActive(todayDateStr()); }
+  saveMilestoneLog(log);
+  renderNinja();
 }
 
 // ── BADGES ──
 const BADGE_DEFS = [
-  { id:'first_step',  icon:'👟', name:'First Step',     desc:'Complete Day 1',          check: () => getActivityLog()[todayDateStr()] || Object.keys(getActivityLog()).length >= 1 },
-  { id:'streak3',     icon:'🔥', name:'On Fire',        desc:'3-day streak',             check: () => getStreakData().current >= 3 },
-  { id:'streak7',     icon:'⚡', name:'Week Warrior',   desc:'7-day streak',             check: () => getStreakData().current >= 7 },
-  { id:'streak14',    icon:'💥', name:'Unstoppable',    desc:'14-day streak',            check: () => getStreakData().current >= 14 },
-  { id:'streak30',    icon:'🌪️', name:'Force of Nature',desc:'30-day streak',            check: () => getStreakData().current >= 30 },
-  { id:'xp500',       icon:'🥋', name:'Genin Rising',   desc:'Earn 500 XP',             check: () => getXPData().total >= 500 },
-  { id:'xp1500',      icon:'🗡️', name:'Chunin Certified',desc:'Earn 1500 XP',           check: () => getXPData().total >= 1500 },
-  { id:'xp4000',      icon:'👁️', name:'Shadow Tier',    desc:'Earn 4000 XP',            check: () => getXPData().total >= 4000 },
-  { id:'apt_week',    icon:'🧘', name:'APT Slayer',     desc:'7 days of hip stretches', check: () => { const l=getMilestoneLog(); const c=Object.values(l).filter((v,i,a)=>{ return Object.keys(l)[a.indexOf(v)]==='ms_stretch' || false; }); return Object.keys(getMilestoneLog()).filter(k=>k==='ms_stretch').length >= 1 && (() => { const act=getActivityLog(); return Object.keys(act).length >= 7; })(); } },
-  { id:'court_work',  icon:'🏀', name:'Gym Rat',        desc:'10 court sessions logged', check: () => { const l=getMilestoneLog(); return Object.keys(l).filter(k=>k==='ms_court').length >= 1; } },
-  { id:'full10',      icon:'🏆', name:'Perfect 10',     desc:'10 full workout days',    check: () => getXPData().log.filter(e=>e.reason==='Full workout complete!').length >= 10 },
-  { id:'full30',      icon:'🌟', name:'Hokage Path',    desc:'30 full workout days',    check: () => getXPData().log.filter(e=>e.reason==='Full workout complete!').length >= 30 },
-  { id:'total20',     icon:'📅', name:'Committed',      desc:'20 total training days',  check: () => Object.keys(getActivityLog()).length >= 20 },
-  { id:'total50',     icon:'🎯', name:'Dedicated',      desc:'50 total training days',  check: () => Object.keys(getActivityLog()).length >= 50 },
-  { id:'league_day',  icon:'🏅', name:'League Ready',   desc:'Trained on League Day',   check: () => !!getActivityLog()['2026-04-11'] },
-  { id:'lightfeet7',  icon:'🪶', name:'Featherfoot',    desc:'7 days of light feet',    check: () => { const l=getLFLog(); const dates=new Set(Object.values(l)); return dates.size>=7; } },
-  { id:'lightfeet30', icon:'🌊', name:'Ghost Step',     desc:'30 days of light feet',   check: () => { const l=getLFLog(); const dates=new Set(Object.values(l)); return dates.size>=30; } },
+  { id:'first_step', icon:'👟', name:'First Step', desc:'Complete Day 1', check:()=>Object.keys(getActivityLog()).length>=1 },
+  { id:'streak3', icon:'🔥', name:'On Fire', desc:'3-day streak', check:()=>getStreakData().current>=3 },
+  { id:'streak7', icon:'⚡', name:'Week Warrior', desc:'7-day streak', check:()=>getStreakData().current>=7 },
+  { id:'streak14', icon:'💥', name:'Unstoppable', desc:'14-day streak', check:()=>getStreakData().current>=14 },
+  { id:'streak30', icon:'🌪️', name:'Force of Nature', desc:'30-day streak', check:()=>getStreakData().current>=30 },
+  { id:'xp500', icon:'🥋', name:'Genin Rising', desc:'Earn 500 XP', check:()=>getXPData().total>=500 },
+  { id:'xp1500', icon:'🗡️', name:'Chunin Certified', desc:'Earn 1500 XP', check:()=>getXPData().total>=1500 },
+  { id:'xp4000', icon:'👁️', name:'Shadow Tier', desc:'Earn 4000 XP', check:()=>getXPData().total>=4000 },
+  { id:'full10', icon:'🏆', name:'Perfect 10', desc:'10 full workout days', check:()=>getXPData().log.filter(e=>e.reason==='Full workout complete!').length>=10 },
+  { id:'full30', icon:'🌟', name:'Hokage Path', desc:'30 full workout days', check:()=>getXPData().log.filter(e=>e.reason==='Full workout complete!').length>=30 },
+  { id:'total20', icon:'📅', name:'Committed', desc:'20 total training days', check:()=>Object.keys(getActivityLog()).length>=20 },
+  { id:'total50', icon:'🎯', name:'Dedicated', desc:'50 total training days', check:()=>Object.keys(getActivityLog()).length>=50 },
+  { id:'league_day', icon:'🏅', name:'League Ready', desc:'Trained on League Day', check:()=>!!getActivityLog()['2026-04-11'] },
+  { id:'lightfeet7', icon:'🪶', name:'Featherfoot', desc:'7 days of light feet', check:()=>{ const l=getLFLog(); return new Set(Object.values(l)).size>=7; } },
+  { id:'lightfeet30', icon:'🌊', name:'Ghost Step', desc:'30 days of light feet', check:()=>{ const l=getLFLog(); return new Set(Object.values(l)).size>=30; } },
 ];
 
-function getEarnedBadges() { try { return JSON.parse(localStorage.getItem('fs2_badges') || '[]'); } catch(e) { return []; } }
+function getEarnedBadges() { try { return JSON.parse(localStorage.getItem('fs2_badges')||'[]'); } catch(e) { return []; } }
 function saveEarnedBadges(a) { try { localStorage.setItem('fs2_badges', JSON.stringify(a)); } catch(e) {} }
 function checkBadges() {
-  const earned = getEarnedBadges();
-  let newEarned = false;
+  const earned = getEarnedBadges(); let newEarned = false;
   BADGE_DEFS.forEach(b => {
-    if (!earned.includes(b.id) && b.check()) {
-      earned.push(b.id);
-      newEarned = true;
-      showBadgeUnlock(b);
-    }
+    if (!earned.includes(b.id) && b.check()) { earned.push(b.id); newEarned = true; showBadgeUnlock(b); }
   });
   if (newEarned) saveEarnedBadges(earned);
 }
 function showBadgeUnlock(badge) {
   const el = document.createElement('div');
-  el.innerHTML = `<div style="font-size:28px;margin-bottom:4px;">${badge.icon}</div><div style="font-family:'Barlow Condensed',sans-serif;font-weight:900;font-size:16px;">BADGE UNLOCKED</div><div style="font-family:'DM Mono',monospace;font-size:11px;color:var(--accent2);margin-top:2px;">${badge.name}</div>`;
-  el.style.cssText = `position:fixed;top:50%;left:50%;transform:translate(-50%,-50%);z-index:9999;background:var(--surface2);border:2px solid var(--accent2);border-radius:12px;padding:20px 28px;text-align:center;box-shadow:0 0 40px rgba(251,191,36,0.3);animation:badgePop 2.5s forwards;pointer-events:none;`;
+  el.innerHTML=`<div style="font-size:28px;margin-bottom:4px;">${badge.icon}</div><div style="font-family:'Barlow Condensed',sans-serif;font-weight:900;font-size:16px;">BADGE UNLOCKED</div><div style="font-family:'DM Mono',monospace;font-size:11px;color:var(--accent2);margin-top:2px;">${badge.name}</div>`;
+  el.style.cssText=`position:fixed;top:50%;left:50%;transform:translate(-50%,-50%);z-index:9999;background:var(--surface2);border:2px solid var(--accent2);border-radius:12px;padding:20px 28px;text-align:center;box-shadow:0 0 40px rgba(251,191,36,0.3);animation:badgePop 2.5s forwards;pointer-events:none;`;
   document.body.appendChild(el);
-  setTimeout(() => el.remove(), 2600);
+  setTimeout(()=>el.remove(),2600);
 }
 
-// ── CALENDAR RENDER ──
+// ── CALENDAR ──
 let calViewDate = new Date();
 function renderCalendar() {
   const wrap = document.getElementById('calWrap');
   if (!wrap) return;
   const activity = getActivityLog();
   const today = new Date(); today.setHours(0,0,0,0);
-  const PROGRAM_START_D = new Date('2026-03-20'); PROGRAM_START_D.setHours(0,0,0,0);
-
-  const year = calViewDate.getFullYear();
-  const month = calViewDate.getMonth();
-  const firstDay = new Date(year, month, 1).getDay(); // 0=Sun
-  const daysInMonth = new Date(year, month+1, 0).getDate();
-  const monthName = calViewDate.toLocaleString('default', { month:'long', year:'numeric' });
-
+  const PS = new Date('2026-03-20'); PS.setHours(0,0,0,0);
+  const year = calViewDate.getFullYear(), month = calViewDate.getMonth();
+  const firstDay = new Date(year,month,1).getDay();
+  const daysInMonth = new Date(year,month+1,0).getDate();
+  const monthName = calViewDate.toLocaleString('default',{month:'long',year:'numeric'});
   const days = ['Su','Mo','Tu','We','Th','Fr','Sa'];
-
-  let html = `
-    <div class="cal-month-header">
-      <button class="cal-nav-btn" onclick="calNav(-1)">‹</button>
-      <div class="cal-month-name">${monthName}</div>
-      <button class="cal-nav-btn" onclick="calNav(1)">›</button>
-    </div>
-    <div class="cal-grid">
-      ${days.map(d=>`<div class="cal-day-label">${d}</div>`).join('')}
-  `;
-
-  // Empty cells before month start
-  for (let i = 0; i < firstDay; i++) html += `<div class="cal-cell empty"></div>`;
-
-  for (let d = 1; d <= daysInMonth; d++) {
-    const cellDate = new Date(year, month, d); cellDate.setHours(0,0,0,0);
-    const dateStr = cellDate.toISOString().slice(0,10);
-    const isToday = cellDate.getTime() === today.getTime();
-    const isProgramDay = cellDate >= PROGRAM_START_D && cellDate <= today;
-    const isActive = !!activity[dateStr];
-    const isFuture = cellDate > today;
-    const isPast = cellDate < today && isProgramDay;
-
-    let emoji = '';
-    if (!isFuture && isProgramDay) {
-      emoji = isActive ? '🔥' : '🧊';
-    }
-
-    html += `<div class="cal-cell ${isToday?'today':''} ${isProgramDay?'program-day':''} ${isFuture?'future':''}">
-      ${emoji ? `<div class="cal-emoji">${emoji}</div>` : ''}
-      <div class="cal-num">${d}</div>
-    </div>`;
+  let html = `<div class="cal-month-header"><button class="cal-nav-btn" onclick="calNav(-1)">‹</button><div class="cal-month-name">${monthName}</div><button class="cal-nav-btn" onclick="calNav(1)">›</button></div><div class="cal-grid">${days.map(d=>`<div class="cal-day-label">${d}</div>`).join('')}`;
+  for (let i=0;i<firstDay;i++) html+=`<div class="cal-cell empty"></div>`;
+  for (let d=1;d<=daysInMonth;d++) {
+    const cd = new Date(year,month,d); cd.setHours(0,0,0,0);
+    const ds = cd.toISOString().slice(0,10);
+    const isToday = cd.getTime()===today.getTime();
+    const isProgramDay = cd>=PS && cd<=today;
+    const isFuture = cd>today;
+    const emoji = (!isFuture && isProgramDay) ? (activity[ds]?'🔥':'🧊') : '';
+    html+=`<div class="cal-cell ${isToday?'today':''} ${isProgramDay?'program-day':''} ${isFuture?'future':''}">${emoji?`<div class="cal-emoji">${emoji}</div>`:''}<div class="cal-num">${d}</div></div>`;
   }
+  html+=`</div>`;
+  wrap.innerHTML=html;
+}
+function calNav(dir) { calViewDate=new Date(calViewDate.getFullYear(),calViewDate.getMonth()+dir,1); renderCalendar(); }
 
-  html += `</div>`;
-  wrap.innerHTML = html;
-}
-function calNav(dir) {
-  calViewDate = new Date(calViewDate.getFullYear(), calViewDate.getMonth() + dir, 1);
-  renderCalendar();
-}
+// ── CSS ANIMATIONS ──
+const styleEl = document.createElement('style');
+styleEl.textContent = `
+  @keyframes xpPop { 0%{opacity:0;transform:translateY(0) scale(0.8)} 15%{opacity:1;transform:translateY(-8px) scale(1.1)} 70%{opacity:1;transform:translateY(-12px) scale(1)} 100%{opacity:0;transform:translateY(-20px) scale(0.9)} }
+  @keyframes badgePop { 0%{opacity:0;transform:translate(-50%,-50%) scale(0.7)} 15%{opacity:1;transform:translate(-50%,-50%) scale(1.05)} 80%{opacity:1;transform:translate(-50%,-50%) scale(1)} 100%{opacity:0;transform:translate(-50%,-50%) scale(0.95)} }
+  .cal-cell.future{opacity:0.25;}
+`;
+document.head.appendChild(styleEl);
 
 // ── MAIN NINJA RENDER ──
 function renderNinja() {
   const xpData = getXPData();
   const totalXP = xpData.total;
-  const rank = getRankFromXP(totalXP);
-  const nextRank = getNextRank(totalXP);
+  const rank = getCurrentRank();
+  const nextRank = getNextRankInfo();
   const streak = getStreakData();
   const xpIntoRank = totalXP - rank.xpNeeded;
   const xpForRank = rank.maxXP;
-  const pct = Math.min(100, Math.round((xpIntoRank / xpForRank) * 100));
+  const pct = Math.min(100, Math.round((xpIntoRank/xpForRank)*100));
 
-  // ── RANK CARD ──
   const rankCard = document.getElementById('ninjaRankCard');
   if (rankCard) {
-    rankCard.style.background = `linear-gradient(135deg, ${rank.glow.replace('0.4','0.15')}, var(--surface2))`;
-    rankCard.style.borderColor = rank.color.replace(')',', 0.4)').replace('rgb','rgba') || rank.color;
-    rankCard.innerHTML = `
-      <div class="rank-top">
-        <div class="rank-symbol" style="color:${rank.color}">${rank.kanji}</div>
-        <div class="rank-info">
-          <div class="rank-title-label">Current Rank</div>
-          <div class="rank-title" style="color:${rank.color}">${rank.name}</div>
-          <div class="rank-subtitle">${rank.desc}</div>
-        </div>
-      </div>
-      <div class="xp-row">
-        <div class="xp-label">Total XP</div>
-        <div class="xp-val" style="color:${rank.color}">${totalXP.toLocaleString()} XP</div>
-      </div>
-      <div class="xp-bar-bg">
-        <div class="xp-bar-fill" style="width:${pct}%;background:linear-gradient(90deg,${rank.color},${rank.glow.replace('0.4','1')})"></div>
-      </div>
-      <div class="xp-next">${nextRank ? `${xpIntoRank}/${xpForRank} XP → ${nextRank.name}` : '🏆 MAX RANK ACHIEVED'}</div>
+    rankCard.style.background = `linear-gradient(135deg,${rank.glow.replace('0.4','0.12')},var(--surface2))`;
+    rankCard.style.border = `1px solid ${rank.color}55`;
+    let nextRankHTML = '';
+    if (nextRank) {
+      const xpNeeded = Math.max(0, nextRank.xpNeeded - totalXP);
+      if (nextRank.examRequired && xpNeeded<=0) nextRankHTML=`<div class="xp-next" style="color:${nextRank.color};">⚔️ XP met — complete the <strong>${EXAMS[nextRank.examId].name}</strong> to rank up ↓</div>`;
+      else if (nextRank.examRequired) nextRankHTML=`<div class="xp-next">${xpNeeded.toLocaleString()} XP + ${EXAMS[nextRank.examId].name} → ${nextRank.name}</div>`;
+      else nextRankHTML=`<div class="xp-next">${xpIntoRank.toLocaleString()}/${xpForRank.toLocaleString()} XP → ${nextRank.name}</div>`;
+    } else nextRankHTML=`<div class="xp-next" style="color:var(--accent)">🏆 HOKAGE ACHIEVED</div>`;
+    rankCard.innerHTML=`
+      <div class="rank-top"><div class="rank-symbol" style="color:${rank.color}">${rank.kanji}</div><div class="rank-info"><div class="rank-title-label">Current Rank</div><div class="rank-title" style="color:${rank.color}">${rank.name}</div><div class="rank-subtitle">${rank.desc}</div></div></div>
+      <div class="xp-row"><div class="xp-label">Total XP</div><div class="xp-val" style="color:${rank.color}">${totalXP.toLocaleString()} XP</div></div>
+      <div class="xp-bar-bg"><div class="xp-bar-fill" style="width:${pct}%;background:linear-gradient(90deg,${rank.color},${rank.glow.replace('0.4','1')})"></div></div>
+      ${nextRankHTML}
       <div class="streak-row">
-        <div class="streak-cell">
-          <div class="streak-num" style="color:var(--accent)">${streak.current}</div>
-          <div class="streak-lbl">Day Streak</div>
-        </div>
-        <div class="streak-cell">
-          <div class="streak-num" style="color:var(--accent2)">${streak.longest}</div>
-          <div class="streak-lbl">Best Streak</div>
-        </div>
-        <div class="streak-cell">
-          <div class="streak-num" style="color:var(--green)">${streak.total}</div>
-          <div class="streak-lbl">Total Days</div>
-        </div>
-      </div>
-    `;
+        <div class="streak-cell"><div class="streak-num" style="color:var(--accent)">${streak.current}</div><div class="streak-lbl">Streak</div></div>
+        <div class="streak-cell"><div class="streak-num" style="color:var(--accent2)">${streak.longest}</div><div class="streak-lbl">Best</div></div>
+        <div class="streak-cell"><div class="streak-num" style="color:var(--green)">${streak.total}</div><div class="streak-lbl">Total Days</div></div>
+      </div>`;
   }
 
-  // ── MILESTONES ──
+  const progressTable = document.getElementById('rankProgressTable');
+  if (progressTable) {
+    progressTable.innerHTML = RANKS.map(r => {
+      const isCurrent = r.id===rank.id;
+      const xpMet = totalXP>=r.xpNeeded;
+      const examPassed = r.examRequired ? isExamPassed(r.examId) : null;
+      const isPassed = xpMet && (!r.examRequired || examPassed);
+      return `<div style="display:flex;align-items:center;gap:10px;padding:10px 0;border-bottom:1px solid var(--border);">
+        <div style="font-size:22px;color:${r.color};min-width:30px;text-align:center;">${r.kanji}</div>
+        <div style="flex:1;"><div style="font-family:'Barlow Condensed',sans-serif;font-weight:700;font-size:16px;color:${isCurrent?r.color:'var(--text)'};">${r.name}${isCurrent?' ◀':''}</div><div style="font-family:'DM Mono',monospace;font-size:9px;color:var(--muted);">${r.xpNeeded.toLocaleString()} XP${r.examRequired?' + '+EXAMS[r.examId].name:''}</div></div>
+        <div style="font-size:16px;">${isPassed?'✅':xpMet&&r.examRequired&&!examPassed?'⚔️':'🔒'}</div>
+      </div>`;
+    }).join('');
+  }
+
+  const examSection = document.getElementById('examSection');
+  if (examSection) {
+    examSection.innerHTML = '';
+    RANKS.filter(r=>r.examRequired).forEach(examRank => {
+      const xpMet = totalXP>=examRank.xpNeeded;
+      const passed = isExamPassed(examRank.examId);
+      const exam = EXAMS[examRank.examId];
+      if (!exam) return;
+      const card = document.createElement('div');
+      card.style.cssText=`background:var(--surface);border:1px solid ${passed?examRank.color+'55':'var(--border)'};border-radius:8px;padding:14px;margin-bottom:14px;`;
+      const tasks = exam.tasks.map(task => {
+        const result = getExamTaskResult(examRank.examId, task.id);
+        const isAuto = task.inputType==='auto';
+        const autoPassed = isAuto && task.autoCheck && task.autoCheck();
+        const taskPassed = result?.passed===true || autoPassed;
+        let inputHTML = '';
+        if (!taskPassed) {
+          if (isAuto) inputHTML=`<div style="font-family:'DM Mono',monospace;font-size:10px;color:var(--muted);margin-top:6px;">Auto-tracked · ${task.failMsg}</div>`;
+          else if (task.inputType==='number') inputHTML=`<div style="display:flex;gap:6px;margin-top:8px;align-items:center;"><input type="number" id="exam_${task.id}" placeholder="${task.inputPlaceholder}" inputmode="decimal" style="width:100px;background:var(--bg);border:1px solid var(--border);border-radius:5px;padding:7px 10px;color:var(--text);font-family:'DM Mono',monospace;font-size:13px;outline:none;-moz-appearance:textfield;"/><button onclick="submitExamTask('${examRank.examId}','${task.id}')" style="background:${examRank.color};border:none;border-radius:5px;padding:7px 14px;color:#000;font-family:'DM Mono',monospace;font-size:10px;font-weight:700;cursor:pointer;">SUBMIT</button></div>`;
+          else if (task.inputType==='select') inputHTML=`<div style="display:flex;gap:6px;margin-top:8px;flex-wrap:wrap;">${task.options.map(opt=>`<button onclick="submitExamTaskSelect('${examRank.examId}','${task.id}','${opt}')" style="background:var(--surface2);border:1px solid var(--border);border-radius:5px;padding:7px 12px;color:var(--text);font-family:'DM Mono',monospace;font-size:10px;cursor:pointer;">${opt}</button>`).join('')}</div>`;
+        }
+        return `<div style="padding:10px 0;border-bottom:1px solid var(--border);"><div style="display:flex;align-items:flex-start;gap:10px;"><div style="font-size:18px;flex-shrink:0;">${taskPassed?'✅':task.icon}</div><div style="flex:1;"><div style="font-size:13px;font-weight:500;${taskPassed?'text-decoration:line-through;opacity:0.5;':''}">${task.name}</div><div style="font-size:11px;color:var(--muted);margin-top:2px;line-height:1.5;">${task.desc}</div>${!taskPassed?`<div style="font-size:10px;color:${examRank.color};font-style:italic;margin-top:3px;">💡 ${task.tip}</div>`:''}${inputHTML}</div></div></div>`;
+      }).join('');
+      card.innerHTML=`<div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:8px;"><div><div style="font-family:'Barlow Condensed',sans-serif;font-weight:900;font-size:20px;color:${passed?examRank.color:'var(--text)'};">${passed?'✅ ':xpMet?'⚔️ ':'🔒 '}${exam.name}</div><div style="font-family:'DM Mono',monospace;font-size:9px;color:var(--muted);">${exam.subtitle}</div></div><div style="font-family:'DM Mono',monospace;font-size:9px;color:var(--muted);text-align:right;">${xpMet?'XP ✓':'Need '+examRank.xpNeeded.toLocaleString()+' XP'}</div></div>${!passed?`<div style="font-size:12px;color:var(--muted);line-height:1.6;margin-bottom:12px;padding:8px 10px;background:rgba(255,255,255,0.03);border-radius:5px;">${exam.intro}</div>`:''}${tasks}${passed?`<div style="text-align:center;padding:10px;font-family:'Barlow Condensed',sans-serif;font-weight:900;font-size:18px;color:${examRank.color};margin-top:8px;">EXAM PASSED · ${examRank.name} UNLOCKED</div>`:''}`;
+      examSection.appendChild(card);
+    });
+  }
+
   const mgrid = document.getElementById('milestoneGrid');
   if (mgrid) {
-    mgrid.innerHTML = '';
-    const totalMs = MILESTONES.filter(m => isMilestoneDoneToday(m.id)).length;
-    // Daily XP summary
-    const summaryEl = document.createElement('div');
-    summaryEl.style.cssText = 'font-family:"DM Mono",monospace;font-size:10px;color:var(--muted);margin-bottom:10px;';
-    summaryEl.textContent = `${totalMs}/${MILESTONES.length} missions complete today`;
-    mgrid.appendChild(summaryEl);
-
+    mgrid.innerHTML='';
+    const totalMs = MILESTONES.filter(m=>isMilestoneDoneToday(m.id)).length;
+    const sum = document.createElement('div');
+    sum.style.cssText='font-family:"DM Mono",monospace;font-size:10px;color:var(--muted);margin-bottom:10px;';
+    sum.textContent=`${totalMs}/${MILESTONES.length} missions complete today`;
+    mgrid.appendChild(sum);
     MILESTONES.forEach(ms => {
       const done = isMilestoneDoneToday(ms.id);
       const div = document.createElement('div');
-      div.className = 'milestone-item' + (done ? ' done' : '');
-      div.onclick = () => toggleMilestone(ms.id, ms.xp);
-      div.innerHTML = `
-        <div class="milestone-check${done?' checked':''}"></div>
-        <div class="ms-icon">${ms.icon}</div>
-        <div class="ms-content">
-          <div class="ms-name">${ms.name}</div>
-          <div style="font-size:11px;color:var(--muted);margin-top:1px;">${ms.desc}</div>
-        </div>
-        <div class="ms-xp">+${ms.xp} XP</div>
-      `;
+      div.className='milestone-item'+(done?' done':'');
+      div.onclick=()=>toggleMilestone(ms.id,ms.xp);
+      div.innerHTML=`<div class="milestone-check${done?' checked':''}"></div><div class="ms-icon">${ms.icon}</div><div class="ms-content"><div class="ms-name">${ms.name}</div><div style="font-size:11px;color:var(--muted);margin-top:1px;">${ms.desc}</div></div><div class="ms-xp">+${ms.xp} XP</div>`;
       mgrid.appendChild(div);
     });
   }
 
-  // ── BADGES ──
   const bgrid = document.getElementById('badgeGrid');
   if (bgrid) {
-    bgrid.innerHTML = '';
+    bgrid.innerHTML='';
     const earned = getEarnedBadges();
     BADGE_DEFS.forEach(b => {
       const isEarned = earned.includes(b.id);
       const div = document.createElement('div');
-      div.className = 'badge-card' + (isEarned ? ' earned' : ' locked');
-      div.innerHTML = `
-        ${isEarned ? '<div class="badge-earned-dot"></div>' : ''}
-        <div class="badge-icon">${b.icon}</div>
-        <div class="badge-name">${b.name}</div>
-        <div class="badge-desc">${b.desc}</div>
-      `;
+      div.className='badge-card'+(isEarned?' earned':' locked');
+      div.innerHTML=`${isEarned?'<div class="badge-earned-dot"></div>':''}<div class="badge-icon">${b.icon}</div><div class="badge-name">${b.name}</div><div class="badge-desc">${b.desc}</div>`;
       bgrid.appendChild(div);
     });
   }
 
-  // ── CALENDAR ──
   renderCalendar();
   checkBadges();
 }
 
-// ── CSS ANIMATIONS ──
-const styleEl = document.createElement('style');
-styleEl.textContent = `
-  @keyframes xpPop {
-    0%   { opacity:0; transform:translateY(0) scale(0.8); }
-    15%  { opacity:1; transform:translateY(-8px) scale(1.1); }
-    70%  { opacity:1; transform:translateY(-12px) scale(1); }
-    100% { opacity:0; transform:translateY(-20px) scale(0.9); }
-  }
-  @keyframes badgePop {
-    0%   { opacity:0; transform:translate(-50%,-50%) scale(0.7); }
-    15%  { opacity:1; transform:translate(-50%,-50%) scale(1.05); }
-    80%  { opacity:1; transform:translate(-50%,-50%) scale(1); }
-    100% { opacity:0; transform:translate(-50%,-50%) scale(0.95); }
-  }
-  .cal-cell.future { opacity:0.25; }
-`;
-document.head.appendChild(styleEl);
-
-
 // ══════════════════════════════════════════
 // ── NUTRITION TRACKER ──
 // ══════════════════════════════════════════
-
-// ── FOOD DATABASE (common foods with macros per 100g or per serving) ──
 const FOOD_DB = [
-  // Proteins
-  {name:'Chicken Breast (cooked)',   cal:165, protein:31, carbs:0,  fat:3.6, serving:100, unit:'g'},
-  {name:'Ground Beef 90/10',         cal:218, protein:26, carbs:0,  fat:13,  serving:100, unit:'g'},
-  {name:'Salmon (cooked)',           cal:208, protein:20, carbs:0,  fat:13,  serving:100, unit:'g'},
-  {name:'Eggs (large)',              cal:70,  protein:6,  carbs:0.5,fat:5,   serving:1,   unit:'egg'},
-  {name:'Egg Whites',                cal:17,  protein:3.6,carbs:0.2,fat:0.1, serving:1,   unit:'egg white'},
-  {name:'Tuna (canned in water)',    cal:109, protein:25, carbs:0,  fat:1,   serving:100, unit:'g'},
-  {name:'Shrimp (cooked)',           cal:99,  protein:24, carbs:0,  fat:0.3, serving:100, unit:'g'},
-  {name:'Turkey Breast',             cal:135, protein:30, carbs:0,  fat:1,   serving:100, unit:'g'},
-  {name:'Cottage Cheese',            cal:98,  protein:11, carbs:3.4,fat:4.3, serving:100, unit:'g'},
-  {name:'Greek Yogurt (plain)',      cal:59,  protein:10, carbs:3.6,fat:0.4, serving:100, unit:'g'},
-  {name:'Protein Shake (whey)',      cal:120, protein:25, carbs:3,  fat:1.5, serving:1,   unit:'scoop'},
-  {name:'Steak (sirloin)',           cal:207, protein:26, carbs:0,  fat:11,  serving:100, unit:'g'},
-  // Carbs
-  {name:'White Rice (cooked)',       cal:130, protein:2.7,carbs:28, fat:0.3, serving:100, unit:'g'},
-  {name:'Brown Rice (cooked)',       cal:123, protein:2.7,carbs:26, fat:1,   serving:100, unit:'g'},
-  {name:'Oatmeal (cooked)',          cal:71,  protein:2.5,carbs:12, fat:1.5, serving:100, unit:'g'},
-  {name:'Sweet Potato (cooked)',     cal:90,  protein:2,  carbs:21, fat:0.1, serving:100, unit:'g'},
-  {name:'White Bread (slice)',       cal:79,  protein:2.7,carbs:15, fat:1,   serving:1,   unit:'slice'},
-  {name:'Banana',                    cal:89,  protein:1.1,carbs:23, fat:0.3, serving:1,   unit:'medium'},
-  {name:'Apple',                     cal:52,  protein:0.3,carbs:14, fat:0.2, serving:1,   unit:'medium'},
-  {name:'Pasta (cooked)',            cal:158, protein:5.8,carbs:31, fat:0.9, serving:100, unit:'g'},
-  {name:'Tortilla (flour 10in)',     cal:218, protein:5.6,carbs:36, fat:5.5, serving:1,   unit:'tortilla'},
-  // Fats
-  {name:'Peanut Butter',             cal:588, protein:25, carbs:20, fat:50,  serving:100, unit:'g'},
-  {name:'Almonds',                   cal:579, protein:21, carbs:22, fat:50,  serving:100, unit:'g'},
-  {name:'Avocado',                   cal:160, protein:2,  carbs:9,  fat:15,  serving:1,   unit:'half'},
-  {name:'Olive Oil',                 cal:119, protein:0,  carbs:0,  fat:14,  serving:1,   unit:'tbsp'},
-  {name:'Cheese (cheddar)',          cal:403, protein:25, carbs:1.3,fat:33,  serving:100, unit:'g'},
-  // Meals / Fast food estimates
-  {name:'McDonald\'s Big Mac',       cal:550, protein:25, carbs:45, fat:30,  serving:1,   unit:'sandwich'},
-  {name:'Chipotle Burrito Bowl (chicken)', cal:665, protein:50, carbs:70, fat:18, serving:1, unit:'bowl'},
-  {name:'Subway 6in Turkey',          cal:280, protein:18, carbs:38, fat:4.5, serving:1,   unit:'sandwich'},
-  {name:'Pizza Slice (cheese)',      cal:285, protein:12, carbs:36, fat:10,  serving:1,   unit:'slice'},
-  {name:'Chick-fil-A Sandwich',      cal:440, protein:28, carbs:40, fat:19,  serving:1,   unit:'sandwich'},
-  // Drinks
-  {name:'Whole Milk (1 cup)',        cal:149, protein:8,  carbs:12, fat:8,   serving:1,   unit:'cup'},
-  {name:'Orange Juice (1 cup)',      cal:112, protein:1.7,carbs:26, fat:0.5, serving:1,   unit:'cup'},
-  {name:'Gatorade (20oz)',           cal:140, protein:0,  carbs:36, fat:0,   serving:1,   unit:'bottle'},
-  // Extras
-  {name:'Collagen Powder (1 scoop)', cal:35,  protein:9,  carbs:0,  fat:0,   serving:1,   unit:'scoop'},
-  {name:'Rice Cakes (plain)',        cal:35,  protein:0.7,carbs:7.3,fat:0.3, serving:1,   unit:'cake'},
-  {name:'Cliff Bar',                 cal:250, protein:9,  carbs:44, fat:5,   serving:1,   unit:'bar'},
+  {name:'Chicken Breast (cooked)',cal:165,protein:31,carbs:0,fat:3.6,serving:100,unit:'g'},
+  {name:'Ground Beef 90/10',cal:218,protein:26,carbs:0,fat:13,serving:100,unit:'g'},
+  {name:'Salmon (cooked)',cal:208,protein:20,carbs:0,fat:13,serving:100,unit:'g'},
+  {name:'Eggs (large)',cal:70,protein:6,carbs:0.5,fat:5,serving:1,unit:'egg'},
+  {name:'Egg Whites',cal:17,protein:3.6,carbs:0.2,fat:0.1,serving:1,unit:'egg white'},
+  {name:'Tuna (canned in water)',cal:109,protein:25,carbs:0,fat:1,serving:100,unit:'g'},
+  {name:'Turkey Breast',cal:135,protein:30,carbs:0,fat:1,serving:100,unit:'g'},
+  {name:'Cottage Cheese',cal:98,protein:11,carbs:3.4,fat:4.3,serving:100,unit:'g'},
+  {name:'Greek Yogurt (plain)',cal:59,protein:10,carbs:3.6,fat:0.4,serving:100,unit:'g'},
+  {name:'Protein Shake (whey)',cal:120,protein:25,carbs:3,fat:1.5,serving:1,unit:'scoop'},
+  {name:'Steak (sirloin)',cal:207,protein:26,carbs:0,fat:11,serving:100,unit:'g'},
+  {name:'White Rice (cooked)',cal:130,protein:2.7,carbs:28,fat:0.3,serving:100,unit:'g'},
+  {name:'Brown Rice (cooked)',cal:123,protein:2.7,carbs:26,fat:1,serving:100,unit:'g'},
+  {name:'Oatmeal (cooked)',cal:71,protein:2.5,carbs:12,fat:1.5,serving:100,unit:'g'},
+  {name:'Sweet Potato (cooked)',cal:90,protein:2,carbs:21,fat:0.1,serving:100,unit:'g'},
+  {name:'Banana',cal:89,protein:1.1,carbs:23,fat:0.3,serving:1,unit:'medium'},
+  {name:'Pasta (cooked)',cal:158,protein:5.8,carbs:31,fat:0.9,serving:100,unit:'g'},
+  {name:'Peanut Butter',cal:588,protein:25,carbs:20,fat:50,serving:100,unit:'g'},
+  {name:'Almonds',cal:579,protein:21,carbs:22,fat:50,serving:100,unit:'g'},
+  {name:'Avocado',cal:160,protein:2,carbs:9,fat:15,serving:1,unit:'half'},
+  {name:"McDonald's Big Mac",cal:550,protein:25,carbs:45,fat:30,serving:1,unit:'sandwich'},
+  {name:'Chipotle Burrito Bowl (chicken)',cal:665,protein:50,carbs:70,fat:18,serving:1,unit:'bowl'},
+  {name:'Subway 6in Turkey',cal:280,protein:18,carbs:38,fat:4.5,serving:1,unit:'sandwich'},
+  {name:'Pizza Slice (cheese)',cal:285,protein:12,carbs:36,fat:10,serving:1,unit:'slice'},
+  {name:'Whole Milk (1 cup)',cal:149,protein:8,carbs:12,fat:8,serving:1,unit:'cup'},
+  {name:'Gatorade (20oz)',cal:140,protein:0,carbs:36,fat:0,serving:1,unit:'bottle'},
+  {name:'Collagen Powder (1 scoop)',cal:35,protein:9,carbs:0,fat:0,serving:1,unit:'scoop'},
+  {name:'Cliff Bar',cal:250,protein:9,carbs:44,fat:5,serving:1,unit:'bar'},
 ];
 
-// Goals
-const NUTR_GOALS = { calories:2800, protein:170, carbs:320, fat:80, water:3000 };
+function getNutrGoals() {
+  const log = getWeightLog();
+  const entries = Object.values(log).sort((a,b)=>a.week-b.week);
+  const currentWeight = entries.length ? entries[entries.length-1].lbs : 194;
+  const protein = Math.round(currentWeight * 0.85);
+  const calories = Math.round(currentWeight * 14.5);
+  const fat = Math.round(currentWeight * 0.4);
+  const carbs = Math.max(150, Math.round((calories - protein*4 - fat*9) / 4));
+  return { calories, protein, carbs, fat, water:3000, currentWeight, goalWeight:180 };
+}
+let NUTR_GOALS = getNutrGoals();
 
-// ── STORAGE ──
 function getNutrLog() { try { return JSON.parse(localStorage.getItem('fs2_nutr')||'{}'); } catch(e) { return {}; } }
 function saveNutrLog(o) { try { localStorage.setItem('fs2_nutr', JSON.stringify(o)); } catch(e) {} }
 function getWaterLog() { try { return JSON.parse(localStorage.getItem('fs2_water')||'{}'); } catch(e) { return {}; } }
@@ -2117,608 +2023,303 @@ function saveWaterLog(o) { try { localStorage.setItem('fs2_water', JSON.stringif
 
 let nutrViewDate = todayDateStr();
 let selectedMealType = 'Breakfast';
-let pendingFood = null; // food selected from search
+let pendingFood = null;
 
 function getNutrTotals(dateStr) {
-  const log = getNutrLog();
-  const entries = log[dateStr] || [];
-  return entries.reduce((acc, e) => {
-    acc.calories += e.calories || 0;
-    acc.protein  += e.protein  || 0;
-    acc.carbs    += e.carbs    || 0;
-    acc.fat      += e.fat      || 0;
-    return acc;
-  }, {calories:0, protein:0, carbs:0, fat:0});
+  return (getNutrLog()[dateStr]||[]).reduce((acc,e)=>({ calories:acc.calories+(e.calories||0), protein:acc.protein+(e.protein||0), carbs:acc.carbs+(e.carbs||0), fat:acc.fat+(e.fat||0) }), {calories:0,protein:0,carbs:0,fat:0});
+}
+function getWaterMl(dateStr) { return getWaterLog()[dateStr]||0; }
+
+function macroRingHTML(label,val,goal,color,unit) {
+  const pct = Math.min(100, goal?(val/goal)*100:0);
+  const r=22, circ=2*Math.PI*r, dash=(pct/100)*circ;
+  return `<div class="macro-ring-wrap"><svg class="macro-ring-svg" width="54" height="54" viewBox="0 0 54 54"><circle cx="27" cy="27" r="${r}" fill="none" stroke="var(--dim)" stroke-width="5"/><circle cx="27" cy="27" r="${r}" fill="none" stroke="${color}" stroke-width="5" stroke-dasharray="${dash} ${circ}" stroke-linecap="round"/></svg><div class="macro-ring-val" style="color:${color}">${Math.round(val)}${unit}</div><div class="macro-ring-goal">/ ${goal}${unit}</div><div class="macro-ring-label">${label}</div></div>`;
 }
 
-function getWaterMl(dateStr) {
-  const log = getWaterLog();
-  return log[dateStr] || 0;
-}
-
-// ── MACRO RING ──
-function macroRingHTML(label, val, goal, color, unit) {
-  const pct = Math.min(100, goal ? (val / goal) * 100 : 0);
-  const r = 22; const circ = 2 * Math.PI * r;
-  const dash = (pct / 100) * circ;
-  return `
-    <div class="macro-ring-wrap">
-      <svg class="macro-ring-svg" width="54" height="54" viewBox="0 0 54 54">
-        <circle cx="27" cy="27" r="${r}" fill="none" stroke="var(--dim)" stroke-width="5"/>
-        <circle cx="27" cy="27" r="${r}" fill="none" stroke="${color}" stroke-width="5"
-          stroke-dasharray="${dash} ${circ}" stroke-linecap="round"/>
-      </svg>
-      <div class="macro-ring-val" style="color:${color}">${Math.round(val)}${unit}</div>
-      <div class="macro-ring-goal">/ ${goal}${unit}</div>
-      <div class="macro-ring-label">${label}</div>
-    </div>`;
-}
-
-// ── RENDER NUTRITION HEADER ──
 function renderNutrHeader() {
   const el = document.getElementById('nutriHeader');
   if (!el) return;
   const t = getNutrTotals(nutrViewDate);
-  const calPct = Math.min(100, NUTR_GOALS.calories ? (t.calories / NUTR_GOALS.calories) * 100 : 0);
-  const isToday = nutrViewDate === todayDateStr();
-  const displayDate = isToday ? 'Today' : new Date(nutrViewDate + 'T12:00:00').toLocaleDateString('en-US',{weekday:'short',month:'short',day:'numeric'});
-
-  el.innerHTML = `
-    <div class="nutr-date">
-      <span>${displayDate}</span>
-      <div class="nutr-date-nav">
-        <button class="nutr-nav-btn" onclick="nutrNav(-1)">‹</button>
-        <button class="nutr-nav-btn" onclick="nutrNav(0)" style="${isToday?'color:var(--accent);border-color:var(--accent)':''}">Today</button>
-        <button class="nutr-nav-btn" onclick="nutrNav(1)">›</button>
-      </div>
-    </div>
-    <div class="macro-rings">
-      ${macroRingHTML('Protein', t.protein, NUTR_GOALS.protein, '#3b82f6', 'g')}
-      ${macroRingHTML('Carbs',   t.carbs,   NUTR_GOALS.carbs,   '#f97316', 'g')}
-      ${macroRingHTML('Fat',     t.fat,     NUTR_GOALS.fat,     '#fbbf24', 'g')}
-      ${macroRingHTML('Cals',    t.calories,NUTR_GOALS.calories,'#22c55e', '')}
-    </div>
-    <div class="nutr-cal-bar">
-      <div class="nutr-cal-label">
-        <span>${Math.round(t.calories)} cal eaten</span>
-        <span>${Math.max(0, NUTR_GOALS.calories - Math.round(t.calories))} remaining</span>
-      </div>
-      <div class="nutr-cal-track"><div class="nutr-cal-fill" style="width:${calPct}%"></div></div>
-    </div>`;
-
-  const lbl = document.getElementById('nutrDateLabel');
-  if (lbl) lbl.textContent = displayDate;
+  const calPct = Math.min(100, NUTR_GOALS.calories?(t.calories/NUTR_GOALS.calories)*100:0);
+  const isToday = nutrViewDate===todayDateStr();
+  const displayDate = isToday?'Today':new Date(nutrViewDate+'T12:00:00').toLocaleDateString('en-US',{weekday:'short',month:'short',day:'numeric'});
+  el.innerHTML=`<div class="nutr-date"><span>${displayDate}</span><div class="nutr-date-nav"><button class="nutr-nav-btn" onclick="nutrNav(-1)">‹</button><button class="nutr-nav-btn" onclick="nutrNav(0)" style="${isToday?'color:var(--accent);border-color:var(--accent)':''}">Today</button><button class="nutr-nav-btn" onclick="nutrNav(1)">›</button></div></div><div style="font-family:'DM Mono',monospace;font-size:9px;color:var(--muted);margin-bottom:10px;">Based on <span style="color:var(--accent2);">${NUTR_GOALS.currentWeight} lbs</span> · Protein = 0.85× bodyweight</div><div class="macro-rings">${macroRingHTML('Protein',t.protein,NUTR_GOALS.protein,'#3b82f6','g')}${macroRingHTML('Carbs',t.carbs,NUTR_GOALS.carbs,'#f97316','g')}${macroRingHTML('Fat',t.fat,NUTR_GOALS.fat,'#fbbf24','g')}${macroRingHTML('Cals',t.calories,NUTR_GOALS.calories,'#22c55e','')}</div><div class="nutr-cal-bar"><div class="nutr-cal-label"><span>${Math.round(t.calories)} cal eaten</span><span>${Math.max(0,NUTR_GOALS.calories-Math.round(t.calories))} remaining</span></div><div class="nutr-cal-track"><div class="nutr-cal-fill" style="width:${calPct}%"></div></div></div>`;
+  const lbl=document.getElementById('nutrDateLabel');
+  if(lbl) lbl.textContent=displayDate;
 }
 
-// ── RENDER WATER ──
 function renderWater() {
-  const el = document.getElementById('waterCard');
-  if (!el) return;
-  const ml = getWaterMl(nutrViewDate);
-  const glasses = 8; // each = 375ml ≈ 3L total
-  const mlPerGlass = 375;
-  const filledCount = Math.min(glasses, Math.floor(ml / mlPerGlass));
-
-  let glassHTML = '';
-  for (let i = 0; i < glasses; i++) {
-    const filled = i < filledCount;
-    glassHTML += `<div class="water-glass ${filled?'filled':''}" onclick="addWaterGlass(${i})">
-      <span class="wg-icon">💧</span>
-    </div>`;
-  }
-
-  el.innerHTML = `
-    <div class="water-glasses">${glassHTML}</div>
-    <div class="water-info">
-      <div>
-        <div class="water-ml">${(ml/1000).toFixed(2)}L</div>
-        <div class="water-goal-label">Goal: ${NUTR_GOALS.water/1000}L · Tap glass to log 375ml</div>
-      </div>
-      <div style="text-align:right;">
-        <div style="font-family:'Barlow Condensed',sans-serif;font-size:18px;font-weight:700;color:${ml>=NUTR_GOALS.water?'var(--green)':'var(--muted)'}">
-          ${ml >= NUTR_GOALS.water ? '✓ Goal Hit' : `${Math.max(0, NUTR_GOALS.water - ml)}ml to go`}
-        </div>
-      </div>
-    </div>
-    <div class="water-custom">
-      <input type="number" id="waterCustomInput" placeholder="Custom ml" inputmode="numeric" min="1" max="2000"/>
-      <button class="water-custom-btn" onclick="addWaterCustom()">+ Add</button>
-    </div>`;
+  const el=document.getElementById('waterCard');
+  if(!el) return;
+  const ml=getWaterMl(nutrViewDate);
+  const filledCount=Math.min(8,Math.floor(ml/375));
+  let glassHTML='';
+  for(let i=0;i<8;i++) glassHTML+=`<div class="water-glass ${i<filledCount?'filled':''}" onclick="addWaterGlass(${i})"><span class="wg-icon">💧</span></div>`;
+  el.innerHTML=`<div class="water-glasses">${glassHTML}</div><div class="water-info"><div><div class="water-ml">${(ml/1000).toFixed(2)}L</div><div class="water-goal-label">Goal: 3L · Tap glass to log 375ml</div></div><div style="text-align:right;"><div style="font-family:'Barlow Condensed',sans-serif;font-size:18px;font-weight:700;color:${ml>=3000?'var(--green)':'var(--muted)'};">${ml>=3000?'✓ Goal Hit':`${Math.max(0,3000-ml)}ml to go`}</div></div></div><div class="water-custom"><input type="number" id="waterCustomInput" placeholder="Custom ml" inputmode="numeric" min="1" max="2000"/><button class="water-custom-btn" onclick="addWaterCustom()">+ Add</button></div>`;
 }
 
 function addWaterGlass(idx) {
-  const log = getWaterLog();
-  const cur = log[nutrViewDate] || 0;
-  const mlPerGlass = 375;
-  const newFilled = idx + 1;
-  const newMl = Math.max(cur, newFilled * mlPerGlass);
-  // Toggle: if already filled past this, reduce to just before this glass
-  if (cur >= newFilled * mlPerGlass) {
-    log[nutrViewDate] = idx * mlPerGlass;
-  } else {
-    log[nutrViewDate] = newMl;
-  }
-  saveWaterLog(log);
-  renderWater();
-  // XP for hitting water goal
-  const updated = log[nutrViewDate];
-  if (updated >= NUTR_GOALS.water) {
-    const xpKey = 'water_goal_' + nutrViewDate;
-    if (!window._exXpAwarded[xpKey]) {
-      window._exXpAwarded[xpKey] = true;
-      addXP(20, 'Water goal hit!');
-    }
-  }
+  const log=getWaterLog(); const cur=log[nutrViewDate]||0;
+  log[nutrViewDate] = cur>=(idx+1)*375 ? idx*375 : Math.max(cur,(idx+1)*375);
+  saveWaterLog(log); renderWater();
+  if((log[nutrViewDate]||0)>=3000){const xpKey='water_goal_'+nutrViewDate;if(!window._exXpAwarded[xpKey]){window._exXpAwarded[xpKey]=true;addXP(20,'Water goal hit!');}}
 }
-
 function addWaterCustom() {
-  const inp = document.getElementById('waterCustomInput');
-  const ml = parseInt(inp.value);
-  if (!ml || ml < 1) return;
-  const log = getWaterLog();
-  log[nutrViewDate] = (log[nutrViewDate] || 0) + ml;
-  saveWaterLog(log);
-  inp.value = '';
-  renderWater();
+  const inp=document.getElementById('waterCustomInput'); const ml=parseInt(inp.value);
+  if(!ml||ml<1)return;
+  const log=getWaterLog(); log[nutrViewDate]=(log[nutrViewDate]||0)+ml;
+  saveWaterLog(log); inp.value=''; renderWater();
 }
 
-// ── FOOD SEARCH ──
 function renderAddFood() {
-  const el = document.getElementById('addFoodCard');
-  if (!el) return;
-  const meals = ['Breakfast','Lunch','Dinner','Snack','Pre-Workout','Post-Workout'];
-  el.innerHTML = `
-    <div class="meal-type-row">
-      ${meals.map(m => `<div class="meal-type-btn${m===selectedMealType?' active':''}" onclick="selectMealType('${m}',this)">${m}</div>`).join('')}
-    </div>
-    <div class="food-search-row">
-      <input class="food-search-input" id="foodSearchInput" placeholder="Search food or type custom…" oninput="searchFood(this.value)" autocomplete="off"/>
-      <button class="food-search-btn" onclick="showManualEntry()">Manual</button>
-    </div>
-    <div class="food-suggestions" id="foodSuggestions"></div>
-    <div id="manualEntryArea" style="display:none;">
-      <div style="font-family:'DM Mono',monospace;font-size:9px;color:var(--muted);margin-bottom:6px;letter-spacing:1px;">MANUAL ENTRY</div>
-      <input style="width:100%;background:var(--bg);border:1px solid var(--border);border-radius:5px;padding:8px 10px;color:var(--text);font-family:'Barlow',sans-serif;font-size:13px;outline:none;margin-bottom:8px;" id="manualFoodName" placeholder="Food name" />
-      <div class="food-manual-row">
-        <div><input class="food-manual-input" id="mCal"  type="number" placeholder="0" inputmode="decimal"/><div class="food-manual-label">Calories</div></div>
-        <div><input class="food-manual-input" id="mProt" type="number" placeholder="0" inputmode="decimal"/><div class="food-manual-label">Protein g</div></div>
-        <div><input class="food-manual-input" id="mCarb" type="number" placeholder="0" inputmode="decimal"/><div class="food-manual-label">Carbs g</div></div>
-        <div><input class="food-manual-input" id="mFat"  type="number" placeholder="0" inputmode="decimal"/><div class="food-manual-label">Fat g</div></div>
-      </div>
-      <div style="display:flex;gap:6px;margin-bottom:8px;">
-        <input class="food-manual-input" id="mQty" type="number" placeholder="1" inputmode="decimal" style="width:70px;"/>
-        <div class="food-manual-label" style="display:flex;align-items:center;font-size:10px;">× Qty / Serving</div>
-      </div>
-    </div>
-    <div id="selectedFoodPreview" style="display:none;background:rgba(34,197,94,0.07);border:1px solid rgba(34,197,94,0.3);border-radius:6px;padding:10px 12px;margin-bottom:8px;">
-      <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:4px;">
-        <div id="sfpName" style="font-size:13px;font-weight:500;"></div>
-        <div id="sfpCals" style="font-family:'Barlow Condensed',sans-serif;font-weight:700;font-size:18px;color:var(--accent2);"></div>
-      </div>
-      <div id="sfpMacros" style="font-family:'DM Mono',monospace;font-size:10px;color:var(--muted);margin-bottom:8px;"></div>
-      <div style="display:flex;gap:6px;align-items:center;">
-        <div style="font-family:'DM Mono',monospace;font-size:10px;color:var(--muted);">Qty:</div>
-        <input type="number" id="sfpQty" value="1" min="0.1" step="0.5" inputmode="decimal" style="width:70px;background:var(--bg);border:1px solid var(--border);border-radius:5px;padding:6px 8px;color:var(--text);font-family:'DM Mono',monospace;font-size:12px;outline:none;-moz-appearance:textfield;" oninput="updateFoodPreview()"/>
-        <div id="sfpUnit" style="font-family:'DM Mono',monospace;font-size:10px;color:var(--muted);"></div>
-      </div>
-    </div>
-    <button class="food-add-btn" onclick="logFood()">+ LOG TO ${selectedMealType.toUpperCase()}</button>
-  `;
+  const el=document.getElementById('addFoodCard');
+  if(!el) return;
+  const meals=['Breakfast','Lunch','Dinner','Snack','Pre-Workout','Post-Workout'];
+  el.innerHTML=`<div class="meal-type-row">${meals.map(m=>`<div class="meal-type-btn${m===selectedMealType?' active':''}" onclick="selectMealType('${m}',this)">${m}</div>`).join('')}</div><div class="food-search-row"><input class="food-search-input" id="foodSearchInput" placeholder="Search food or type custom…" oninput="searchFood(this.value)" autocomplete="off"/><button class="food-search-btn" onclick="showManualEntry()">Manual</button></div><div class="food-suggestions" id="foodSuggestions"></div><div id="manualEntryArea" style="display:none;"><div style="font-family:'DM Mono',monospace;font-size:9px;color:var(--muted);margin-bottom:6px;letter-spacing:1px;">MANUAL ENTRY</div><input style="width:100%;background:var(--bg);border:1px solid var(--border);border-radius:5px;padding:8px 10px;color:var(--text);font-family:'Barlow',sans-serif;font-size:13px;outline:none;margin-bottom:8px;" id="manualFoodName" placeholder="Food name"/><div class="food-manual-row"><div><input class="food-manual-input" id="mCal" type="number" placeholder="0" inputmode="decimal"/><div class="food-manual-label">Calories</div></div><div><input class="food-manual-input" id="mProt" type="number" placeholder="0" inputmode="decimal"/><div class="food-manual-label">Protein g</div></div><div><input class="food-manual-input" id="mCarb" type="number" placeholder="0" inputmode="decimal"/><div class="food-manual-label">Carbs g</div></div><div><input class="food-manual-input" id="mFat" type="number" placeholder="0" inputmode="decimal"/><div class="food-manual-label">Fat g</div></div></div><div style="display:flex;gap:6px;margin-bottom:8px;"><input class="food-manual-input" id="mQty" type="number" placeholder="1" inputmode="decimal" style="width:70px;"/><div class="food-manual-label" style="display:flex;align-items:center;font-size:10px;">× Qty</div></div></div><div id="selectedFoodPreview" style="display:none;background:rgba(34,197,94,0.07);border:1px solid rgba(34,197,94,0.3);border-radius:6px;padding:10px 12px;margin-bottom:8px;"><div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:4px;"><div id="sfpName" style="font-size:13px;font-weight:500;"></div><div id="sfpCals" style="font-family:'Barlow Condensed',sans-serif;font-weight:700;font-size:18px;color:var(--accent2);"></div></div><div id="sfpMacros" style="font-family:'DM Mono',monospace;font-size:10px;color:var(--muted);margin-bottom:8px;"></div><div style="display:flex;gap:6px;align-items:center;"><div style="font-family:'DM Mono',monospace;font-size:10px;color:var(--muted);">Qty:</div><input type="number" id="sfpQty" value="1" min="0.1" step="0.5" inputmode="decimal" style="width:70px;background:var(--bg);border:1px solid var(--border);border-radius:5px;padding:6px 8px;color:var(--text);font-family:'DM Mono',monospace;font-size:12px;outline:none;-moz-appearance:textfield;" oninput="updateFoodPreview()"/><div id="sfpUnit" style="font-family:'DM Mono',monospace;font-size:10px;color:var(--muted);"></div></div></div><button class="food-add-btn" onclick="logFood()">+ LOG TO ${selectedMealType.toUpperCase()}</button>`;
 }
 
-function selectMealType(type, el) {
-  selectedMealType = type;
-  document.querySelectorAll('.meal-type-btn').forEach(b => b.classList.remove('active'));
-  el.classList.add('active');
-  const btn = document.querySelector('.food-add-btn');
-  if (btn) btn.textContent = `+ LOG TO ${type.toUpperCase()}`;
-}
+function selectMealType(type,el){selectedMealType=type;document.querySelectorAll('.meal-type-btn').forEach(b=>b.classList.remove('active'));el.classList.add('active');const btn=document.querySelector('.food-add-btn');if(btn)btn.textContent=`+ LOG TO ${type.toUpperCase()}`;}
+function searchFood(query){const box=document.getElementById('foodSuggestions');if(!box)return;if(!query||query.length<2){box.style.display='none';return;}const q=query.toLowerCase();const results=FOOD_DB.filter(f=>f.name.toLowerCase().includes(q)).slice(0,6);if(!results.length){box.style.display='none';return;}box.style.display='block';box.innerHTML=results.map(f=>`<div class="food-suggestion-item" onclick="selectFood(${FOOD_DB.indexOf(f)})"><div class="fsi-name">${f.name}</div><div class="fsi-macros">${f.cal} cal · P:${f.protein}g · C:${f.carbs}g · F:${f.fat}g per ${f.serving} ${f.unit}</div></div>`).join('');}
+function selectFood(idx){pendingFood=FOOD_DB[idx];document.getElementById('foodSuggestions').style.display='none';document.getElementById('foodSearchInput').value=pendingFood.name;document.getElementById('manualEntryArea').style.display='none';document.getElementById('selectedFoodPreview').style.display='block';document.getElementById('sfpQty').value=1;updateFoodPreview();}
+function updateFoodPreview(){if(!pendingFood)return;const qty=parseFloat(document.getElementById('sfpQty')?.value)||1;document.getElementById('sfpName').textContent=pendingFood.name;document.getElementById('sfpCals').textContent=Math.round(pendingFood.cal*qty)+' cal';document.getElementById('sfpMacros').textContent=`P:${Math.round(pendingFood.protein*qty)}g  C:${Math.round(pendingFood.carbs*qty)}g  F:${Math.round(pendingFood.fat*qty)}g`;document.getElementById('sfpUnit').textContent=pendingFood.unit;}
+function showManualEntry(){pendingFood=null;document.getElementById('selectedFoodPreview').style.display='none';document.getElementById('foodSuggestions').style.display='none';const a=document.getElementById('manualEntryArea');a.style.display=a.style.display==='none'?'block':'none';}
 
-function searchFood(query) {
-  const box = document.getElementById('foodSuggestions');
-  if (!box) return;
-  if (!query || query.length < 2) { box.style.display = 'none'; return; }
-  const q = query.toLowerCase();
-  const results = FOOD_DB.filter(f => f.name.toLowerCase().includes(q)).slice(0, 6);
-  if (!results.length) { box.style.display = 'none'; return; }
-  box.style.display = 'block';
-  box.innerHTML = results.map((f,i) => `
-    <div class="food-suggestion-item" onclick="selectFood(${FOOD_DB.indexOf(f)})">
-      <div class="fsi-name">${f.name}</div>
-      <div class="fsi-macros">${f.cal} cal · P:${f.protein}g · C:${f.carbs}g · F:${f.fat}g per ${f.serving} ${f.unit}</div>
-    </div>`).join('');
-}
-
-function selectFood(idx) {
-  pendingFood = FOOD_DB[idx];
-  document.getElementById('foodSuggestions').style.display = 'none';
-  document.getElementById('foodSearchInput').value = pendingFood.name;
-  document.getElementById('manualEntryArea').style.display = 'none';
-  const preview = document.getElementById('selectedFoodPreview');
-  preview.style.display = 'block';
-  document.getElementById('sfpQty').value = 1;
-  updateFoodPreview();
-}
-
-function updateFoodPreview() {
-  if (!pendingFood) return;
-  const qty = parseFloat(document.getElementById('sfpQty')?.value) || 1;
-  document.getElementById('sfpName').textContent = pendingFood.name;
-  document.getElementById('sfpCals').textContent = Math.round(pendingFood.cal * qty) + ' cal';
-  document.getElementById('sfpMacros').textContent = `P:${Math.round(pendingFood.protein*qty)}g  C:${Math.round(pendingFood.carbs*qty)}g  F:${Math.round(pendingFood.fat*qty)}g`;
-  document.getElementById('sfpUnit').textContent = pendingFood.unit;
-}
-
-function showManualEntry() {
-  pendingFood = null;
-  document.getElementById('selectedFoodPreview').style.display = 'none';
-  document.getElementById('foodSuggestions').style.display = 'none';
-  const area = document.getElementById('manualEntryArea');
-  area.style.display = area.style.display === 'none' ? 'block' : 'none';
-}
-
-function logFood() {
-  const log = getNutrLog();
-  if (!log[nutrViewDate]) log[nutrViewDate] = [];
-
-  let entry = null;
-
-  if (pendingFood) {
-    const qty = parseFloat(document.getElementById('sfpQty')?.value) || 1;
-    entry = {
-      id: Date.now(),
-      name: pendingFood.name,
-      meal: selectedMealType,
-      calories: Math.round(pendingFood.cal * qty),
-      protein:  Math.round(pendingFood.protein * qty * 10) / 10,
-      carbs:    Math.round(pendingFood.carbs * qty * 10) / 10,
-      fat:      Math.round(pendingFood.fat * qty * 10) / 10,
-    };
-  } else {
-    // Manual entry
-    const name = document.getElementById('manualFoodName')?.value || 'Custom Food';
-    const cal  = parseFloat(document.getElementById('mCal')?.value)  || 0;
-    const prot = parseFloat(document.getElementById('mProt')?.value) || 0;
-    const carb = parseFloat(document.getElementById('mCarb')?.value) || 0;
-    const fat  = parseFloat(document.getElementById('mFat')?.value)  || 0;
-    const qty  = parseFloat(document.getElementById('mQty')?.value)  || 1;
-    if (!cal && !prot && !carb && !fat) return;
-    entry = { id: Date.now(), name, meal: selectedMealType,
-      calories: Math.round(cal*qty), protein: Math.round(prot*qty*10)/10,
-      carbs: Math.round(carb*qty*10)/10, fat: Math.round(fat*qty*10)/10 };
-  }
-
-  if (!entry) return;
-  log[nutrViewDate].push(entry);
-  saveNutrLog(log);
-
-  // Reset
-  pendingFood = null;
-  const inp = document.getElementById('foodSearchInput');
-  if (inp) inp.value = '';
-  document.getElementById('selectedFoodPreview').style.display = 'none';
-  document.getElementById('manualEntryArea').style.display = 'none';
-  ['manualFoodName','mCal','mProt','mCarb','mFat','mQty'].forEach(id => {
-    const el = document.getElementById(id); if (el) el.value = '';
-  });
-
-  // Award XP
-  const xpKey = 'food_log_' + nutrViewDate;
-  if (!window._exXpAwarded[xpKey]) {
-    window._exXpAwarded[xpKey] = true;
-    addXP(5, 'Food logged');
-  }
-  // Bonus for hitting protein goal
-  const t = getNutrTotals(nutrViewDate);
-  if (t.protein >= NUTR_GOALS.protein) {
-    const pk = 'protein_goal_' + nutrViewDate;
-    if (!window._exXpAwarded[pk]) {
-      window._exXpAwarded[pk] = true;
-      addXP(25, 'Protein goal hit!');
-    }
-  }
-
+function logFood(){
+  const log=getNutrLog(); if(!log[nutrViewDate])log[nutrViewDate]=[];
+  let entry=null;
+  if(pendingFood){const qty=parseFloat(document.getElementById('sfpQty')?.value)||1;entry={id:Date.now(),name:pendingFood.name,meal:selectedMealType,calories:Math.round(pendingFood.cal*qty),protein:Math.round(pendingFood.protein*qty*10)/10,carbs:Math.round(pendingFood.carbs*qty*10)/10,fat:Math.round(pendingFood.fat*qty*10)/10};}
+  else{const name=document.getElementById('manualFoodName')?.value||'Custom Food';const cal=parseFloat(document.getElementById('mCal')?.value)||0;const prot=parseFloat(document.getElementById('mProt')?.value)||0;const carb=parseFloat(document.getElementById('mCarb')?.value)||0;const fat=parseFloat(document.getElementById('mFat')?.value)||0;const qty=parseFloat(document.getElementById('mQty')?.value)||1;if(!cal&&!prot&&!carb&&!fat)return;entry={id:Date.now(),name,meal:selectedMealType,calories:Math.round(cal*qty),protein:Math.round(prot*qty*10)/10,carbs:Math.round(carb*qty*10)/10,fat:Math.round(fat*qty*10)/10};}
+  if(!entry)return;
+  log[nutrViewDate].push(entry); saveNutrLog(log);
+  pendingFood=null;
+  ['foodSearchInput','manualFoodName','mCal','mProt','mCarb','mFat','mQty'].forEach(id=>{const el=document.getElementById(id);if(el)el.value='';});
+  document.getElementById('selectedFoodPreview').style.display='none';
+  document.getElementById('manualEntryArea').style.display='none';
+  const xpKey='food_log_'+nutrViewDate;if(!window._exXpAwarded[xpKey]){window._exXpAwarded[xpKey]=true;addXP(5,'Food logged');}
+  const t=getNutrTotals(nutrViewDate);if(t.protein>=getNutrGoals().protein*0.9){const pk='protein_goal_'+nutrViewDate;if(!window._exXpAwarded[pk]){window._exXpAwarded[pk]=true;addXP(25,'Protein goal hit!');}}
   renderNutrition();
 }
 
-function deleteFood(dateStr, id) {
-  const log = getNutrLog();
-  if (!log[dateStr]) return;
-  log[dateStr] = log[dateStr].filter(e => e.id !== id);
-  saveNutrLog(log);
-  renderNutrition();
+function deleteFood(dateStr,id){const log=getNutrLog();if(!log[dateStr])return;log[dateStr]=log[dateStr].filter(e=>e.id!==id);saveNutrLog(log);renderNutrition();}
+
+function renderMealLog(){
+  const el=document.getElementById('mealLog');if(!el)return;
+  const entries=getNutrLog()[nutrViewDate]||[];
+  if(!entries.length){el.innerHTML=`<div style="text-align:center;padding:20px;font-family:'DM Mono',monospace;font-size:10px;color:var(--muted);">No food logged yet.<br>Search above or add manually.</div>`;return;}
+  const meals=['Breakfast','Lunch','Dinner','Pre-Workout','Post-Workout','Snack'];
+  el.innerHTML=meals.map(meal=>{const items=entries.filter(e=>e.meal===meal);if(!items.length)return'';const mc=items.reduce((s,e)=>s+(e.calories||0),0);return`<div class="meal-section"><div class="meal-section-header"><div class="meal-section-name">${meal}</div><div class="meal-section-cals">${mc} cal</div></div>${items.map(e=>`<div class="food-entry"><div class="fe-info"><div class="fe-name">${e.name}</div><div class="fe-macros">P:${e.protein}g · C:${e.carbs}g · F:${e.fat}g</div></div><div class="fe-cals">${e.calories}</div><button class="fe-del" onclick="deleteFood('${nutrViewDate}',${e.id})">×</button></div>`).join('')}</div>`;}).join('');
 }
 
-// ── RENDER MEAL LOG ──
-function renderMealLog() {
-  const el = document.getElementById('mealLog');
-  if (!el) return;
-  const log = getNutrLog();
-  const entries = log[nutrViewDate] || [];
-  if (!entries.length) {
-    el.innerHTML = `<div style="text-align:center;padding:20px;font-family:'DM Mono',monospace;font-size:10px;color:var(--muted);">No food logged yet today.<br>Search above or add manually.</div>`;
-    return;
+function renderProteinChart(){
+  const el=document.getElementById('proteinChart');if(!el)return;
+  const days=[];for(let i=6;i>=0;i--){const d=new Date();d.setDate(d.getDate()-i);const ds=d.toISOString().slice(0,10);const t=getNutrTotals(ds);days.push({ds,protein:Math.round(t.protein),label:d.toLocaleDateString('en-US',{weekday:'short'}).slice(0,2)});}
+  const maxP=Math.max(...days.map(d=>d.protein),NUTR_GOALS.protein);
+  const bars=days.map(d=>{const h=Math.max(4,Math.round((d.protein/maxP)*60));const cls=d.protein>=NUTR_GOALS.protein?'hit':d.protein>=NUTR_GOALS.protein*0.7?'close':'low';return`<div class="pchart-bar-wrap"><div class="pchart-val">${d.protein?d.protein+'g':''}</div><div class="pchart-bar ${cls}" style="height:${h}px"></div><div class="pchart-day">${d.label}</div></div>`;}).join('');
+  el.innerHTML=`<div style="font-family:'DM Mono',monospace;font-size:9px;color:var(--muted);margin-bottom:8px;">Goal: ${NUTR_GOALS.protein}g/day</div><div class="pchart-bars">${bars}</div><div class="pchart-legend"><span><div class="pchart-dot" style="background:var(--green)"></div>Goal hit</span><span><div class="pchart-dot" style="background:var(--accent2)"></div>Close</span><span><div class="pchart-dot" style="background:var(--dim)"></div>Low</span></div>`;
+}
+
+function nutrNav(dir){if(dir===0){nutrViewDate=todayDateStr();}else{const d=new Date(nutrViewDate+'T12:00:00');d.setDate(d.getDate()+dir);if(d>new Date())return;nutrViewDate=d.toISOString().slice(0,10);}renderNutrition();}
+
+function renderNutrition(){
+  NUTR_GOALS=getNutrGoals();
+  renderNutrHeader();renderWater();renderAddFood();renderMealLog();renderProteinChart();
+}
+
+// ── RECIPE GENERATOR ──
+let selectedRecipeMeal='any';
+function selectRecipeMeal(type,el){selectedRecipeMeal=type;document.querySelectorAll('.rg-opt').forEach(b=>b.classList.remove('active'));el.classList.add('active');}
+function getSavedRecipes(){try{return JSON.parse(localStorage.getItem('fs2_recipes')||'[]');}catch(e){return[];}}
+function saveSavedRecipes(a){try{localStorage.setItem('fs2_recipes',JSON.stringify(a));}catch(e){}}
+
+async function generateRecipe(){
+  const ingredients=document.getElementById('ingredientInput')?.value?.trim();
+  if(!ingredients){document.getElementById('ingredientInput').style.borderColor='var(--red)';setTimeout(()=>{document.getElementById('ingredientInput').style.borderColor='';},1500);return;}
+  const btn=document.getElementById('recipeGenBtn');const btnText=document.getElementById('recipeGenBtnText');const output=document.getElementById('recipeOutput');
+  btn.disabled=true;btnText.textContent='Generating...';
+  output.innerHTML=`<div class="rg-loading"><div class="rg-spinner"></div><span>Building your recipe...</span></div>`;
+  const goals=getNutrGoals();
+  const mealCtx=selectedRecipeMeal==='any'?'':` This should be a ${selectedRecipeMeal} meal.`;
+  const prompt=`You are a sports nutritionist and chef helping a 6'0", ${goals.currentWeight} lb basketball player lose weight toward ${goals.goalWeight} lbs while building muscle. Daily goals: ${goals.calories} calories, ${goals.protein}g protein, ${goals.carbs}g carbs, ${goals.fat}g fat. They have APT — focus on anti-inflammatory ingredients. Tendon health is important — collagen-supporting foods are a bonus.\n\nIngredients available: ${ingredients}.${mealCtx}\n\nCreate ONE high-protein recipe. Respond ONLY with valid JSON, no markdown:\n{"name":"","servings":1,"prepTime":"","cookTime":"","calories":0,"protein":0,"carbs":0,"fat":0,"ingredients":[],"steps":[],"notes":"","goalAlignment":""}`;
+  try{
+    const response=await fetch('https://api.anthropic.com/v1/messages',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({model:'claude-sonnet-4-20250514',max_tokens:1000,messages:[{role:'user',content:prompt}]})});
+    const data=await response.json();
+    const raw=data.content?.[0]?.text||'';
+    const recipe=JSON.parse(raw.replace(/```json|```/g,'').trim());
+    renderRecipeOutput(recipe);
+    const xpKey='recipe_gen_'+todayDateStr();if(!window._exXpAwarded[xpKey]){window._exXpAwarded[xpKey]=true;addXP(10,'Recipe generated');}
+  }catch(err){output.innerHTML=`<div style="padding:14px;font-family:'DM Mono',monospace;font-size:11px;color:var(--red);background:rgba(239,68,68,0.06);border:1px solid rgba(239,68,68,0.2);border-radius:6px;">Could not generate recipe. Check your connection and try again.</div>`;}
+  btn.disabled=false;btnText.textContent='🍳 Generate Another';
+}
+
+function renderRecipeOutput(recipe){
+  const output=document.getElementById('recipeOutput');if(!output)return;
+  const ingList=(recipe.ingredients||[]).map(i=>`<li class="rg-ingredient-item"><div class="rg-ingredient-dot"></div><span>${i}</span></li>`).join('');
+  const steps=(recipe.steps||[]).map((s,i)=>`<div class="rg-step"><div class="rg-step-num">${i+1}</div><div class="rg-step-text">${s}</div></div>`).join('');
+  output.innerHTML=`<div class="rg-recipe"><div class="rg-recipe-header"><div class="rg-recipe-name">${recipe.name||'Your Recipe'}</div><div class="rg-recipe-tag">${recipe.servings||1} serving · Prep ${recipe.prepTime||'—'} · Cook ${recipe.cookTime||'—'}</div></div><div class="rg-macros"><div class="rg-macro-cell"><div class="rg-macro-val" style="color:var(--accent2)">${recipe.calories||0}</div><div class="rg-macro-lbl">CAL</div></div><div class="rg-macro-cell"><div class="rg-macro-val" style="color:var(--blue)">${recipe.protein||0}g</div><div class="rg-macro-lbl">PROTEIN</div></div><div class="rg-macro-cell"><div class="rg-macro-val" style="color:var(--accent)">${recipe.carbs||0}g</div><div class="rg-macro-lbl">CARBS</div></div><div class="rg-macro-cell"><div class="rg-macro-val" style="color:var(--accent2)">${recipe.fat||0}g</div><div class="rg-macro-lbl">FAT</div></div></div><div class="rg-recipe-body"><div class="rg-section-title">Ingredients</div><ul class="rg-ingredient-list">${ingList}</ul><div class="rg-section-title">Instructions</div><div class="rg-steps">${steps}</div>${recipe.notes?`<div class="rg-notes">💡 ${recipe.notes}</div>`:''}${recipe.goalAlignment?`<div class="rg-notes" style="margin-top:6px;border-left-color:var(--blue);background:rgba(59,130,246,0.05);">🎯 ${recipe.goalAlignment}</div>`:''}</div></div><button class="rg-save-btn" id="recipeSaveBtn" onclick='saveRecipe(${JSON.stringify(recipe).replace(/"/g,"&quot;")})'>＋ Save this recipe</button>${renderSavedRecipes()}`;
+}
+
+function renderSavedRecipes(){const saved=getSavedRecipes();if(!saved.length)return'';return`<div style="margin-top:16px;"><div style="font-family:'DM Mono',monospace;font-size:9px;letter-spacing:2px;text-transform:uppercase;color:var(--muted);margin-bottom:8px;">SAVED RECIPES</div><div class="rg-saved-list">${saved.map((r,i)=>`<div class="rg-saved-item"><div><div class="rg-saved-name">${r.name}</div><div class="rg-saved-meta">${r.calories} cal · P:${r.protein}g · C:${r.carbs}g · F:${r.fat}g</div></div><button class="rg-saved-del" onclick="deleteSavedRecipe(${i})">×</button></div>`).join('')}</div></div>`;}
+function saveRecipe(recipe){const saved=getSavedRecipes();if(!saved.find(r=>r.name===recipe.name)){saved.unshift(recipe);saveSavedRecipes(saved.slice(0,20));}const btn=document.getElementById('recipeSaveBtn');if(btn){btn.textContent='✓ Saved!';btn.classList.add('saved');btn.disabled=true;}}
+function deleteSavedRecipe(idx){const saved=getSavedRecipes();saved.splice(idx,1);saveSavedRecipes(saved);const output=document.getElementById('recipeOutput');if(output){const s=output.querySelector('.rg-saved-list')?.closest('div[style*="margin-top:16px"]');if(s)s.outerHTML=renderSavedRecipes();}}
+function renderSavedRecipesStandalone(){const output=document.getElementById('recipeOutput');if(!output||output.innerHTML)return;const saved=getSavedRecipes();if(saved.length)output.innerHTML=renderSavedRecipes();}
+
+// ══════════════════════════════════════════
+// ── LIGHT FEET DAILY ROUTINE ──
+// ══════════════════════════════════════════
+const LIGHT_FEET = [
+  {id:'lf01',name:'Jump Rope — Fast Cadence',sets:'3 × 60s, 20s rest',why:'Trains ankle stiffness and fast ground contact. Best drill for light feet.',yt:'jump rope fast cadence light feet basketball'},
+  {id:'lf02',name:'Pogo Jumps (both feet)',sets:'3 × 20 reps — minimal ground time',why:'Forces achilles and calf to act like a spring. Spend as little time on the ground as possible.',yt:'pogo jumps achilles spring basketball'},
+  {id:'lf03',name:'Single-Leg Pogo (alternating)',sets:'3 × 10 each leg',why:'Builds independent ankle spring — critical for direction changes.',yt:'single leg pogo hop basketball agility'},
+  {id:'lf04',name:'Ankle Circles + Alphabet',sets:'1 × full alphabet each foot',why:'Loosens ankle capsule so your foot can move freely and react faster.',yt:'ankle alphabet mobility drill'},
+  {id:'lf05',name:'Calf Stretch (straight + bent knee)',sets:'2 × 45s each position each leg',why:'Tight calves = heavy feet. Straight = gastrocnemius. Bent = soleus. Both matter.',yt:'calf stretch gastrocnemius soleus basketball'},
+  {id:'lf06',name:'Foot Intrinsic Activation (Short Foot)',sets:'2 × 15 reps each foot',why:'Weak foot muscles make you land flat and heavy. Wakes up the natural spring arch.',yt:'short foot exercise intrinsic foot muscles basketball'},
+  {id:'lf07',name:'A-Skip',sets:'4 × 20 yards',why:'Trains proper foot strike pattern — ball of foot first, fast snap off the ground.',yt:'A skip drill track basketball light feet'},
+  {id:'lf08',name:'Quick Feet Ladder or Line Taps',sets:'4 × 20s — maximum speed',why:"Trains your nervous system to fire your feet faster. Not about strength — it's speed of foot response.",yt:'quick feet ladder drill basketball agility'},
+];
+
+function getLFLog() { try { return JSON.parse(localStorage.getItem('fs2_lf')||'{}'); } catch(e) { return {}; } }
+function saveLFLog(o) { try { localStorage.setItem('fs2_lf', JSON.stringify(o)); } catch(e) {} }
+function isLFDoneToday(id) { return getLFLog()[id] === todayDateStr(); }
+
+function toggleLFExercise(id) {
+  const log = getLFLog();
+  if (log[id] === todayDateStr()) { delete log[id]; }
+  else {
+    log[id] = todayDateStr();
+    const xpKey = 'lf_' + id + '_' + todayDateStr();
+    if (!window._exXpAwarded[xpKey]) { window._exXpAwarded[xpKey]=true; addXP(4,'Light feet drill'); }
   }
-  const meals = ['Breakfast','Lunch','Dinner','Pre-Workout','Post-Workout','Snack'];
-  let html = '';
-  meals.forEach(meal => {
-    const items = entries.filter(e => e.meal === meal);
-    if (!items.length) return;
-    const mealCals = items.reduce((s,e) => s + (e.calories||0), 0);
-    html += `<div class="meal-section">
-      <div class="meal-section-header">
-        <div class="meal-section-name">${meal}</div>
-        <div class="meal-section-cals">${mealCals} cal</div>
+  saveLFLog(log);
+  renderLightFeet();
+  const allDone = LIGHT_FEET.every(e => getLFLog()[e.id] === todayDateStr());
+  if (allDone) {
+    const bonusKey = 'lf_full_' + todayDateStr();
+    if (!window._exXpAwarded[bonusKey]) { window._exXpAwarded[bonusKey]=true; addXP(20,'Full light feet routine!'); }
+    markDayActive(todayDateStr());
+  }
+}
+
+function renderLightFeet() {
+  const card = document.getElementById('lightFeetCard');
+  if (!card) return;
+  const done = LIGHT_FEET.filter(e => isLFDoneToday(e.id)).length;
+  const total = LIGHT_FEET.length;
+  const pct = Math.round((done/total)*100);
+  const allDone = done === total;
+  const lfOpen = card.dataset.open === '1';
+
+  const exRows = LIGHT_FEET.map(ex => {
+    const checked = isLFDoneToday(ex.id);
+    return `<div class="lf-exercise">
+      <div class="lf-ex-check ${checked?'checked':''}" onclick="toggleLFExercise('${ex.id}')"></div>
+      <div class="lf-ex-content">
+        <div class="lf-ex-name" style="${checked?'text-decoration:line-through;opacity:0.45;':''}">${ex.name}</div>
+        <div class="lf-ex-sets">${ex.sets}</div>
+        <div class="lf-ex-why">${ex.why}</div>
+        <a class="lf-ex-yt" href="https://www.youtube.com/results?search_query=${encodeURIComponent(ex.yt)}" target="_blank" rel="noopener">▶ Watch on YouTube</a>
       </div>
-      ${items.map(e => `
-        <div class="food-entry">
-          <div class="fe-info">
-            <div class="fe-name">${e.name}</div>
-            <div class="fe-macros">P:${e.protein}g · C:${e.carbs}g · F:${e.fat}g</div>
-          </div>
-          <div class="fe-cals">${e.calories}</div>
-          <button class="fe-del" onclick="deleteFood('${nutrViewDate}',${e.id})">×</button>
-        </div>`).join('')}
-    </div>`;
-  });
-  el.innerHTML = html;
-}
-
-// ── PROTEIN CHART ──
-function renderProteinChart() {
-  const el = document.getElementById('proteinChart');
-  if (!el) return;
-  const days = [];
-  for (let i = 6; i >= 0; i--) {
-    const d = new Date(); d.setDate(d.getDate() - i);
-    const ds = d.toISOString().slice(0,10);
-    const t = getNutrTotals(ds);
-    days.push({ ds, protein: Math.round(t.protein), label: d.toLocaleDateString('en-US',{weekday:'short'}).slice(0,2) });
-  }
-  const maxP = Math.max(...days.map(d => d.protein), NUTR_GOALS.protein);
-  const bars = days.map(d => {
-    const h = Math.max(4, Math.round((d.protein / maxP) * 60));
-    const cls = d.protein >= NUTR_GOALS.protein ? 'hit' : d.protein >= NUTR_GOALS.protein * 0.7 ? 'close' : 'low';
-    return `<div class="pchart-bar-wrap">
-      <div class="pchart-val">${d.protein ? d.protein+'g' : ''}</div>
-      <div class="pchart-bar ${cls}" style="height:${h}px"></div>
-      <div class="pchart-day">${d.label}</div>
     </div>`;
   }).join('');
-  el.innerHTML = `
-    <div style="font-family:'DM Mono',monospace;font-size:9px;color:var(--muted);margin-bottom:8px;">Goal: ${NUTR_GOALS.protein}g/day</div>
-    <div class="pchart-bars">${bars}</div>
-    <div class="pchart-legend">
-      <span><div class="pchart-dot" style="background:var(--green)"></div>Goal hit</span>
-      <span><div class="pchart-dot" style="background:var(--accent2)"></div>Close</span>
-      <span><div class="pchart-dot" style="background:var(--dim)"></div>Low</span>
-    </div>`;
-}
 
-function nutrNav(dir) {
-  if (dir === 0) { nutrViewDate = todayDateStr(); }
-  else {
-    const d = new Date(nutrViewDate + 'T12:00:00');
-    d.setDate(d.getDate() + dir);
-    if (d > new Date()) return; // no future
-    nutrViewDate = d.toISOString().slice(0,10);
-  }
-  renderNutrition();
-}
-
-function renderNutrition() {
-  renderNutrHeader();
-  renderWater();
-  renderAddFood();
-  renderMealLog();
-  renderProteinChart();
-}
-
-// ══════════════════════════════════════════
-// ── RECIPE GENERATOR (AI) ──
-// ══════════════════════════════════════════
-
-let selectedRecipeMeal = 'any';
-
-function selectRecipeMeal(type, el) {
-  selectedRecipeMeal = type;
-  document.querySelectorAll('.rg-opt').forEach(b => b.classList.remove('active'));
-  el.classList.add('active');
-}
-
-function getSavedRecipes() { try { return JSON.parse(localStorage.getItem('fs2_recipes') || '[]'); } catch(e) { return []; } }
-function saveSavedRecipes(a) { try { localStorage.setItem('fs2_recipes', JSON.stringify(a)); } catch(e) {} }
-
-async function generateRecipe() {
-  const ingredients = document.getElementById('ingredientInput')?.value?.trim();
-  if (!ingredients) {
-    document.getElementById('ingredientInput').style.borderColor = 'var(--red)';
-    setTimeout(() => { document.getElementById('ingredientInput').style.borderColor = ''; }, 1500);
-    return;
-  }
-
-  const btn = document.getElementById('recipeGenBtn');
-  const btnText = document.getElementById('recipeGenBtnText');
-  const output = document.getElementById('recipeOutput');
-
-  btn.disabled = true;
-  btnText.textContent = 'Generating...';
-  output.innerHTML = `<div class="rg-loading"><div class="rg-spinner"></div><span>Building your recipe...</span></div>`;
-
-  const mealCtx = selectedRecipeMeal === 'any' ? '' : ` This should be a ${selectedRecipeMeal} meal.`;
-  const prompt = `You are a sports nutritionist and chef helping a 6'0", 194 lb basketball player lose weight toward 180 lbs while building muscle. Their daily goals: 2800 calories, 170g protein, 320g carbs, 80g fat. They have APT so focus on anti-inflammatory ingredients when possible. Tendon health is important — collagen-supporting foods (vitamin C, glycine-rich proteins) are a bonus.
-
-The athlete has these ingredients available: ${ingredients}.${mealCtx}
-
-Create ONE high-protein recipe using primarily these ingredients. Respond ONLY with a valid JSON object — no markdown, no backticks, no explanation. Use this exact structure:
-{
-  "name": "Recipe Name",
-  "servings": 1,
-  "prepTime": "10 min",
-  "cookTime": "20 min",
-  "calories": 650,
-  "protein": 52,
-  "carbs": 45,
-  "fat": 18,
-  "ingredients": ["200g chicken breast", "1 cup brown rice", "1 tbsp olive oil"],
-  "steps": ["Step 1 text", "Step 2 text", "Step 3 text"],
-  "notes": "Why this meal fits your goals and any substitutions or tips.",
-  "goalAlignment": "Brief note on how this helps weight loss + muscle building"
-}`;
-
-  try {
-    const response = await fetch('https://api.anthropic.com/v1/messages', {
-      method: 'POST',
-      headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify({
-        model: 'claude-sonnet-4-20250514',
-        max_tokens: 1000,
-        messages: [{ role: 'user', content: prompt }]
-      })
-    });
-
-    const data = await response.json();
-    const raw = data.content?.[0]?.text || '';
-    // Strip any accidental markdown fences
-    const clean = raw.replace(/```json|```/g, '').trim();
-    const recipe = JSON.parse(clean);
-    renderRecipeOutput(recipe);
-
-    // XP reward
-    const xpKey = 'recipe_gen_' + todayDateStr();
-    if (!window._exXpAwarded[xpKey]) {
-      window._exXpAwarded[xpKey] = true;
-      addXP(10, 'Recipe generated');
-    }
-
-  } catch (err) {
-    output.innerHTML = `<div style="padding:14px;font-family:'DM Mono',monospace;font-size:11px;color:var(--red);background:rgba(239,68,68,0.06);border:1px solid rgba(239,68,68,0.2);border-radius:6px;">Could not generate recipe. Check your connection and try again.</div>`;
-  }
-
-  btn.disabled = false;
-  btnText.textContent = '🍳 Generate Another';
-}
-
-function renderRecipeOutput(recipe) {
-  const output = document.getElementById('recipeOutput');
-  if (!output) return;
-
-  const ingList = (recipe.ingredients || []).map(i =>
-    `<li class="rg-ingredient-item"><div class="rg-ingredient-dot"></div><span>${i}</span></li>`
-  ).join('');
-
-  const steps = (recipe.steps || []).map((s, i) =>
-    `<div class="rg-step"><div class="rg-step-num">${i+1}</div><div class="rg-step-text">${s}</div></div>`
-  ).join('');
-
-  output.innerHTML = `
-    <div class="rg-recipe">
-      <div class="rg-recipe-header">
-        <div class="rg-recipe-name">${recipe.name || 'Your Recipe'}</div>
-        <div class="rg-recipe-tag">${recipe.servings || 1} serving · Prep ${recipe.prepTime || '—'} · Cook ${recipe.cookTime || '—'}</div>
-      </div>
-      <div class="rg-macros">
-        <div class="rg-macro-cell"><div class="rg-macro-val" style="color:var(--accent2)">${recipe.calories || 0}</div><div class="rg-macro-lbl">CAL</div></div>
-        <div class="rg-macro-cell"><div class="rg-macro-val" style="color:var(--blue)">${recipe.protein || 0}g</div><div class="rg-macro-lbl">PROTEIN</div></div>
-        <div class="rg-macro-cell"><div class="rg-macro-val" style="color:var(--accent)">${recipe.carbs || 0}g</div><div class="rg-macro-lbl">CARBS</div></div>
-        <div class="rg-macro-cell"><div class="rg-macro-val" style="color:var(--accent2)">${recipe.fat || 0}g</div><div class="rg-macro-lbl">FAT</div></div>
-      </div>
-      <div class="rg-recipe-body">
-        <div class="rg-section-title">Ingredients</div>
-        <ul class="rg-ingredient-list">${ingList}</ul>
-        <div class="rg-section-title">Instructions</div>
-        <div class="rg-steps">${steps}</div>
-        ${recipe.notes ? `<div class="rg-notes">💡 ${recipe.notes}</div>` : ''}
-        ${recipe.goalAlignment ? `<div class="rg-notes" style="margin-top:6px;border-left-color:var(--blue);background:rgba(59,130,246,0.05);">🎯 ${recipe.goalAlignment}</div>` : ''}
-      </div>
+  card.innerHTML = `<div class="lf-card">
+    <div class="lf-header" onclick="document.getElementById('lightFeetCard').dataset.open=(document.getElementById('lightFeetCard').dataset.open==='1'?'0':'1');renderLightFeet()">
+      <div class="lf-header-left"><span style="font-size:20px;">🪶</span><div><div class="lf-title">Light Feet Protocol</div><div class="lf-subtitle">Daily · 8–10 min · Do this every day</div></div></div>
+      <div class="lf-badge">${done}/${total} ${lfOpen?'▲':'▼'}</div>
     </div>
-    <button class="rg-save-btn" id="recipeSaveBtn" onclick="saveRecipe(${JSON.stringify(recipe).replace(/"/g,'&quot;')})">
-      ＋ Save this recipe
-    </button>
-    ${renderSavedRecipes()}
-  `;
+    <div class="lf-progress-row"><div class="lf-progress-track"><div class="lf-progress-fill" style="width:${pct}%"></div></div><div class="lf-progress-label">${pct}%</div></div>
+    <div class="lf-body ${lfOpen?'open':''}">
+      <div class="lf-why">Heavy feet come from tight ankles, slow calf response, flat foot strike, and a nervous system not trained to be quick off the ground. 8 minutes daily fixes all four — do it every day, even rest days.</div>
+      ${allDone ? `<div class="lf-done-banner">🪶 Light Feet Complete! +20 XP earned today</div>` : exRows}
+    </div>
+  </div>`;
 }
 
-function renderSavedRecipes() {
-  const saved = getSavedRecipes();
-  if (!saved.length) return '';
-  const items = saved.map((r, i) => `
-    <div class="rg-saved-item">
-      <div>
-        <div class="rg-saved-name">${r.name}</div>
-        <div class="rg-saved-meta">${r.calories} cal · P:${r.protein}g · C:${r.carbs}g · F:${r.fat}g</div>
-      </div>
-      <button class="rg-saved-del" onclick="deleteSavedRecipe(${i})">×</button>
-    </div>`).join('');
-  return `
-    <div style="margin-top:16px;">
-      <div style="font-family:'DM Mono',monospace;font-size:9px;letter-spacing:2px;text-transform:uppercase;color:var(--muted);margin-bottom:8px;">SAVED RECIPES</div>
-      <div class="rg-saved-list">${items}</div>
-    </div>`;
-}
-
-function saveRecipe(recipe) {
-  const saved = getSavedRecipes();
-  // avoid duplicates by name
-  if (!saved.find(r => r.name === recipe.name)) {
-    saved.unshift(recipe);
-    saveSavedRecipes(saved.slice(0, 20)); // keep max 20
-  }
-  const btn = document.getElementById('recipeSaveBtn');
-  if (btn) { btn.textContent = '✓ Saved!'; btn.classList.add('saved'); btn.disabled = true; }
-}
-
-function deleteSavedRecipe(idx) {
-  const saved = getSavedRecipes();
-  saved.splice(idx, 1);
-  saveSavedRecipes(saved);
-  // re-render saved list portion
-  const output = document.getElementById('recipeOutput');
-  if (output) {
-    const savedSection = output.querySelector('.rg-saved-list')?.closest('div[style*="margin-top:16px"]');
-    if (savedSection) savedSection.outerHTML = renderSavedRecipes();
-  }
-}
-
-// Show saved recipes on load when nutrition tab opens
-function renderSavedRecipesStandalone() {
-  const output = document.getElementById('recipeOutput');
-  if (!output || output.innerHTML) return;
-  const saved = getSavedRecipes();
-  if (saved.length) output.innerHTML = renderSavedRecipes();
-}
-
-
-// ─── VIEW SWITCH ───
+// ── VIEW SWITCH ──
 function switchView(name, el) {
-  document.querySelectorAll('.view').forEach(v => v.classList.remove('active'));
-  document.querySelectorAll('.bn-item').forEach(b => b.classList.remove('active'));
+  document.querySelectorAll('.view').forEach(v=>v.classList.remove('active'));
+  document.querySelectorAll('.bn-item').forEach(b=>b.classList.remove('active'));
   document.getElementById('view-'+name).classList.add('active');
   el.classList.add('active');
-  if (name === 'program')   buildWeekPanel('p1w1');
-  if (name === 'progress')  { renderWeightCard(); refreshWeightDisplay(); }
-  if (name === 'ninja')     renderNinja();
-  if (name === 'nutrition') { renderNutrition(); renderSavedRecipesStandalone(); }
+  if(name==='program') buildWeekPanel('p1w1');
+  if(name==='progress'){renderWeightCard();refreshWeightDisplay();}
+  if(name==='ninja') renderNinja();
+  if(name==='nutrition'){renderNutrition();renderSavedRecipesStandalone();}
   window.scrollTo(0,0);
 }
+function switchPhase(id,el){document.querySelectorAll('.phase-view').forEach(p=>p.classList.remove('active'));document.querySelectorAll('.nav-tab').forEach(t=>t.classList.remove('active'));document.getElementById(id).classList.add('active');el.classList.add('active');if(id==='p1')buildWeekPanel('p1w1');}
+function switchWeek(weekId,phaseId,el){document.querySelectorAll('#'+phaseId+' .week-panel').forEach(p=>p.classList.remove('active'));document.querySelectorAll('#'+phaseId+' .week-tab').forEach(t=>t.classList.remove('active'));document.getElementById(weekId).classList.add('active');el.classList.add('active');buildWeekPanel(weekId);}
 
-function switchPhase(id, el) {
-  document.querySelectorAll('.phase-view').forEach(p => p.classList.remove('active'));
-  document.querySelectorAll('.nav-tab').forEach(t => t.classList.remove('active'));
-  document.getElementById(id).classList.add('active');
-  el.classList.add('active');
-  if (id === 'p1') buildWeekPanel('p1w1');
+
+
+
+
+function resetAllProgress() {
+  const keys = [
+    'fs2_checked', 'fs2_setlog', 'fs2_xp', 'fs2_milestones',
+    'fs2_activity', 'fs2_badges', 'fs2_weights', 'fs2_nutr',
+    'fs2_water', 'fs2_lf', 'fs2_exams', 'fs2_recipes'
+  ];
+  keys.forEach(k => { try { localStorage.removeItem(k); } catch(e) {} });
+  window._exXpAwarded = {};
+  // Re-render everything
+  updateCountdown();
+  renderWeightCard();
+  refreshWeightDisplay();
+  buildToday();
+  renderNinja();
+  renderLightFeet();
+  NUTR_GOALS = getNutrGoals();
+  // Close modal
+  const modal = document.getElementById('resetModal');
+  if (modal) modal.remove();
+  // Flash confirmation
+  const flash = document.createElement('div');
+  flash.textContent = '✓ Fresh start. Let\'s go.';
+  flash.style.cssText = `position:fixed;top:80px;left:50%;transform:translateX(-50%);z-index:9999;background:var(--green);color:#000;font-family:'Barlow Condensed',sans-serif;font-weight:900;font-size:18px;padding:10px 20px;border-radius:8px;pointer-events:none;animation:xpPop 2s forwards;white-space:nowrap;`;
+  document.body.appendChild(flash);
+  setTimeout(() => flash.remove(), 2100);
+  // Switch to today tab
+  switchView('today', document.querySelector('.bn-item'));
 }
 
-function switchWeek(weekId, phaseId, el) {
-  document.querySelectorAll('#'+phaseId+' .week-panel').forEach(p => p.classList.remove('active'));
-  document.querySelectorAll('#'+phaseId+' .week-tab').forEach(t => t.classList.remove('active'));
-  document.getElementById(weekId).classList.add('active');
-  el.classList.add('active');
-  buildWeekPanel(weekId);
+function showResetConfirm() {
+  const existing = document.getElementById('resetModal');
+  if (existing) existing.remove();
+  const modal = document.createElement('div');
+  modal.id = 'resetModal';
+  modal.style.cssText = `position:fixed;inset:0;z-index:9999;background:rgba(0,0,0,0.85);display:flex;align-items:center;justify-content:center;padding:20px;`;
+  modal.innerHTML = `
+    <div style="background:var(--surface2);border:2px solid var(--red);border-radius:12px;padding:24px;max-width:320px;width:100%;text-align:center;">
+      <div style="font-size:32px;margin-bottom:10px;">⚠️</div>
+      <div style="font-family:'Barlow Condensed',sans-serif;font-weight:900;font-size:24px;margin-bottom:8px;color:var(--red);">Reset All Progress?</div>
+      <div style="font-size:13px;color:var(--muted);line-height:1.6;margin-bottom:20px;">
+        This will permanently delete all your workouts, XP, weight logs, food entries, streaks, and badges. 
+        <strong style="color:var(--text);">This cannot be undone.</strong>
+      </div>
+      <div style="display:flex;flex-direction:column;gap:10px;">
+        <button onclick="resetAllProgress()" style="background:var(--red);border:none;border-radius:8px;padding:14px;color:#fff;font-family:'Barlow Condensed',sans-serif;font-size:20px;font-weight:900;cursor:pointer;letter-spacing:0.5px;">
+          Yes, Reset Everything
+        </button>
+        <button onclick="document.getElementById('resetModal').remove()" style="background:var(--surface);border:1px solid var(--border);border-radius:8px;padding:12px;color:var(--muted);font-family:'DM Mono',monospace;font-size:12px;cursor:pointer;">
+          Cancel
+        </button>
+      </div>
+    </div>`;
+  document.body.appendChild(modal);
 }
 
 // ─── INIT ───
+// One-time fresh start — clears all previous data
+(function() {
+  const keys = [
+    'fs2_checked','fs2_setlog','fs2_xp','fs2_milestones',
+    'fs2_activity','fs2_badges','fs2_weights','fs2_nutr',
+    'fs2_water','fs2_lf','fs2_exams','fs2_recipes'
+  ];
+  keys.forEach(k => { try { localStorage.removeItem(k); } catch(e) {} });
+  window._exXpAwarded = {};
+})();
+
 updateCountdown();
 renderWeightCard();
 refreshWeightDisplay();
