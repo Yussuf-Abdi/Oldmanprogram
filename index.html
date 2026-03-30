@@ -336,6 +336,44 @@
   .lf-done-banner{text-align:center;padding:10px;font-family:'Barlow Condensed',sans-serif;font-weight:700;font-size:16px;color:#a78bfa;letter-spacing:0.5px;}
 
 
+  /* ── TASBIH ── */
+  .tasbih-wrap{display:flex;flex-direction:column;align-items:center;padding:20px 0 10px;}
+  .tasbih-label{font-family:'DM Mono',monospace;font-size:9px;letter-spacing:2px;text-transform:uppercase;color:var(--muted);margin-bottom:8px;}
+  .tasbih-count{font-family:'Barlow Condensed',sans-serif;font-weight:900;font-size:96px;letter-spacing:-4px;line-height:1;color:var(--text);transition:all 0.1s;}
+  .tasbih-count.flash{color:var(--accent2);}
+  .tasbih-goal-label{font-family:'DM Mono',monospace;font-size:10px;color:var(--muted);margin-top:4px;margin-bottom:20px;}
+  .tasbih-ring-wrap{position:relative;margin-bottom:24px;}
+  .tasbih-btn{width:200px;height:200px;border-radius:50%;background:linear-gradient(135deg,rgba(251,191,36,0.15),rgba(249,115,22,0.1));border:3px solid rgba(251,191,36,0.4);cursor:pointer;display:flex;flex-direction:column;align-items:center;justify-content:center;transition:all 0.1s;-webkit-tap-highlight-color:transparent;user-select:none;position:relative;overflow:hidden;}
+  .tasbih-btn:active{transform:scale(0.95);background:linear-gradient(135deg,rgba(251,191,36,0.25),rgba(249,115,22,0.2));border-color:var(--accent2);}
+  .tasbih-btn-icon{font-size:48px;margin-bottom:4px;}
+  .tasbih-btn-text{font-family:'DM Mono',monospace;font-size:10px;letter-spacing:2px;color:var(--muted);}
+  .tasbih-ring-svg{position:absolute;top:-8px;left:-8px;pointer-events:none;}
+  .tasbih-controls{display:flex;gap:10px;margin-bottom:20px;}
+  .tasbih-ctrl-btn{font-family:'DM Mono',monospace;font-size:10px;padding:8px 16px;border:1px solid var(--border);background:var(--surface);color:var(--muted);border-radius:6px;cursor:pointer;}
+  .tasbih-ctrl-btn:active{opacity:0.7;}
+  .tasbih-ctrl-btn.danger{border-color:rgba(239,68,68,0.3);color:var(--red);}
+  .tasbih-goal-bar{width:100%;background:var(--surface);border:1px solid var(--border);border-radius:8px;padding:14px;margin-bottom:14px;}
+  .tasbih-bar-track{height:6px;background:var(--dim);border-radius:6px;overflow:hidden;margin:8px 0;}
+  .tasbih-bar-fill{height:100%;border-radius:6px;background:linear-gradient(90deg,var(--accent2),var(--accent));transition:width 0.3s;}
+  .tasbih-history{width:100%;background:var(--surface);border:1px solid var(--border);border-radius:8px;padding:14px;}
+  .tasbih-history-row{display:flex;justify-content:space-between;align-items:center;padding:8px 0;border-bottom:1px solid var(--border);font-family:'DM Mono',monospace;font-size:10px;}
+  .tasbih-history-row:last-child{border-bottom:none;}
+  .tasbih-hist-date{color:var(--muted);}
+  .tasbih-hist-count{font-family:'Barlow Condensed',sans-serif;font-weight:700;font-size:18px;}
+  .tasbih-hist-goal{font-size:9px;}
+
+  /* ── PHASE LOCK ── */
+  .phase-lock-card{background:var(--surface2);border:1px solid var(--border);border-radius:8px;padding:20px;text-align:center;margin-bottom:12px;}
+  .phase-lock-icon{font-size:40px;margin-bottom:10px;}
+  .phase-lock-title{font-family:'Barlow Condensed',sans-serif;font-weight:900;font-size:22px;margin-bottom:6px;}
+  .phase-lock-desc{font-size:12px;color:var(--muted);line-height:1.7;margin-bottom:14px;}
+  .phase-lock-progress{display:flex;flex-direction:column;gap:8px;}
+  .plp-row{display:flex;align-items:center;gap:10px;}
+  .plp-label{font-family:'DM Mono',monospace;font-size:10px;color:var(--muted);min-width:110px;}
+  .plp-track{flex:1;height:5px;background:var(--dim);border-radius:5px;overflow:hidden;}
+  .plp-fill{height:100%;border-radius:5px;background:var(--accent);transition:width 0.4s;}
+  .plp-count{font-family:'DM Mono',monospace;font-size:10px;color:var(--muted);min-width:40px;text-align:right;}
+
   /* ── NINJA / XP SYSTEM ── */
   .ninja-rank-card{border-radius:10px;padding:18px;margin-bottom:16px;position:relative;overflow:hidden;border:1px solid var(--border);}
   .ninja-rank-card::before{content:'';position:absolute;inset:0;opacity:0.08;pointer-events:none;}
@@ -486,11 +524,8 @@
       <div class="phase"><div class="phase-dot"></div><div class="phase-label">Phase 3 · Weeks 9–16</div><div class="phase-name">Explosive Output</div><div class="phase-dates">May 16 — Jul 11</div><div class="phase-focus">Peak reactivity. High-velocity footwork. Contrast training. Become twitchy. Retest all benchmarks.</div><div class="phase-bar"><div class="phase-bar-fill" style="width:0%"></div></div></div>
     </div>
     <div class="section-header"><div class="section-title">Full Schedule</div><div class="section-tag">by phase</div></div>
-    <div class="nav-tabs">
-      <div class="nav-tab active" onclick="switchPhase('p1',this)">Phase 1</div>
-      <div class="nav-tab" onclick="switchPhase('p2',this)">Phase 2</div>
-      <div class="nav-tab" onclick="switchPhase('p3',this)">Phase 3</div>
-    </div>
+    <div class="nav-tabs" id="phaseNavTabs"></div>
+    <div id="phaseNavLockMsg" style="display:none;background:rgba(249,115,22,0.07);border:1px solid rgba(249,115,22,0.25);border-radius:6px;padding:12px 14px;margin-bottom:12px;font-size:12px;color:var(--muted);line-height:1.6;"></div>
     <div class="phase-view active" id="p1">
       <div class="week-tabs">
         <div class="week-tab active" onclick="switchWeek('p1w1','p1',this)">Week 1</div>
@@ -649,6 +684,11 @@
 
   </div>
 
+  <!-- TASBIH VIEW -->
+  <div class="view" id="view-tasbih">
+    <div id="tasbihCard"></div>
+  </div>
+
 </div>
 
 <!-- BOTTOM NAV -->
@@ -656,7 +696,7 @@
   <div class="bn-item active" onclick="switchView('today',this)"><div class="bn-icon">🏀</div><span>Today</span></div>
   <div class="bn-item" onclick="switchView('program',this)"><div class="bn-icon">📋</div><span>Program</span></div>
   <div class="bn-item" onclick="switchView('nutrition',this)"><div class="bn-icon">🥗</div><span>Nutrition</span></div>
-  <div class="bn-item" onclick="switchView('body',this)"><div class="bn-icon">⚡</div><span>Body</span></div>
+  <div class="bn-item" onclick="switchView('tasbih',this)"><div class="bn-icon">📿</div><span>Dhikr</span></div>
   <div class="bn-item" onclick="switchView('progress',this)"><div class="bn-icon">📈</div><span>Progress</span></div>
   <div class="bn-item" onclick="switchView('ninja',this)"><div class="bn-icon">🥷</div><span>Ninja</span></div>
 </div>
@@ -2244,20 +2284,235 @@ function renderLightFeet() {
   </div>`;
 }
 
+// ══════════════════════════════════════════
+// ── TASBIH COUNTER ──
+// ══════════════════════════════════════════
+const TASBIH_GOAL = 1000;
+
+function getTasbihLog() { try { return JSON.parse(localStorage.getItem('fs2_tasbih')||'{}'); } catch(e) { return {}; } }
+function saveTasbihLog(o) { try { localStorage.setItem('fs2_tasbih', JSON.stringify(o)); } catch(e) {} }
+
+function getTodayTasbih() { return getTasbihLog()[todayDateStr()] || 0; }
+
+function addTasbih(n) {
+  const log = getTasbihLog();
+  const today = todayDateStr();
+  log[today] = (log[today] || 0) + n;
+  saveTasbihLog(log);
+  renderTasbih();
+  // XP for hitting 1000
+  if (log[today] >= TASBIH_GOAL) {
+    const xpKey = 'tasbih_goal_' + today;
+    if (!window._exXpAwarded[xpKey]) {
+      window._exXpAwarded[xpKey] = true;
+      addXP(30, 'Dhikr goal reached!');
+    }
+  }
+}
+
+function resetTodayTasbih() {
+  const log = getTasbihLog();
+  log[todayDateStr()] = 0;
+  saveTasbihLog(log);
+  renderTasbih();
+}
+
+function renderTasbih() {
+  const card = document.getElementById('tasbihCard');
+  if (!card) return;
+  const count = getTodayTasbih();
+  const pct = Math.min(100, Math.round((count / TASBIH_GOAL) * 100));
+  const goalHit = count >= TASBIH_GOAL;
+  const r = 108, circ = 2 * Math.PI * r;
+  const dash = (pct / 100) * circ;
+
+  // History — last 7 days
+  const log = getTasbihLog();
+  const histDays = [];
+  for (let i = 1; i <= 7; i++) {
+    const d = new Date(); d.setDate(d.getDate() - i);
+    const ds = localDateStr(d);
+    if (log[ds] !== undefined && log[ds] > 0) {
+      histDays.push({ ds, count: log[ds], label: d.toLocaleDateString('en-US',{weekday:'short',month:'short',day:'numeric'}) });
+    }
+  }
+
+  card.innerHTML = `
+    <div class="tasbih-wrap">
+      <div class="tasbih-label">Astaghfirullah</div>
+
+      <!-- Big tap button with ring -->
+      <div class="tasbih-ring-wrap">
+        <svg class="tasbih-ring-svg" width="216" height="216" viewBox="0 0 216 216">
+          <circle cx="108" cy="108" r="${r}" fill="none" stroke="var(--dim)" stroke-width="6"/>
+          <circle cx="108" cy="108" r="${r}" fill="none" stroke="${goalHit?'#22c55e':'#fbbf24'}" stroke-width="6"
+            stroke-dasharray="${dash} ${circ}" stroke-linecap="round"
+            transform="rotate(-90 108 108)" style="transition:stroke-dasharray 0.3s;"/>
+        </svg>
+        <button class="tasbih-btn" id="tasbihMainBtn" onclick="addTasbih(1)">
+          <div class="tasbih-count ${goalHit?'':''}${count>0?'':''}" id="tasbihCount">${count.toLocaleString()}</div>
+          <div class="tasbih-btn-text">${goalHit ? '✓ GOAL HIT' : 'TAP TO COUNT'}</div>
+        </button>
+      </div>
+
+      <!-- Goal bar -->
+      <div class="tasbih-goal-bar" style="width:220px;">
+        <div style="display:flex;justify-content:space-between;font-family:'DM Mono',monospace;font-size:9px;color:var(--muted);">
+          <span>${count.toLocaleString()} said</span>
+          <span>Goal: ${TASBIH_GOAL.toLocaleString()}</span>
+        </div>
+        <div class="tasbih-bar-track"><div class="tasbih-bar-fill" style="width:${pct}%"></div></div>
+        <div style="font-family:'DM Mono',monospace;font-size:9px;color:${goalHit?'var(--green)':'var(--muted)'};text-align:right;">
+          ${goalHit ? '🟢 Goal complete' : `${Math.max(0, TASBIH_GOAL - count).toLocaleString()} remaining`}
+        </div>
+      </div>
+
+      <!-- Quick add + controls -->
+      <div class="tasbih-controls">
+        <button class="tasbih-ctrl-btn" onclick="addTasbih(10)">+10</button>
+        <button class="tasbih-ctrl-btn" onclick="addTasbih(33)">+33</button>
+        <button class="tasbih-ctrl-btn" onclick="addTasbih(100)">+100</button>
+        <button class="tasbih-ctrl-btn danger" onclick="resetTodayTasbih()">Reset</button>
+      </div>
+
+    </div>
+
+    <!-- History -->
+    ${histDays.length ? `
+    <div style="padding:0 14px 20px;">
+      <div class="section-header"><div class="section-title">History</div><div class="section-tag">last 7 days</div></div>
+      <div class="tasbih-history">
+        ${histDays.map(h => {
+          const hp = Math.min(100, Math.round((h.count/TASBIH_GOAL)*100));
+          const hit = h.count >= TASBIH_GOAL;
+          return `<div class="tasbih-history-row">
+            <div class="tasbih-hist-date">${h.label}</div>
+            <div style="display:flex;align-items:center;gap:8px;">
+              <div class="tasbih-hist-count" style="color:${hit?'var(--green)':'var(--text)'}">${h.count.toLocaleString()}</div>
+              <div class="tasbih-hist-goal" style="color:${hit?'var(--green)':'var(--muted)'}">${hit?'✓ Goal':'/ 1,000'}</div>
+            </div>
+          </div>`;
+        }).join('')}
+      </div>
+    </div>` : ''}
+  `;
+
+  // Add touchstart for faster response on iOS
+  const btn = document.getElementById('tasbihMainBtn');
+  if (btn) {
+    btn.addEventListener('touchstart', function(e) {
+      e.preventDefault();
+      addTasbih(1);
+    }, { passive: false });
+  }
+}
+
+// ══════════════════════════════════════════
+// ── PHASE LOCK SYSTEM ──
+// ══════════════════════════════════════════
+
+// Required completions per workout type before Phase 2 unlocks
+// Each type must be completed (80%+) N times
+const PHASE2_REQUIREMENTS = [
+  { label: 'Push Day',         tag:'t-str-push', keys:['p1w1-0','p1w2-0','p1w3-0'], needed:2 },
+  { label: 'Pull Day',         tag:'t-str-pull', keys:['p1w1-1','p1w2-1','p1w3-1'], needed:2 },
+  { label: 'Leg Day',          tag:'t-str-leg',  keys:['p1w1-3','p1w2-3','p1w3-3'], needed:2 },
+  { label: 'Plyo + Core',      tag:'t-exp',      keys:['p1w1-4','p1w2-4','p1w3-4'], needed:2 },
+  { label: 'Footwork',         tag:'t-foot',     keys:['p1w1-5','p1w2-5','p1w3-5'], needed:2 },
+];
+
+function getWorkoutCompletionCount(dayKeys) {
+  const ch = getChecked();
+  let count = 0;
+  dayKeys.forEach(key => {
+    const day = DAYS[key];
+    if (!day || day.isRest) return;
+    const total = day.exercises.length;
+    const done = day.exercises.filter(e => ch[e.id]).length;
+    if (total > 0 && done / total >= 0.8) count++;
+  });
+  return count;
+}
+
+function isPhase2Unlocked() {
+  return PHASE2_REQUIREMENTS.every(req => getWorkoutCompletionCount(req.keys) >= req.needed);
+}
+
+function isPhase3Unlocked() {
+  // Phase 3 requires phase 2 to be unlocked first (date-gated for now)
+  return isPhase2Unlocked();
+}
+
+function renderPhaseNavTabs(activePhase) {
+  const tabsEl = document.getElementById('phaseNavTabs');
+  const lockMsg = document.getElementById('phaseNavLockMsg');
+  if (!tabsEl) return;
+
+  const p2Unlocked = isPhase2Unlocked();
+  const p3Unlocked = isPhase3Unlocked();
+
+  tabsEl.innerHTML = `
+    <div class="nav-tab ${activePhase==='p1'?'active':''}" onclick="switchPhase('p1',this)">Phase 1</div>
+    <div class="nav-tab ${activePhase==='p2'?'active':''} ${!p2Unlocked?'locked-tab':''}"
+      onclick="${p2Unlocked?'switchPhase(\'p2\',this)':'showPhaseLockMsg(2)'}"
+      style="${!p2Unlocked?'opacity:0.5;cursor:default;':''}">
+      ${!p2Unlocked?'🔒 ':''}Phase 2
+    </div>
+    <div class="nav-tab ${activePhase==='p3'?'active':''} ${!p3Unlocked?'locked-tab':''}"
+      onclick="${p3Unlocked?'switchPhase(\'p3\',this)':'showPhaseLockMsg(3)'}"
+      style="${!p3Unlocked?'opacity:0.5;cursor:default;':''}">
+      ${!p3Unlocked?'🔒 ':''}Phase 3
+    </div>`;
+
+  if (lockMsg) lockMsg.style.display = 'none';
+}
+
+function showPhaseLockMsg(phase) {
+  const lockMsg = document.getElementById('phaseNavLockMsg');
+  if (!lockMsg) return;
+
+  const progress = PHASE2_REQUIREMENTS.map(req => {
+    const done = getWorkoutCompletionCount(req.keys);
+    const pct = Math.min(100, Math.round((done / req.needed) * 100));
+    return `<div class="plp-row">
+      <div class="plp-label">${req.label}</div>
+      <div class="plp-track"><div class="plp-fill" style="width:${pct}%"></div></div>
+      <div class="plp-count">${done}/${req.needed}</div>
+    </div>`;
+  }).join('');
+
+  lockMsg.style.display = 'block';
+  lockMsg.innerHTML = `
+    <div class="phase-lock-icon">🔒</div>
+    <div class="phase-lock-title">Phase ${phase} Locked</div>
+    <div class="phase-lock-desc">Complete each Phase 1 workout type at least ${PHASE2_REQUIREMENTS[0].needed} times (80%+ completion) before unlocking Phase ${phase}. This ensures you've built the foundation before progressing.</div>
+    <div class="phase-lock-progress">${progress}</div>`;
+}
+
 // ── VIEW SWITCH ──
 function switchView(name, el) {
   document.querySelectorAll('.view').forEach(v=>v.classList.remove('active'));
   document.querySelectorAll('.bn-item').forEach(b=>b.classList.remove('active'));
   document.getElementById('view-'+name).classList.add('active');
   el.classList.add('active');
-  if(name==='program') buildWeekPanel('p1w1');
+  if(name==='program') { buildWeekPanel('p1w1'); renderPhaseNavTabs('p1'); }
   if(name==='progress'){renderWeightCard();refreshWeightDisplay();}
   if(name==='ninja') renderNinja();
   if(name==='nutrition'){renderNutrition();renderSavedRecipesStandalone();}
+  if(name==='tasbih') renderTasbih();
   window.scrollTo(0,0);
 }
-function switchPhase(id,el){document.querySelectorAll('.phase-view').forEach(p=>p.classList.remove('active'));document.querySelectorAll('.nav-tab').forEach(t=>t.classList.remove('active'));document.getElementById(id).classList.add('active');el.classList.add('active');if(id==='p1')buildWeekPanel('p1w1');}
+function switchPhase(id,el) {
+  if (id==='p2' && !isPhase2Unlocked()) { showPhaseLockMsg(2); return; }
+  if (id==='p3' && !isPhase3Unlocked()) { showPhaseLockMsg(3); return; }
+  document.querySelectorAll('.phase-view').forEach(p=>p.classList.remove('active'));
+  document.getElementById('phaseNavLockMsg').style.display='none';
+  document.getElementById(id).classList.add('active');
+  renderPhaseNavTabs(id);
+  if(id==='p1') buildWeekPanel('p1w1');
+}
 function switchWeek(weekId,phaseId,el){document.querySelectorAll('#'+phaseId+' .week-panel').forEach(p=>p.classList.remove('active'));document.querySelectorAll('#'+phaseId+' .week-tab').forEach(t=>t.classList.remove('active'));document.getElementById(weekId).classList.add('active');el.classList.add('active');buildWeekPanel(weekId);}
+
 
 
 
@@ -2325,6 +2580,9 @@ refreshWeightDisplay();
 buildToday();
 renderNinja();
 renderLightFeet();
+renderTasbih();
+// Render phase tabs with lock state
+setTimeout(() => renderPhaseNavTabs('p1'), 100);
 
 // iOS touch fix for weight toggle
 document.addEventListener('DOMContentLoaded', function() {
