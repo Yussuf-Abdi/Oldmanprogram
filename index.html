@@ -362,6 +362,83 @@
   .tasbih-hist-count{font-family:'Barlow Condensed',sans-serif;font-weight:700;font-size:18px;}
   .tasbih-hist-goal{font-size:9px;}
 
+  /* ── STEPS TRACKER ── */
+  .steps-card{background:var(--surface);border:1px solid var(--border);border-radius:8px;padding:14px;margin-bottom:14px;}
+  .steps-top{display:flex;align-items:center;gap:12px;margin-bottom:10px;}
+  .steps-num{font-family:'Barlow Condensed',sans-serif;font-weight:900;font-size:42px;color:var(--text);letter-spacing:-1px;line-height:1;}
+  .steps-goal{font-family:'DM Mono',monospace;font-size:9px;color:var(--muted);margin-top:3px;}
+  .steps-bar-track{height:5px;background:var(--dim);border-radius:5px;overflow:hidden;margin-bottom:8px;}
+  .steps-bar-fill{height:100%;border-radius:5px;background:linear-gradient(90deg,#22c55e,#60a5fa);transition:width 0.4s;}
+  .steps-btns{display:flex;gap:6px;flex-wrap:wrap;}
+  .steps-btn{font-family:'DM Mono',monospace;font-size:10px;padding:7px 12px;border:1px solid var(--border);background:var(--surface2);color:var(--text);border-radius:5px;cursor:pointer;transition:all 0.15s;}
+  .steps-btn:active{opacity:0.7;}
+  .steps-btn.primary{background:var(--green);border-color:var(--green);color:#000;font-weight:700;}
+  .steps-custom{display:flex;gap:6px;margin-top:8px;align-items:center;}
+  .steps-input{background:var(--bg);border:1px solid var(--border);border-radius:5px;padding:8px 10px;color:var(--text);font-family:'DM Mono',monospace;font-size:12px;width:110px;outline:none;-moz-appearance:textfield;}
+  .steps-input::-webkit-inner-spin-button{-webkit-appearance:none;}
+  .steps-input:focus{border-color:var(--green);}
+
+  /* ── LEAGUE PROGRESS ── */
+  .lp-card{background:var(--surface);border:1px solid var(--border);border-radius:8px;padding:14px;margin-bottom:14px;}
+  .lp-row{display:flex;align-items:center;gap:10px;padding:8px 0;border-bottom:1px solid var(--border);}
+  .lp-row:last-child{border-bottom:none;}
+  .lp-badge-wrap{display:flex;flex-direction:column;align-items:center;gap:2px;min-width:58px;}
+  .lp-badge-icon{width:36px;height:36px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:16px;font-weight:900;border:2px solid;flex-shrink:0;}
+  .lp-badge-name{font-family:'DM Mono',monospace;font-size:7px;letter-spacing:0.5px;text-transform:uppercase;text-align:center;}
+  .lp-right{flex:1;min-width:0;}
+  .lp-label{font-size:12px;font-weight:500;margin-bottom:3px;}
+  .lp-bar-track{height:6px;border-radius:6px;overflow:hidden;margin-bottom:3px;}
+  .lp-bar-fill{height:100%;border-radius:6px;transition:width 0.4s;}
+  .lp-meta{display:flex;justify-content:space-between;font-family:'DM Mono',monospace;font-size:9px;color:var(--muted);}
+  .lp-pts{font-family:'Barlow Condensed',sans-serif;font-weight:700;font-size:14px;}
+
+  /* ── LEAGUE BADGES ── */
+  .lb-section{background:var(--surface);border:1px solid var(--border);border-radius:8px;padding:14px;margin-bottom:14px;}
+
+  .lb-info{min-width:80px;}
+
+  .lb-tier-name{font-family:'DM Mono',monospace;font-size:8px;letter-spacing:1px;margin-top:1px;}
+  .lb-progress{flex:1;}
+  .lb-bar-track{height:5px;border-radius:5px;background:var(--dim);overflow:hidden;margin-bottom:3px;}
+  .lb-bar-fill{height:100%;border-radius:5px;transition:width 0.4s;}
+  .lb-meta{display:flex;justify-content:space-between;font-family:'DM Mono',monospace;font-size:9px;color:var(--muted);}
+
+  /* ── STEPS ON TODAY ── */
+  .today-steps-card{background:var(--surface);border:1px solid rgba(34,197,94,0.3);border-radius:8px;padding:14px;margin-bottom:14px;}
+  .tsc-header{display:flex;align-items:center;justify-content:space-between;margin-bottom:10px;}
+  .tsc-title{font-family:'Barlow Condensed',sans-serif;font-weight:900;font-size:18px;}
+  .tsc-count{font-family:'Barlow Condensed',sans-serif;font-weight:900;font-size:28px;color:var(--green);}
+  .tsc-bar{height:4px;background:var(--dim);border-radius:4px;overflow:hidden;margin-bottom:10px;}
+  .tsc-bar-fill{height:100%;background:linear-gradient(90deg,var(--green),#60a5fa);border-radius:4px;transition:width 0.3s;}
+  .tsc-btns{display:flex;gap:5px;flex-wrap:wrap;margin-bottom:8px;}
+  .tsc-btn{font-family:'DM Mono',monospace;font-size:10px;padding:6px 10px;border:1px solid var(--border);background:var(--surface2);color:var(--text);border-radius:5px;cursor:pointer;}
+  .tsc-btn.hit{background:var(--green);border-color:var(--green);color:#000;font-weight:700;}
+  .tsc-input-row{display:flex;gap:6px;}
+  .tsc-input{flex:1;background:var(--bg);border:1px solid var(--border);border-radius:5px;padding:8px 10px;color:var(--text);font-family:'DM Mono',monospace;font-size:13px;outline:none;-moz-appearance:textfield;}
+  .tsc-input::-webkit-inner-spin-button{-webkit-appearance:none;}
+  .tsc-input:focus{border-color:var(--green);}
+  .tsc-submit{background:var(--green);border:none;border-radius:5px;padding:8px 16px;color:#000;font-family:'DM Mono',monospace;font-size:11px;font-weight:700;cursor:pointer;}
+
+  /* ── LEAGUE BADGES ── */
+  .lb-card{background:var(--surface);border:1px solid var(--border);border-radius:8px;padding:14px;margin-bottom:14px;}
+  .lb-row{display:flex;align-items:center;gap:10px;padding:10px 0;border-bottom:1px solid var(--border);}
+  .lb-row:last-child{border-bottom:none;}
+  .lb-badge{width:42px;height:42px;border-radius:8px;display:flex;align-items:center;justify-content:center;font-size:18px;flex-shrink:0;border:2px solid;position:relative;}
+  .lb-badge-glow{box-shadow:0 0 10px var(--lb-glow,transparent);}
+  .lb-info{min-width:80px;flex-shrink:0;}
+  .lb-badge-name{font-family:'Barlow Condensed',sans-serif;font-weight:900;font-size:13px;line-height:1;}
+  .lb-badge-tier{font-family:'DM Mono',monospace;font-size:8px;letter-spacing:1px;text-transform:uppercase;margin-top:1px;}
+  .lb-right{flex:1;min-width:0;}
+  .lb-bar-wrap{height:6px;background:var(--dim);border-radius:6px;overflow:hidden;margin:4px 0;}
+  .lb-bar-fill{height:100%;border-radius:6px;transition:width 0.4s;}
+  .lb-meta{display:flex;justify-content:space-between;font-family:'DM Mono',monospace;font-size:8px;color:var(--muted);}
+
+  /* ── TODAY STEPS CARD ── */
+  .today-steps-wrap{background:var(--surface);border:1px solid rgba(34,197,94,0.3);border-radius:8px 8px 0 0;padding:13px 14px 10px;}
+  .today-steps-label{font-family:'DM Mono',monospace;font-size:8px;letter-spacing:2px;text-transform:uppercase;color:var(--green);margin-bottom:3px;}
+  .today-steps-count{font-family:'Barlow Condensed',sans-serif;font-weight:900;font-size:26px;letter-spacing:-0.5px;}
+  .today-steps-body{background:var(--surface);border:2px solid rgba(34,197,94,0.3);border-top:none;border-radius:0 0 8px 8px;padding:0 13px 13px;margin-bottom:14px;}
+
   /* ── PHASE LOCK ── */
   .phase-lock-card{background:var(--surface2);border:1px solid var(--border);border-radius:8px;padding:20px;text-align:center;margin-bottom:12px;}
   .phase-lock-icon{font-size:40px;margin-bottom:10px;}
@@ -512,6 +589,9 @@
     <!-- LIGHT FEET DAILY ROUTINE -->
     <div id="lightFeetCard"></div>
 
+    <!-- STEPS FOR TODAY -->
+    <div id="todayStepsCard"></div>
+
     <div id="todaySection"></div>
   </div>
 
@@ -623,6 +703,14 @@
     <div class="section-header"><div class="section-title">Rank Exams</div><div class="section-tag">required for promotion</div></div>
     <div id="examSection"></div>
 
+    <!-- STEPS TRACKER -->
+    <div class="section-header"><div class="section-title">Steps</div><div class="section-tag">goal: 10,000</div></div>
+    <div id="stepsCard"></div>
+
+    <!-- LEAGUE BADGES -->
+    <div class="section-header" style="margin-top:4px;"><div class="section-title">League Badges</div><div class="section-tag">Iron → Challenger</div></div>
+    <div id="leagueBadgesCard"></div>
+
     <div class="section-header"><div class="section-title">Daily Missions</div><div class="section-tag">reset at midnight</div></div>
     <div class="milestone-grid" id="milestoneGrid"></div>
     <div class="section-header"><div class="section-title">Gym Badges</div><div class="section-tag">earned forever</div></div>
@@ -707,320 +795,325 @@ const yt = q => `https://www.youtube.com/results?search_query=${encodeURICompone
 // ─── SCHEDULE DATA ───
 // Program starts Friday March 20. Days numbered from 0.
 // Split: Push / Pull / Rest / Legs / Plyo+Core / Footwork / Rest
-// No on-court work until after April 11 first game
+// New split: Mon=Legs, Tue=Back+Bis, Wed=Chest+Core, Thu=Tris+Shoulders, Fri=Rest, Sat=Basketball, Sun=Recovery
+// Program started Fri Mar 20 — day 0=Fri(Rest), 1=Sat(Bball), 2=Sun(Recovery), 3=Mon(Legs)...
 const DAYS = {
 
-  // ══════════ WEEK 1 ══════════
+  // ══════════ WEEK 1 (Apr 14–Apr 20) ══════════
+  // Mon=Legs, Tue=Back+Bis, Wed=Chest+Core, Thu=Tris+Shoulders, Fri=Rest, Sat=Basketball, Sun=Recovery
+
   'p1w1-0': {
-    key:'p1w1-0', dayName:'Friday', date:'Mar 20', tag:'t-exp', tagLabel:'Movement + Intro Plyos',
+    key:'p1w1-0', dayName:'Monday', date:'Apr 14', tag:'t-str', tagLabel:'Leg Day',
     exercises:[
-      {id:'a01',name:'90/90 Hip Flexor Stretch',sets:'3 × 60s each side',note:'▲ APT — Priority opener. Breathe into the hip.',apt:true,yt:yt('90 90 hip flexor stretch how to')},
-      {id:'a02',name:'Glute Bridge (Bodyweight)',sets:'3 × 15, 2s hold at top',note:'▲ APT — Activate before anything else. Squeeze hard.',apt:true,yt:yt('glute bridge form tutorial')},
-      {id:'a03',name:'Box Step-Up (controlled)',sets:'3 × 8 each leg',note:'12–16" box. Drive through heel. Zero momentum.',weighted:true,yt:yt('box step up exercise tutorial basketball')},
-      {id:'a04',name:'Broad Jump (stick the landing)',sets:'4 × 4 reps',note:'Land SOFT, hold 2 seconds. Landing mechanics first — distance later.',yt:yt('broad jump landing mechanics soft')},
-      {id:'a05',name:'Lateral Bound (mini)',sets:'3 × 6 each side',note:'Short hop. Stick each landing. Ankle stability drill.',yt:yt('lateral bound plyometric ankle basketball')},
-      {id:'a06',name:'Single-Leg Calf Raise (off step)',sets:'3 × 12 each leg',note:'4s up / 4s down. Eccentric = achilles protection.',yt:yt('eccentric single leg calf raise achilles tendon')},
-      {id:'a07',name:'Ankle Circles + Alphabet',sets:'2 × full alphabet each foot',note:'Daily ankle health ritual. Non-negotiable.',yt:yt('ankle alphabet mobility drill')},
-      {id:'a08',name:'Dead Bug',sets:'3 × 8 each side',note:'▲ APT — Low back pressed to floor the whole time.',apt:true,yt:yt('dead bug exercise anterior pelvic tilt core')},
+      {id:'a01',name:'90/90 Hip Flexor Stretch',sets:'3 × 60s each side',note:'▲ APT — Open hips before any lower body work.',apt:true,yt:yt('90 90 hip flexor stretch how to')},
+      {id:'a02',name:'Glute Bridge Activation',sets:'2 × 15, 2s hold at top',note:'▲ APT — Wake up glutes before leg press.',apt:true,yt:yt('glute bridge activation before workout')},
+      {id:'a03',name:'Leg Press',sets:'4 × 12',note:'Drive through full foot. Control the descent. Build that base.',weighted:true,yt:yt('leg press form tutorial beginner')},
+      {id:'a04',name:'Leg Extension',sets:'3 × 15',note:'Full extension at top, slow 3s down. Quad isolation.',weighted:true,yt:yt('leg extension machine form tutorial')},
+      {id:'a05',name:'Hamstring Curl (seated or lying)',sets:'3 × 12',note:'Squeeze at top of contraction. Hamstrings = speed and deceleration.',weighted:true,yt:yt('hamstring curl machine form tutorial')},
+      {id:'a06',name:'Reverse Lunge (DB)',sets:'3 × 10 each leg',note:'Step back, front knee over toe. Single-leg stability for cutting.',weighted:true,yt:yt('reverse lunge dumbbell form tutorial')},
+      {id:'a07',name:'Calf Raise (seated, slow)',sets:'4 × 15, 3s up / 3s down',note:'Tendon health. Achilles resilience. Never rush eccentrics.',weighted:true,yt:yt('seated calf raise slow eccentric tendon')},
+      {id:'a08',name:'Wall Sit',sets:'3 × 40 sec',note:'Pure quad endurance. Keeps you running offense late in games.',yt:yt('wall sit exercise basketball endurance')},
+      {id:'a09',name:'Pallof Press',sets:'3 × 10 each side',note:'▲ APT — Anti-rotation core. Transfers to first step.',apt:true,yt:yt('pallof press anti rotation core APT')},
+      {id:'a10',name:'Conditioning Finisher',sets:'2 rounds: 15 squats → 10 lunges each leg → 30s wall sit → 30s rest',note:'No rest between exercises. Trains legs to keep firing when fatigued — exactly what you need on offense.',yt:yt('basketball conditioning bodyweight circuit leg endurance')},
     ]
   },
 
   'p1w1-1': {
-    key:'p1w1-1', dayName:'Saturday', date:'Mar 21', tag:'t-str', tagLabel:'Pull Day',
+    key:'p1w1-1', dayName:'Tuesday', date:'Apr 15', tag:'t-str', tagLabel:'Back + Biceps',
     exercises:[
-      {id:'b01',name:'90/90 Hip Flexor Stretch',sets:'3 × 60s each side',note:'▲ APT — Every session.',apt:true,yt:yt('90 90 hip flexor stretch how to')},
-      {id:'b02',name:'Glute Bridge Activation',sets:'2 × 15',note:'▲ APT',apt:true,yt:yt('glute bridge activation before workout')},
-      {id:'b03',name:'DB Row (1-Arm)',sets:'3 × 10 each arm',note:'Pull elbow back, chest stays proud. No rotation.',weighted:true,yt:yt('single arm dumbbell row form')},
-      {id:'b04',name:'Chest-Supported DB Row',sets:'3 × 10',note:'Removes lower back from the equation. Pure back work.',weighted:true,yt:yt('chest supported dumbbell row form')},
+      {id:'b01',name:'90/90 Hip Flexor Stretch',sets:'2 × 60s each side',note:'▲ APT — Even on upper days.',apt:true,yt:yt('90 90 hip flexor stretch how to')},
+      {id:'b02',name:'Lat Pulldown',sets:'4 × 12',note:'Full stretch at top, pull to upper chest. Wide back = better rebounding position.',weighted:true,yt:yt('lat pulldown form tutorial')},
+      {id:'b03',name:'DB Row (1-Arm)',sets:'3 × 10 each arm',note:'Chest supported or braced knee. Pull elbow back hard.',weighted:true,yt:yt('single arm dumbbell row form')},
+      {id:'b04',name:'Chest-Supported DB Row',sets:'3 × 10',note:'Removes lower back. Pure rear delt and mid-trap work.',weighted:true,yt:yt('chest supported dumbbell row form')},
       {id:'b05',name:'Face Pull (band)',sets:'3 × 15',note:'Shoulder health. Non-negotiable if you shoot.',yt:yt('band face pull shoulder health')},
-      {id:'b06',name:'Band Pull-Apart',sets:'3 × 15',yt:yt('band pull apart shoulder health basketball')},
-      {id:'b07',name:'DB Bicep Curl',sets:'3 × 12',note:'Full range. Squeeze at top.',weighted:true,yt:yt('dumbbell bicep curl form tutorial')},
-      {id:'b08',name:'Dead Bug',sets:'3 × 10 each side',note:'▲ APT — Pull day core finisher.',apt:true,yt:yt('dead bug exercise anterior pelvic tilt core')},
+      {id:'b06',name:'Band Pull-Apart',sets:'3 × 15',note:'External rotation. Keeps shoulders healthy for shooting.',yt:yt('band pull apart shoulder health basketball')},
+      {id:'b07',name:'Shoulder Shrug (DB)',sets:'3 × 12',note:'Slow up, hold 1s, controlled down. Trap strength for boxing out.',weighted:true,yt:yt('dumbbell shoulder shrug trap form')},
+      {id:'b08',name:'DB Bicep Curl',sets:'3 × 12',note:'Full range. Supinate at top.',weighted:true,yt:yt('dumbbell bicep curl form tutorial')},
+      {id:'b09',name:'Hammer Curl',sets:'3 × 12',note:'Neutral grip. Targets brachialis — thickens the arm.',weighted:true,yt:yt('hammer curl brachialis form tutorial')},
+      {id:'b10',name:'Dead Bug',sets:'3 × 10 each side',note:'▲ APT — Core finisher every upper day.',apt:true,yt:yt('dead bug exercise anterior pelvic tilt core')},
     ]
   },
 
   'p1w1-2': {
-    key:'p1w1-2', dayName:'Sunday', date:'Mar 22', tag:'t-rest', tagLabel:'Full Rest', isRest:true,
+    key:'p1w1-2', dayName:'Wednesday', date:'Apr 16', tag:'t-str', tagLabel:'Chest + Core',
     exercises:[
-      {id:'c01',name:'Sleep 8+ hours',sets:'',note:'This is when adaptation happens. Rest IS training.'},
-      {id:'c02',name:'Optional: Foam Roll',sets:'5–10 min',note:'▲ APT — Calves, hip flexors, lats.',apt:true,yt:yt('foam rolling calves hip flexors recovery')},
+      {id:'c01',name:'90/90 Hip Flexor Stretch',sets:'2 × 60s each side',note:'▲ APT',apt:true,yt:yt('90 90 hip flexor stretch how to')},
+      {id:'c02',name:'Glute Bridge Activation',sets:'2 × 12',note:'▲ APT',apt:true,yt:yt('glute bridge activation before workout')},
+      {id:'c03',name:'DB Bench Press',sets:'4 × 10',note:'Controlled descent, strong drive. Chest strength transfers to boxing out and contact.',weighted:true,yt:yt('dumbbell bench press form tutorial')},
+      {id:'c04',name:'Incline DB Press',sets:'3 × 10',note:'Upper chest. Better shoulder health than flat-only pressing.',weighted:true,yt:yt('incline dumbbell press form tutorial')},
+      {id:'c05',name:'DB Chest Fly',sets:'3 × 12',note:'Wide stretch, feel the pec. Slow and controlled.',weighted:true,yt:yt('dumbbell chest fly form tutorial')},
+      {id:'c06',name:'Push-Up Finisher',sets:'3 × max reps',note:'Go to near failure. Body control + chest endurance.',yt:yt('push up perfect form chest')},
+      {id:'c07',name:'Dead Bug',sets:'3 × 10 each side',note:'▲ APT — Core anti-extension.',apt:true,yt:yt('dead bug exercise anterior pelvic tilt core')},
+      {id:'c08',name:'Hollow Body Hold',sets:'3 × 30 sec',note:'▲ APT — Posterior pelvic tilt. Builds time each week.',apt:true,yt:yt('hollow body hold anterior pelvic tilt')},
+      {id:'c09',name:'Plank (forearm)',sets:'3 × 40 sec',note:'▲ APT — Squeeze glutes. No arch in lower back.',apt:true,yt:yt('forearm plank perfect form glutes core')},
+      {id:'c10',name:'Pallof Press',sets:'3 × 10 each side',note:'▲ APT — Anti-rotation. Train the core to resist, not just flex.',apt:true,yt:yt('pallof press anti rotation core APT')},
+      {id:'c11',name:'Ab Wheel / Rollout',sets:'3 × 8',note:'▲ APT — Ultimate anti-extension. Keep lower back flat.',apt:true,yt:yt('ab wheel rollout anterior pelvic tilt core')},
     ]
   },
 
   'p1w1-3': {
-    key:'p1w1-3', dayName:'Monday', date:'Mar 23', tag:'t-str', tagLabel:'Leg Day + Endurance',
+    key:'p1w1-3', dayName:'Thursday', date:'Apr 17', tag:'t-str', tagLabel:'Triceps + Shoulders',
     exercises:[
-      {id:'d01',name:'90/90 Hip Flexor Stretch',sets:'3 × 60s each side',note:'▲ APT — Longer hold today. Legs need open hips.',apt:true,yt:yt('90 90 hip flexor stretch how to')},
-      {id:'d02',name:'Glute Bridge (Bodyweight → Weighted)',sets:'3 × 15, 2s hold at top',note:'▲ APT — Build to loaded version over weeks.',apt:true,yt:yt('glute bridge form tutorial')},
-      {id:'d03',name:'Goblet Squat',sets:'4 × 12',note:'Up to 4 sets, higher reps. 60s rest only. Builds leg endurance for full games.',weighted:true,yt:yt('goblet squat form tutorial beginner')},
-      {id:'d04',name:'Romanian Deadlift (DB)',sets:'3 × 12',note:'Hamstrings loaded. Crucial for deceleration endurance.',weighted:true,yt:yt('romanian deadlift dumbbell form tutorial')},
-      {id:'d05',name:'Reverse Lunge (DB)',sets:'3 × 10 each leg',note:'Short 45s rest between legs. Trains single-leg endurance.',weighted:true,yt:yt('reverse lunge dumbbell form tutorial')},
-      {id:'d06',name:'Wall Sit',sets:'3 × 30–45 sec',note:'Pure leg endurance. This is what keeps you on offense late in games.',yt:yt('wall sit exercise basketball endurance')},
-      {id:'d07',name:'Step-Up + Hold (bodyweight)',sets:'2 × 10 each leg, hold 1s at top',note:'Single-leg stability endurance. Mimics cutting and driving.',yt:yt('step up hold single leg basketball')},
-      {id:'d08',name:'Seated Calf Raise (slow)',sets:'3 × 15, 3s up / 3s down',note:'Tendon conditioning. Never rush eccentrics.',weighted:true,yt:yt('seated calf raise slow eccentric tendon')},
-      {id:'d09',name:'Ankle Circles + Alphabet',sets:'2 × each foot',note:'Daily ankle health.',yt:yt('ankle alphabet mobility drill')},
-      {id:'d10',name:'Pallof Press',sets:'3 × 10 each side',note:'▲ APT — Anti-rotation core.',apt:true,yt:yt('pallof press anti rotation core APT')},
-      {id:'d11',name:'Conditioning Finisher — Bodyweight Circuit',sets:'2 rounds: 15 squats → 10 lunges each → 20s wall sit → 30s rest',note:'Do this at the end. No rest between exercises within a round. This trains your legs to keep firing when tired — exactly what you need on offense.',yt:yt('basketball conditioning bodyweight circuit leg endurance')},
+      {id:'d01',name:'90/90 Hip Flexor Stretch',sets:'2 × 60s each side',note:'▲ APT',apt:true,yt:yt('90 90 hip flexor stretch how to')},
+      {id:'d02',name:'DB Shoulder Press',sets:'4 × 10',note:'Overhead strength = court presence. Control at all ranges.',weighted:true,yt:yt('dumbbell shoulder press form tutorial')},
+      {id:'d03',name:'Lateral Raise',sets:'3 × 15',note:'No swinging. Lead with elbows. Side delts = shoulder width.',weighted:true,yt:yt('lateral raise form no swinging')},
+      {id:'d04',name:'Front Raise',sets:'3 × 12',note:'Alternating arms. Controlled — stop at shoulder height.',weighted:true,yt:yt('front raise dumbbell shoulder form')},
+      {id:'d05',name:'Tricep Pushdown (band/cable)',sets:'4 × 15',note:'Lock elbows, extend fully. Strong triceps = better passes and shots.',weighted:true,yt:yt('tricep pushdown band cable form')},
+      {id:'d06',name:'Overhead Tricep Extension (DB)',sets:'3 × 12',note:'Long head stretch. Sit tall, elbows by ears.',weighted:true,yt:yt('overhead tricep extension dumbbell form')},
+      {id:'d07',name:'DB Skull Crusher',sets:'3 × 12',note:'Slow down to forehead, explosive push up. Build that lockout.',weighted:true,yt:yt('dumbbell skull crusher tricep form')},
+      {id:'d08',name:'Face Pull (band)',sets:'3 × 15',note:'Shoulder health every pushing session.',yt:yt('band face pull shoulder health')},
+      {id:'d09',name:'Hollow Body Hold',sets:'3 × 30 sec',note:'▲ APT — Core finisher.',apt:true,yt:yt('hollow body hold anterior pelvic tilt')},
     ]
   },
 
   'p1w1-4': {
-    key:'p1w1-4', dayName:'Tuesday', date:'Mar 24', tag:'t-exp', tagLabel:'Plyo + Core + Conditioning',
+    key:'p1w1-4', dayName:'Friday', date:'Apr 18', tag:'t-rest', tagLabel:'Full Rest', isRest:true,
     exercises:[
-      {id:'e01',name:'90/90 Hip Stretch',sets:'2 × 60s each side',note:'▲ APT — Short activation before explosive work.',apt:true,yt:yt('90 90 hip flexor stretch how to')},
-      {id:'e02',name:'Glute Bridge Activation',sets:'2 × 12',note:'▲ APT — Prime glutes before any jumping.',apt:true,yt:yt('glute bridge activation before workout')},
-      {id:'e03',name:'Broad Jump (stick the landing)',sets:'4 × 4',note:'Jump forward, HOLD landing 2 sec. Mechanics over distance.',yt:yt('broad jump landing mechanics soft')},
-      {id:'e04',name:'Box Step-Up (controlled)',sets:'3 × 8 each leg',note:'12–16" box. Drive through heel. Zero momentum.',weighted:true,yt:yt('box step up exercise tutorial basketball')},
-      {id:'e05',name:'Lateral Bound (mini)',sets:'3 × 6 each side',note:'Short hop, stick landing. Ankle stability first.',yt:yt('lateral bound plyometric ankle basketball')},
-      {id:'e06',name:'Single-Leg Calf Raise (eccentric)',sets:'3 × 12 each, 4s down',note:'Achilles protection. Never skip.',yt:yt('eccentric single leg calf raise achilles tendon')},
-      {id:'e07',name:'Dead Bug',sets:'3 × 10 each side',note:'▲ APT — Core anti-extension.',apt:true,yt:yt('dead bug exercise anterior pelvic tilt core')},
-      {id:'e08',name:'Hollow Body Hold',sets:'3 × 25 sec',note:'▲ APT — Build time each week.',apt:true,yt:yt('hollow body hold anterior pelvic tilt')},
-      {id:'e09',name:'Plank (forearm)',sets:'3 × 30–40 sec',note:'▲ APT — Squeeze glutes hard. No arch in lower back.',apt:true,yt:yt('forearm plank perfect form glutes core')},
-      {id:'e10',name:'Jump Rope — Endurance Block',sets:'5 min continuous (slow steady pace)',note:'This is pure leg endurance conditioning. Slow and steady, never stop. Trains your legs to stay loose and active when fatigued — exactly what you need on offense in the 4th quarter.',yt:yt('jump rope endurance conditioning basketball')},
+      {id:'e01',name:'Sleep 8+ hours',sets:'',note:'Rest is training. This is when your muscles actually grow.'},
+      {id:'e02',name:'Optional: Foam Roll',sets:'5–10 min',note:'▲ APT — Calves, hip flexors, lats.',apt:true,yt:yt('foam rolling calves hip flexors recovery')},
+      {id:'e03',name:'Walk (10k steps goal)',sets:'Easy pace',note:'Light activity keeps blood flowing. Target 10k steps total.',yt:yt('active recovery walk benefits')},
     ]
   },
 
   'p1w1-5': {
-    key:'p1w1-5', dayName:'Wednesday', date:'Mar 25', tag:'t-foot', tagLabel:'Footwork (Off-Court)',
+    key:'p1w1-5', dayName:'Saturday', date:'Apr 19', tag:'t-game', tagLabel:'Basketball 🏀',
     exercises:[
-      {id:'f01',name:'Jump Rope (basic rhythm)',sets:'3 × 2 min, 60s rest',note:'Land on balls of feet. Build the habit now.',yt:yt('jump rope basics technique basketball conditioning')},
-      {id:'f02',name:'Defensive Slide (low & wide)',sets:'4 × 20 ft each direction',note:'Stay in low stance. Feel outside of feet loading.',yt:yt('basketball defensive slide drill low wide')},
-      {id:'f03',name:'Jab Step Drill (stationary)',sets:'3 × 10 each side',note:'Triple threat → short hard jab → weight shift → return.',yt:yt('jab step basketball drill stationary')},
-      {id:'f04',name:'Lateral Shuffle + Sprint (5–10–5)',sets:'4 rounds',note:'5 yards out, 10 back, 5 return. Change direction explosively.',yt:yt('5 10 5 shuttle drill basketball agility')},
-      {id:'f05',name:'Skater Step (slow, lateral)',sets:'3 × 8 each leg',note:'Land single-leg, hold 1 sec. Ankle stability focus.',yt:yt('skater step lateral single leg balance')},
-      {id:'f06',name:'Ankle Banded Distraction',sets:'2 × 60s each',note:'Open ankle capsule. Improves first-step range.',yt:yt('ankle banded distraction stretch mobility')},
-      {id:'f07',name:'Couch Stretch',sets:'2 × 60s each side',note:'▲ APT — After every footwork session.',apt:true,yt:yt('couch stretch hip flexor APT')},
+      {id:'f01',name:'Pre-Game Activation: 90/90 Hip Stretch',sets:'2 × 60s each side',note:'▲ APT — Open hips before running.',apt:true,yt:yt('90 90 hip flexor stretch how to')},
+      {id:'f02',name:'Pre-Game: Glute Bridge',sets:'2 × 12',note:'▲ APT — Activate glutes before explosive movement.',apt:true,yt:yt('glute bridge activation before workout')},
+      {id:'f03',name:'Pre-Game: Ankle Circles',sets:'2 × each foot',note:'Loosen ankles before cutting.',yt:yt('ankle circles mobility warm up basketball')},
+      {id:'f04',name:'Pre-Game: Leg Swings',sets:'10 each direction each leg',note:'Dynamic hip warm-up.',yt:yt('leg swings dynamic warm up basketball')},
+      {id:'f05',name:'PLAY BASKETBALL',sets:'Full game',note:'Apply the training. Use your jab step. Stay low on defense. Push through fatigue on offense.'},
+      {id:'f06',name:'Post-Game: Calf Stretch',sets:'2 × 60s each',note:'Achilles care after running.',yt:yt('calf stretch gastrocnemius soleus basketball')},
+      {id:'f07',name:'Post-Game: Foam Roll (calves + quads)',sets:'5 min',note:'Flush out the legs.',yt:yt('foam roll calves quads after basketball')},
     ]
   },
 
   'p1w1-6': {
-    key:'p1w1-6', dayName:'Thursday', date:'Mar 26', tag:'t-rec', tagLabel:'Active Recovery',
+    key:'p1w1-6', dayName:'Sunday', date:'Apr 20', tag:'t-rec', tagLabel:'Recovery + Walk',
     exercises:[
-      {id:'g01',name:'Light Walk (20–30 min)',sets:'Easy pace',note:'Get blood moving. No intensity.',yt:yt('active recovery walk benefits')},
-      {id:'g02',name:'Full Body Foam Roll',sets:'10 min',note:'Calves, IT band, quads, lats. Extra time on hip flexors.',yt:yt('full body foam rolling routine calves hips')},
+      {id:'g01',name:'Walk (aim for 10k steps)',sets:'30–45 min easy',note:'Active recovery. Gets blood moving without taxing the body.',yt:yt('active recovery walk benefits')},
+      {id:'g02',name:'Full Body Foam Roll',sets:'10–15 min',note:'Calves, IT band, quads, lats, hip flexors. Extra time on whatever is sore.',yt:yt('full body foam rolling routine calves hips')},
       {id:'g03',name:"World's Greatest Stretch",sets:'3 reps each side, slow',note:'▲ APT — Opens hips and thoracic spine.',apt:true,yt:yt("world's greatest stretch hip thoracic")},
-      {id:'g04',name:'Thoracic Rotation',sets:'3 × 8 each side',yt:yt('thoracic spine rotation stretch mobility')},
-      {id:'g05',name:'Ankle Banded Distraction',sets:'2 × 60s each ankle',yt:yt('ankle banded distraction stretch mobility')},
+      {id:'g04',name:'Couch Stretch',sets:'2 × 90s each side',note:'▲ APT — Deep hip flexor release. Do this every Sunday.',apt:true,yt:yt('couch stretch hip flexor APT')},
+      {id:'g05',name:'Thoracic Rotation',sets:'3 × 8 each side',yt:yt('thoracic spine rotation stretch mobility')},
+      {id:'g06',name:'Ankle Banded Distraction',sets:'2 × 60s each ankle',yt:yt('ankle banded distraction stretch mobility')},
     ]
   },
 
-  // ══════════ WEEK 2 ══════════
+  // ══════════ WEEK 2 (Apr 21–Apr 27) ══════════
+
   'p1w2-0': {
-    key:'p1w2-0', dayName:'Friday', date:'Mar 27', tag:'t-str', tagLabel:'Push Day',
+    key:'p1w2-0', dayName:'Monday', date:'Apr 21', tag:'t-str', tagLabel:'Leg Day',
     exercises:[
       {id:'h01',name:'90/90 Hip Flexor Stretch',sets:'3 × 60s each side',note:'▲ APT',apt:true,yt:yt('90 90 hip flexor stretch how to')},
       {id:'h02',name:'Glute Bridge Activation',sets:'2 × 15',note:'▲ APT',apt:true,yt:yt('glute bridge activation before workout')},
-      {id:'h03',name:'Dumbbell Bench Press',sets:'3 × 10',note:'Add 5 lbs vs Week 1.',weighted:true,yt:yt('dumbbell bench press form tutorial')},
-      {id:'h04',name:'Incline DB Press',sets:'3 × 10',note:'Add 5 lbs vs Week 1.',weighted:true,yt:yt('incline dumbbell press form tutorial')},
-      {id:'h05',name:'Dumbbell Shoulder Press',sets:'3 × 10',note:'Slight weight increase if Week 1 felt easy.',weighted:true,yt:yt('dumbbell shoulder press form tutorial')},
-      {id:'h06',name:'Lateral Raise',sets:'3 × 12',weighted:true,yt:yt('lateral raise form no swinging')},
-      {id:'h07',name:'Tricep Pushdown',sets:'3 × 12',weighted:true,yt:yt('tricep pushdown band cable form')},
-      {id:'h08',name:'Hollow Body Hold',sets:'3 × 30 sec',note:'▲ APT — Add 5 seconds vs Week 1.',apt:true,yt:yt('hollow body hold anterior pelvic tilt')},
+      {id:'h03',name:'Leg Press',sets:'4 × 12',note:'Add 5–10 lbs vs Week 1.',weighted:true,yt:yt('leg press form tutorial beginner')},
+      {id:'h04',name:'Leg Extension',sets:'3 × 15',note:'Increase weight slightly.',weighted:true,yt:yt('leg extension machine form tutorial')},
+      {id:'h05',name:'Hamstring Curl',sets:'3 × 12',note:'Increase weight slightly.',weighted:true,yt:yt('hamstring curl machine form tutorial')},
+      {id:'h06',name:'Romanian Deadlift (DB)',sets:'3 × 12',note:'Hip hinge, hamstrings loaded. Added Week 2 for posterior chain.',weighted:true,yt:yt('romanian deadlift dumbbell form tutorial')},
+      {id:'h07',name:'Reverse Lunge (DB)',sets:'3 × 10 each leg',note:'Add weight vs Week 1.',weighted:true,yt:yt('reverse lunge dumbbell form tutorial')},
+      {id:'h08',name:'Calf Raise (seated, slow)',sets:'4 × 15',note:'Add small weight.',weighted:true,yt:yt('seated calf raise slow eccentric tendon')},
+      {id:'h09',name:'Wall Sit',sets:'3 × 45 sec',note:'5 seconds longer than Week 1.',yt:yt('wall sit exercise basketball endurance')},
+      {id:'h10',name:'Conditioning Finisher',sets:'3 rounds: 15 squats → 10 lunges each → 30s wall sit → 30s rest',note:'One more round than Week 1.',yt:yt('basketball conditioning bodyweight circuit leg endurance')},
     ]
   },
 
   'p1w2-1': {
-    key:'p1w2-1', dayName:'Saturday', date:'Mar 28', tag:'t-str', tagLabel:'Pull Day',
+    key:'p1w2-1', dayName:'Tuesday', date:'Apr 22', tag:'t-str', tagLabel:'Back + Biceps',
     exercises:[
-      {id:'i01',name:'90/90 Hip Flexor Stretch',sets:'3 × 60s each side',note:'▲ APT',apt:true,yt:yt('90 90 hip flexor stretch how to')},
-      {id:'i02',name:'Glute Bridge Activation',sets:'2 × 15',note:'▲ APT',apt:true,yt:yt('glute bridge activation before workout')},
-      {id:'i03',name:'DB Row (1-Arm)',sets:'3 × 10 each',note:'Add 5 lbs vs Week 1.',weighted:true,yt:yt('single arm dumbbell row form')},
+      {id:'i01',name:'90/90 Hip Flexor Stretch',sets:'2 × 60s each side',note:'▲ APT',apt:true,yt:yt('90 90 hip flexor stretch how to')},
+      {id:'i02',name:'Lat Pulldown',sets:'4 × 12',note:'Add weight vs Week 1.',weighted:true,yt:yt('lat pulldown form tutorial')},
+      {id:'i03',name:'DB Row (1-Arm)',sets:'3 × 10 each',note:'Add 5 lbs.',weighted:true,yt:yt('single arm dumbbell row form')},
       {id:'i04',name:'Chest-Supported DB Row',sets:'3 × 10',note:'Increase weight slightly.',weighted:true,yt:yt('chest supported dumbbell row form')},
       {id:'i05',name:'Face Pull (band)',sets:'3 × 15',yt:yt('band face pull shoulder health')},
       {id:'i06',name:'Band Pull-Apart',sets:'3 × 15',yt:yt('band pull apart shoulder health basketball')},
-      {id:'i07',name:'DB Bicep Curl',sets:'3 × 12',weighted:true,yt:yt('dumbbell bicep curl form tutorial')},
-      {id:'i08',name:'Dead Bug',sets:'3 × 10 each side',note:'▲ APT',apt:true,yt:yt('dead bug exercise anterior pelvic tilt core')},
+      {id:'i07',name:'Shoulder Shrug (DB)',sets:'3 × 12',note:'Add weight.',weighted:true,yt:yt('dumbbell shoulder shrug trap form')},
+      {id:'i08',name:'DB Bicep Curl',sets:'3 × 12',note:'Add small weight.',weighted:true,yt:yt('dumbbell bicep curl form tutorial')},
+      {id:'i09',name:'Hammer Curl',sets:'3 × 12',weighted:true,yt:yt('hammer curl brachialis form tutorial')},
+      {id:'i10',name:'Dead Bug',sets:'3 × 10 each side',note:'▲ APT',apt:true,yt:yt('dead bug exercise anterior pelvic tilt core')},
     ]
   },
 
   'p1w2-2': {
-    key:'p1w2-2', dayName:'Sunday', date:'Mar 29', tag:'t-rest', tagLabel:'Full Rest', isRest:true,
+    key:'p1w2-2', dayName:'Wednesday', date:'Apr 23', tag:'t-str', tagLabel:'Chest + Core',
     exercises:[
-      {id:'j01',name:'Sleep 8+ hours',sets:'',note:'Rest is training.'},
-      {id:'j02',name:'Optional: Foam Roll',sets:'5 min',apt:true,yt:yt('foam rolling calves hip flexors recovery')},
+      {id:'j01',name:'90/90 Hip Flexor Stretch',sets:'2 × 60s each side',note:'▲ APT',apt:true,yt:yt('90 90 hip flexor stretch how to')},
+      {id:'j02',name:'DB Bench Press',sets:'4 × 10',note:'Add 5 lbs vs Week 1.',weighted:true,yt:yt('dumbbell bench press form tutorial')},
+      {id:'j03',name:'Incline DB Press',sets:'3 × 10',note:'Add weight.',weighted:true,yt:yt('incline dumbbell press form tutorial')},
+      {id:'j04',name:'DB Chest Fly',sets:'3 × 12',weighted:true,yt:yt('dumbbell chest fly form tutorial')},
+      {id:'j05',name:'Push-Up Finisher',sets:'3 × max reps',yt:yt('push up perfect form chest')},
+      {id:'j06',name:'Dead Bug',sets:'3 × 12 each side',note:'▲ APT — Add 2 reps vs Week 1.',apt:true,yt:yt('dead bug exercise anterior pelvic tilt core')},
+      {id:'j07',name:'Hollow Body Hold',sets:'3 × 35 sec',note:'▲ APT — Add 5 sec.',apt:true,yt:yt('hollow body hold anterior pelvic tilt')},
+      {id:'j08',name:'Plank (forearm)',sets:'3 × 45 sec',note:'▲ APT',apt:true,yt:yt('forearm plank perfect form glutes core')},
+      {id:'j09',name:'Pallof Press',sets:'3 × 12 each side',note:'▲ APT',apt:true,yt:yt('pallof press anti rotation core APT')},
+      {id:'j10',name:'Ab Wheel / Rollout',sets:'3 × 10',note:'▲ APT',apt:true,yt:yt('ab wheel rollout anterior pelvic tilt core')},
     ]
   },
 
   'p1w2-3': {
-    key:'p1w2-3', dayName:'Monday', date:'Mar 30', tag:'t-str', tagLabel:'Leg Day + Endurance',
+    key:'p1w2-3', dayName:'Thursday', date:'Apr 24', tag:'t-str', tagLabel:'Triceps + Shoulders',
     exercises:[
-      {id:'k01',name:'90/90 Hip Flexor Stretch',sets:'3 × 60s each side',note:'▲ APT',apt:true,yt:yt('90 90 hip flexor stretch how to')},
-      {id:'k02',name:'Hip Thrust (DB or Barbell)',sets:'3 × 12',note:'▲ APT — Load it up. First step power.',apt:true,weighted:true,yt:yt('hip thrust barbell form tutorial')},
-      {id:'k03',name:'Goblet Squat',sets:'4 × 12',note:'Higher reps than W1, 60s rest. Endurance focus.',weighted:true,yt:yt('goblet squat form tutorial beginner')},
-      {id:'k04',name:'Romanian Deadlift (DB)',sets:'3 × 12',note:'Hamstring endurance — key for staying explosive late in games.',weighted:true,yt:yt('romanian deadlift dumbbell form tutorial')},
-      {id:'k05',name:'Reverse Lunge (DB)',sets:'3 × 10 each leg',note:'45s rest between sets. Push through the burn.',weighted:true,yt:yt('reverse lunge dumbbell form tutorial')},
-      {id:'k06',name:'Wall Sit',sets:'3 × 40 sec',note:'Pure quad endurance. Hold position — this is what keeps you moving on offense.',yt:yt('wall sit exercise basketball endurance')},
-      {id:'k07',name:'Seated Calf Raise',sets:'3 × 15 slow',note:'Add small weight. Still 3s up/3s down.',weighted:true,yt:yt('seated calf raise slow eccentric tendon')},
-      {id:'k08',name:'Ankle Circles + Alphabet',sets:'2 × each foot',yt:yt('ankle alphabet mobility drill')},
-      {id:'k09',name:'Pallof Press',sets:'3 × 12 each side',note:'▲ APT',apt:true,yt:yt('pallof press anti rotation core APT')},
-      {id:'k10',name:'Conditioning Finisher — Bodyweight Circuit',sets:'3 rounds: 15 squats → 12 lunges each → 25s wall sit → 30s rest',note:'Harder than W1. This is your endurance engine. Push through the burn on round 3.',yt:yt('basketball conditioning bodyweight circuit leg endurance')},
+      {id:'k01',name:'90/90 Hip Flexor Stretch',sets:'2 × 60s each side',note:'▲ APT',apt:true,yt:yt('90 90 hip flexor stretch how to')},
+      {id:'k02',name:'DB Shoulder Press',sets:'4 × 10',note:'Add weight.',weighted:true,yt:yt('dumbbell shoulder press form tutorial')},
+      {id:'k03',name:'Lateral Raise',sets:'3 × 15',note:'Add small weight.',weighted:true,yt:yt('lateral raise form no swinging')},
+      {id:'k04',name:'Front Raise',sets:'3 × 12',weighted:true,yt:yt('front raise dumbbell shoulder form')},
+      {id:'k05',name:'Tricep Pushdown (band/cable)',sets:'4 × 15',note:'Add resistance.',weighted:true,yt:yt('tricep pushdown band cable form')},
+      {id:'k06',name:'Overhead Tricep Extension (DB)',sets:'3 × 12',note:'Add weight.',weighted:true,yt:yt('overhead tricep extension dumbbell form')},
+      {id:'k07',name:'DB Skull Crusher',sets:'3 × 12',weighted:true,yt:yt('dumbbell skull crusher tricep form')},
+      {id:'k08',name:'Face Pull (band)',sets:'3 × 15',yt:yt('band face pull shoulder health')},
+      {id:'k09',name:'Hollow Body Hold',sets:'3 × 35 sec',note:'▲ APT',apt:true,yt:yt('hollow body hold anterior pelvic tilt')},
     ]
   },
 
   'p1w2-4': {
-    key:'p1w2-4', dayName:'Tuesday', date:'Mar 31', tag:'t-exp', tagLabel:'Plyo + Core + Conditioning',
+    key:'p1w2-4', dayName:'Friday', date:'Apr 25', tag:'t-rest', tagLabel:'Full Rest', isRest:true,
     exercises:[
-      {id:'l01',name:'90/90 Hip Stretch',sets:'2 × 60s each side',note:'▲ APT',apt:true,yt:yt('90 90 hip flexor stretch how to')},
-      {id:'l02',name:'Glute Bridge Activation',sets:'2 × 12',note:'▲ APT',apt:true,yt:yt('glute bridge activation before workout')},
-      {id:'l03',name:'Box Jump (land soft)',sets:'4 × 5 — 18–20" box',note:'Step DOWN after. Do not jump down. Protect tendons.',yt:yt('box jump soft landing technique basketball')},
-      {id:'l04',name:'Lateral Bound',sets:'4 × 6 each side',note:'Distance increasing. Stick every landing.',yt:yt('lateral bound plyometric basketball')},
-      {id:'l05',name:'Broad Jump × 2 (stick it)',sets:'4 × 4',note:'Two jumps in a row, stick the second one.',yt:yt('broad jump landing mechanics soft')},
-      {id:'l06',name:'Single-Leg Calf Raise (eccentric)',sets:'3 × 12 each, 4s down',yt:yt('eccentric single leg calf raise achilles tendon')},
-      {id:'l07',name:'Dead Bug',sets:'3 × 10 each side',note:'▲ APT',apt:true,yt:yt('dead bug exercise anterior pelvic tilt core')},
-      {id:'l08',name:'Hollow Body Hold',sets:'3 × 30 sec',note:'▲ APT',apt:true,yt:yt('hollow body hold anterior pelvic tilt')},
-      {id:'l09',name:'Ab Wheel / Rollout',sets:'3 × 8',note:'▲ APT — Ultimate anti-extension. Start from knees.',apt:true,yt:yt('ab wheel rollout anterior pelvic tilt core')},
-      {id:'l10',name:'Jump Rope — Endurance Block',sets:'6 min continuous (steady pace)',note:'Longer than W1. Legs should feel it. This trains your cardiovascular base for offensive endurance.',yt:yt('jump rope endurance conditioning basketball')},
+      {id:'l01',name:'Sleep 8+ hours',sets:'',note:'Rest is training.'},
+      {id:'l02',name:'Optional: Foam Roll',sets:'5 min',apt:true,yt:yt('foam rolling calves hip flexors recovery')},
+      {id:'l03',name:'Walk (10k steps)',sets:'Easy pace',note:'Hit your step goal.',yt:yt('active recovery walk benefits')},
     ]
   },
 
   'p1w2-5': {
-    key:'p1w2-5', dayName:'Wednesday', date:'Apr 1', tag:'t-foot', tagLabel:'Footwork (Off-Court)',
+    key:'p1w2-5', dayName:'Saturday', date:'Apr 26', tag:'t-game', tagLabel:'Basketball 🏀',
     exercises:[
-      {id:'m01',name:'Jump Rope — Single Leg Alternating',sets:'3 × 90s',yt:yt('jump rope single leg alternating basketball')},
-      {id:'m02',name:'T-Drill / 3-Cone',sets:'4 rounds — push the pace',note:'Time yourself this week vs last. First COD test.',yt:yt('T drill 3 cone basketball agility drill')},
-      {id:'m03',name:'5-10-5 Shuttle',sets:'4 rounds',note:'Record your time. This is your baseline.',yt:yt('5 10 5 shuttle drill basketball speed')},
-      {id:'m04',name:'Defensive Slide + Close-Out',sets:'4 × 20 ft',yt:yt('defensive slide close out basketball drill')},
-      {id:'m05',name:'Jab Step → Crossover Drive (no ball)',sets:'3 × 6 each way',note:'Footwork pattern only. No ball yet.',yt:yt('jab step crossover drive basketball drill')},
-      {id:'m06',name:'Couch Stretch',sets:'2 × 60s each side',note:'▲ APT',apt:true,yt:yt('couch stretch hip flexor APT')},
+      {id:'m01',name:'Pre-Game: 90/90 Hip Stretch',sets:'2 × 60s each side',note:'▲ APT',apt:true,yt:yt('90 90 hip flexor stretch how to')},
+      {id:'m02',name:'Pre-Game: Glute Bridge',sets:'2 × 12',note:'▲ APT',apt:true,yt:yt('glute bridge activation before workout')},
+      {id:'m03',name:'Pre-Game: Ankle Circles',sets:'2 × each foot',yt:yt('ankle circles mobility warm up basketball')},
+      {id:'m04',name:'PLAY BASKETBALL',sets:'Full game',note:'Trust the leg work. Your conditioning is building.'},
+      {id:'m05',name:'Post-Game: Calf Stretch + Foam Roll',sets:'5 min',yt:yt('calf stretch foam roll after basketball')},
     ]
   },
 
   'p1w2-6': {
-    key:'p1w2-6', dayName:'Thursday', date:'Apr 2', tag:'t-rec', tagLabel:'Active Recovery',
+    key:'p1w2-6', dayName:'Sunday', date:'Apr 27', tag:'t-rec', tagLabel:'Recovery + Walk',
     exercises:[
-      {id:'n01',name:'Light Walk (20–30 min)',sets:'Easy pace',yt:yt('active recovery walk benefits')},
-      {id:'n02',name:'Full Body Foam Roll',sets:'10 min',note:'Calves, IT band, quads, lats, hip flexors.',yt:yt('full body foam rolling routine calves hips')},
+      {id:'n01',name:'Walk (aim for 10k steps)',sets:'30–45 min',yt:yt('active recovery walk benefits')},
+      {id:'n02',name:'Full Body Foam Roll',sets:'10–15 min',yt:yt('full body foam rolling routine calves hips')},
       {id:'n03',name:"World's Greatest Stretch",sets:'3 reps each side',note:'▲ APT',apt:true,yt:yt("world's greatest stretch hip thoracic")},
-      {id:'n04',name:'Ankle Banded Distraction',sets:'2 × 60s each',yt:yt('ankle banded distraction stretch mobility')},
+      {id:'n04',name:'Couch Stretch',sets:'2 × 90s each side',note:'▲ APT',apt:true,yt:yt('couch stretch hip flexor APT')},
+      {id:'n05',name:'Ankle Banded Distraction',sets:'2 × 60s each',yt:yt('ankle banded distraction stretch mobility')},
     ]
   },
 
-  // ══════════ WEEK 3 — PRE-LEAGUE TAPER ══════════
+  // ══════════ WEEK 3 (Apr 28–May 4) ══════════
+
   'p1w3-0': {
-    key:'p1w3-0', dayName:'Friday', date:'Apr 3', tag:'t-str', tagLabel:'Push Day (Lighter)',
+    key:'p1w3-0', dayName:'Monday', date:'Apr 28', tag:'t-str', tagLabel:'Leg Day',
     exercises:[
       {id:'o01',name:'90/90 Hip Flexor Stretch',sets:'3 × 60s each side',note:'▲ APT',apt:true,yt:yt('90 90 hip flexor stretch how to')},
       {id:'o02',name:'Glute Bridge Activation',sets:'2 × 15',note:'▲ APT',apt:true,yt:yt('glute bridge activation before workout')},
-      {id:'o03',name:'Dumbbell Bench Press',sets:'3 × 8',note:'Drop to 80% of W2 weight. Crisp reps.',weighted:true,yt:yt('dumbbell bench press form tutorial')},
-      {id:'o04',name:'DB Shoulder Press',sets:'3 × 8',note:'Light, sharp.',weighted:true,yt:yt('dumbbell shoulder press form tutorial')},
-      {id:'o05',name:'Lateral Raise',sets:'2 × 12',weighted:true,yt:yt('lateral raise form no swinging')},
-      {id:'o06',name:'Band Pull-Apart',sets:'3 × 15',yt:yt('band pull apart shoulder health basketball')},
-      {id:'o07',name:'Hollow Body Hold',sets:'2 × 30 sec',note:'▲ APT',apt:true,yt:yt('hollow body hold anterior pelvic tilt')},
+      {id:'o03',name:'Leg Press',sets:'4 × 10',note:'Heavier than W2. Strength is building.',weighted:true,yt:yt('leg press form tutorial beginner')},
+      {id:'o04',name:'Leg Extension',sets:'3 × 12',note:'Add weight, slightly lower reps.',weighted:true,yt:yt('leg extension machine form tutorial')},
+      {id:'o05',name:'Hamstring Curl',sets:'3 × 12',weighted:true,yt:yt('hamstring curl machine form tutorial')},
+      {id:'o06',name:'Romanian Deadlift (DB)',sets:'3 × 12',note:'Add weight.',weighted:true,yt:yt('romanian deadlift dumbbell form tutorial')},
+      {id:'o07',name:'Hip Thrust (DB or Barbell)',sets:'3 × 12',note:'▲ APT — Added Week 3. Most important glute exercise for first step.',apt:true,weighted:true,yt:yt('hip thrust barbell form tutorial')},
+      {id:'o08',name:'Calf Raise (seated, slow)',sets:'4 × 15',note:'Add weight.',weighted:true,yt:yt('seated calf raise slow eccentric tendon')},
+      {id:'o09',name:'Wall Sit',sets:'3 × 50 sec',yt:yt('wall sit exercise basketball endurance')},
+      {id:'o10',name:'Pallof Press',sets:'3 × 12 each side',note:'▲ APT',apt:true,yt:yt('pallof press anti rotation core APT')},
     ]
   },
 
   'p1w3-1': {
-    key:'p1w3-1', dayName:'Saturday', date:'Apr 4', tag:'t-str', tagLabel:'Pull Day (Lighter)',
+    key:'p1w3-1', dayName:'Tuesday', date:'Apr 29', tag:'t-str', tagLabel:'Back + Biceps',
     exercises:[
-      {id:'p01',name:'90/90 Hip Flexor Stretch',sets:'3 × 60s each side',note:'▲ APT',apt:true,yt:yt('90 90 hip flexor stretch how to')},
-      {id:'p02',name:'DB Row (1-Arm)',sets:'3 × 8',note:'80% weight. Focus on form.',weighted:true,yt:yt('single arm dumbbell row form')},
-      {id:'p03',name:'Face Pull',sets:'3 × 15',yt:yt('band face pull shoulder health')},
-      {id:'p04',name:'Band Pull-Apart',sets:'3 × 15',yt:yt('band pull apart shoulder health basketball')},
-      {id:'p05',name:'DB Bicep Curl',sets:'2 × 12',weighted:true,yt:yt('dumbbell bicep curl form tutorial')},
-      {id:'p06',name:'Dead Bug',sets:'2 × 10 each side',note:'▲ APT',apt:true,yt:yt('dead bug exercise anterior pelvic tilt core')},
+      {id:'p01',name:'90/90 Hip Flexor Stretch',sets:'2 × 60s each side',note:'▲ APT',apt:true,yt:yt('90 90 hip flexor stretch how to')},
+      {id:'p02',name:'Lat Pulldown',sets:'4 × 10',note:'Heavier. 10 strong reps.',weighted:true,yt:yt('lat pulldown form tutorial')},
+      {id:'p03',name:'DB Row (1-Arm)',sets:'4 × 10 each',note:'Up in weight.',weighted:true,yt:yt('single arm dumbbell row form')},
+      {id:'p04',name:'Chest-Supported DB Row',sets:'3 × 10',weighted:true,yt:yt('chest supported dumbbell row form')},
+      {id:'p05',name:'Face Pull (band)',sets:'3 × 15',yt:yt('band face pull shoulder health')},
+      {id:'p06',name:'Shoulder Shrug (DB)',sets:'3 × 12',weighted:true,yt:yt('dumbbell shoulder shrug trap form')},
+      {id:'p07',name:'DB Bicep Curl',sets:'4 × 10',note:'Add weight.',weighted:true,yt:yt('dumbbell bicep curl form tutorial')},
+      {id:'p08',name:'Hammer Curl',sets:'3 × 12',weighted:true,yt:yt('hammer curl brachialis form tutorial')},
+      {id:'p09',name:'Incline DB Curl',sets:'3 × 10',note:'New Week 3 — full long-head stretch.',weighted:true,yt:yt('incline dumbbell curl bicep form')},
+      {id:'p10',name:'Dead Bug',sets:'3 × 12 each side',note:'▲ APT',apt:true,yt:yt('dead bug exercise anterior pelvic tilt core')},
     ]
   },
 
   'p1w3-2': {
-    key:'p1w3-2', dayName:'Sunday', date:'Apr 5', tag:'t-rest', tagLabel:'Full Rest', isRest:true,
+    key:'p1w3-2', dayName:'Wednesday', date:'Apr 30', tag:'t-str', tagLabel:'Chest + Core',
     exercises:[
-      {id:'q01',name:'Sleep 8+ hours',sets:'',note:'Rest is training.'},
-      {id:'q02',name:'Optional: Light foam roll',sets:'5 min',yt:yt('foam rolling calves hip flexors recovery')},
+      {id:'q01',name:'90/90 Hip Flexor Stretch',sets:'2 × 60s each side',note:'▲ APT',apt:true,yt:yt('90 90 hip flexor stretch how to')},
+      {id:'q02',name:'DB Bench Press',sets:'4 × 10',note:'Add weight.',weighted:true,yt:yt('dumbbell bench press form tutorial')},
+      {id:'q03',name:'Incline DB Press',sets:'4 × 10',note:'Up a set vs W2.',weighted:true,yt:yt('incline dumbbell press form tutorial')},
+      {id:'q04',name:'DB Chest Fly',sets:'3 × 12',weighted:true,yt:yt('dumbbell chest fly form tutorial')},
+      {id:'q05',name:'Cable Crossover (band)',sets:'3 × 15',note:'New Week 3. Squeezes at peak contraction.',weighted:true,yt:yt('cable crossover band chest squeeze')},
+      {id:'q06',name:'Push-Up Finisher',sets:'3 × max reps',yt:yt('push up perfect form chest')},
+      {id:'q07',name:'Dead Bug',sets:'3 × 12 each side',note:'▲ APT',apt:true,yt:yt('dead bug exercise anterior pelvic tilt core')},
+      {id:'q08',name:'Hollow Body Hold',sets:'3 × 40 sec',note:'▲ APT',apt:true,yt:yt('hollow body hold anterior pelvic tilt')},
+      {id:'q09',name:'Ab Wheel / Rollout',sets:'3 × 10',note:'▲ APT',apt:true,yt:yt('ab wheel rollout anterior pelvic tilt core')},
+      {id:'q10',name:'Plank (forearm)',sets:'3 × 50 sec',note:'▲ APT',apt:true,yt:yt('forearm plank perfect form glutes core')},
     ]
   },
 
   'p1w3-3': {
-    key:'p1w3-3', dayName:'Monday', date:'Apr 6', tag:'t-str', tagLabel:'Leg Day (Lighter)',
+    key:'p1w3-3', dayName:'Thursday', date:'May 1', tag:'t-str', tagLabel:'Triceps + Shoulders',
     exercises:[
-      {id:'r01',name:'90/90 Hip Flexor Stretch',sets:'3 × 60s each side',note:'▲ APT',apt:true,yt:yt('90 90 hip flexor stretch how to')},
-      {id:'r02',name:'Hip Thrust',sets:'3 × 10',note:'▲ APT — 80% weight. Glute activation priority.',apt:true,weighted:true,yt:yt('hip thrust barbell form tutorial')},
-      {id:'r03',name:'Goblet Squat',sets:'3 × 8',note:'Moderate weight. Clean reps.',weighted:true,yt:yt('goblet squat form tutorial beginner')},
-      {id:'r04',name:'Reverse Lunge (DB)',sets:'2 × 6 each leg',weighted:true,yt:yt('reverse lunge dumbbell form tutorial')},
-      {id:'r05',name:'Seated Calf Raise',sets:'3 × 12 slow',weighted:true,yt:yt('seated calf raise slow eccentric tendon')},
-      {id:'r06',name:'Ankle Circles + Alphabet',sets:'2 × each foot',yt:yt('ankle alphabet mobility drill')},
-      {id:'r07',name:'Pallof Press',sets:'2 × 10 each side',note:'▲ APT',apt:true,yt:yt('pallof press anti rotation core APT')},
+      {id:'r01',name:'90/90 Hip Flexor Stretch',sets:'2 × 60s each side',note:'▲ APT',apt:true,yt:yt('90 90 hip flexor stretch how to')},
+      {id:'r02',name:'DB Shoulder Press',sets:'4 × 10',note:'Add weight.',weighted:true,yt:yt('dumbbell shoulder press form tutorial')},
+      {id:'r03',name:'Lateral Raise',sets:'3 × 15',weighted:true,yt:yt('lateral raise form no swinging')},
+      {id:'r04',name:'Arnold Press',sets:'3 × 12',note:'New Week 3. Full shoulder rotation. Better court mobility.',weighted:true,yt:yt('arnold press dumbbell form shoulder')},
+      {id:'r05',name:'Tricep Pushdown (band/cable)',sets:'4 × 15',weighted:true,yt:yt('tricep pushdown band cable form')},
+      {id:'r06',name:'Overhead Tricep Extension (DB)',sets:'3 × 12',weighted:true,yt:yt('overhead tricep extension dumbbell form')},
+      {id:'r07',name:'DB Skull Crusher',sets:'3 × 12',weighted:true,yt:yt('dumbbell skull crusher tricep form')},
+      {id:'r08',name:'Diamond Push-Up',sets:'3 × max',note:'New Week 3. Full tricep burnout.',yt:yt('diamond push up tricep form')},
+      {id:'r09',name:'Face Pull (band)',sets:'3 × 15',yt:yt('band face pull shoulder health')},
+      {id:'r10',name:'Hollow Body Hold',sets:'3 × 40 sec',note:'▲ APT',apt:true,yt:yt('hollow body hold anterior pelvic tilt')},
     ]
   },
 
   'p1w3-4': {
-    key:'p1w3-4', dayName:'Tuesday', date:'Apr 7', tag:'t-exp', tagLabel:'Plyo + Core (Easy)',
+    key:'p1w3-4', dayName:'Friday', date:'May 2', tag:'t-rest', tagLabel:'Full Rest', isRest:true,
     exercises:[
-      {id:'s01',name:'90/90 Hip Stretch',sets:'2 × 60s each side',note:'▲ APT',apt:true,yt:yt('90 90 hip flexor stretch how to')},
-      {id:'s02',name:'Broad Jump (stick)',sets:'3 × 4',note:'No max effort. Just movement pattern.',yt:yt('broad jump landing mechanics soft')},
-      {id:'s03',name:'Lateral Bound (mini)',sets:'3 × 5 each side',yt:yt('lateral bound plyometric ankle basketball')},
-      {id:'s04',name:'Single-Leg Calf Raise (eccentric)',sets:'3 × 10 each, 4s down',yt:yt('eccentric single leg calf raise achilles tendon')},
-      {id:'s05',name:'Dead Bug',sets:'2 × 10 each side',note:'▲ APT',apt:true,yt:yt('dead bug exercise anterior pelvic tilt core')},
-      {id:'s06',name:'Hollow Body Hold',sets:'2 × 25 sec',note:'▲ APT',apt:true,yt:yt('hollow body hold anterior pelvic tilt')},
+      {id:'s01',name:'Sleep 8+ hours',sets:'',note:'Rest is training.'},
+      {id:'s02',name:'Optional: Foam Roll',sets:'5 min',apt:true,yt:yt('foam rolling calves hip flexors recovery')},
+      {id:'s03',name:'Walk (10k steps)',sets:'Easy pace',yt:yt('active recovery walk benefits')},
     ]
   },
 
   'p1w3-5': {
-    key:'p1w3-5', dayName:'Wednesday', date:'Apr 8', tag:'t-foot', tagLabel:'Footwork Sharpener',
+    key:'p1w3-5', dayName:'Saturday', date:'May 3', tag:'t-game', tagLabel:'Basketball 🏀',
     exercises:[
-      {id:'t01',name:'Jump Rope',sets:'2 × 2 min',note:'Light. Get the feet moving.',yt:yt('jump rope basics technique basketball conditioning')},
-      {id:'t02',name:'Jab Step Drill (game speed)',sets:'3 × 8 each side',note:'This week push to 80%. Feel the power from the hips.',yt:yt('jab step basketball drill stationary')},
-      {id:'t03',name:'5-10-5 Shuttle',sets:'3 rounds — time it',note:'Compare to Week 2. Note the difference.',yt:yt('5 10 5 shuttle drill basketball speed')},
-      {id:'t04',name:'Defensive Slide',sets:'3 × 20 ft each direction',yt:yt('basketball defensive slide drill low wide')},
-      {id:'t05',name:'Couch Stretch',sets:'2 × 60s each side',note:'▲ APT',apt:true,yt:yt('couch stretch hip flexor APT')},
+      {id:'t01',name:'Pre-Game: 90/90 Hip Stretch',sets:'2 × 60s each side',note:'▲ APT',apt:true,yt:yt('90 90 hip flexor stretch how to')},
+      {id:'t02',name:'Pre-Game: Glute Bridge + Ankle Circles',sets:'2 × 12 / 2 × each foot',note:'▲ APT',apt:true,yt:yt('glute bridge activation before workout')},
+      {id:'t03',name:'PLAY BASKETBALL',sets:'Full game',note:'Three weeks of training behind you. Trust the foundation.'},
+      {id:'t04',name:'Post-Game: Calf Stretch + Foam Roll',sets:'5–10 min',yt:yt('calf stretch foam roll after basketball')},
     ]
   },
 
   'p1w3-6': {
-    key:'p1w3-6', dayName:'Thursday', date:'Apr 9', tag:'t-rec', tagLabel:'Pre-Game Recovery',
+    key:'p1w3-6', dayName:'Sunday', date:'May 4', tag:'t-rec', tagLabel:'Recovery + Walk',
     exercises:[
-      {id:'u01',name:'Light Walk only',sets:'15–20 min',note:'No intensity. Just blood flow.',yt:yt('active recovery walk benefits')},
-      {id:'u02',name:'Full Body Foam Roll',sets:'10 min',yt:yt('full body foam rolling routine calves hips')},
-      {id:'u03',name:'Hip Flexor Stretch',sets:'3 × 60s each side',note:'▲ APT — Go into game day with open hips.',apt:true,yt:yt('90 90 hip flexor stretch how to')},
-      {id:'u04',name:'Ankle Mobilization',sets:'2 × each foot',yt:yt('ankle mobility exercises basketball')},
+      {id:'u01',name:'Walk (aim for 10k steps)',sets:'30–45 min',yt:yt('active recovery walk benefits')},
+      {id:'u02',name:'Full Body Foam Roll',sets:'15 min',yt:yt('full body foam rolling routine calves hips')},
+      {id:'u03',name:"World's Greatest Stretch",sets:'3 reps each side',note:'▲ APT',apt:true,yt:yt("world's greatest stretch hip thoracic")},
+      {id:'u04',name:'Couch Stretch',sets:'2 × 90s each side',note:'▲ APT',apt:true,yt:yt('couch stretch hip flexor APT')},
+      {id:'u05',name:'Thoracic Rotation',sets:'3 × 8 each side',yt:yt('thoracic spine rotation stretch mobility')},
+      {id:'u06',name:'Ankle Banded Distraction',sets:'2 × 60s each',yt:yt('ankle banded distraction stretch mobility')},
     ]
   },
 
-  // ══════════ WEEK 3 EXTRA: GAME DAY ══════════
-  'p1w3-7': {
-    key:'p1w3-7', dayName:'Friday', date:'Apr 10', tag:'t-rec', tagLabel:'Pre-Game Activation',
-    exercises:[
-      {id:'v01',name:'Hip Flexor Stretch',sets:'2 × 60s each side',note:'▲ APT — Open hips before you play.',apt:true,yt:yt('90 90 hip flexor stretch how to')},
-      {id:'v02',name:'Glute Bridge Activation',sets:'2 × 10',note:'▲ APT — Prime glutes before game.',apt:true,yt:yt('glute bridge activation before workout')},
-      {id:'v03',name:'Ankle Circles + Calf Raise (slow)',sets:'2 × each',yt:yt('ankle mobility exercises basketball')},
-      {id:'v04',name:'Jab Step Walk-Through',sets:'5 each side',note:'Mental prep. Groove the movement.',yt:yt('jab step basketball drill stationary')},
-    ]
-  },
-
-  'p1w3-8': {
-    key:'p1w3-8', dayName:'Saturday', date:'Apr 11', tag:'t-court', tagLabel:'🏀 GAME DAY — League Starts',
-    exercises:[
-      {id:'w01',name:'Pre-game: Foam roll calves + hips',sets:'5 min',yt:yt('foam rolling calves hip flexors recovery')},
-      {id:'w02',name:'Pre-game: Glute activation',sets:'2 × 10 bridges',note:'▲ APT — Do this in the locker room.',apt:true,yt:yt('glute bridge activation before workout')},
-      {id:'w03',name:'Notice: First step off jab?',sets:'',note:'How explosive is it? Hips loading?'},
-      {id:'w04',name:'Notice: Stop-and-go ability?',sets:'',note:'Can you stop hard and re-accelerate?'},
-      {id:'w05',name:'Notice: Ankle/knee stability?',sets:'',note:'Any wobble on cuts? Take mental notes.'},
-      {id:'w06',name:'Notice: What fatigues first?',sets:'',note:'Legs? Lungs? This tells us Phase 2 priority.'},
-      {id:'w07',name:'Post-game: Stretch + foam roll',sets:'10 min',note:'Calves, hip flexors, quads.',yt:yt('post game basketball stretch routine')},
-    ]
-  },
 };
 
 // Map program day index -> schedule key
-// W1 starts Fri Mar 20: Push/Pull/Rest/Legs/Plyo+Core/Footwork/Recovery
-// W2 starts Fri Mar 27: Push/Pull/Rest/Legs/Plyo+Core/Footwork/Recovery
-// W3 starts Fri Apr 3:  Push(lite)/Pull(lite)/Rest/Legs(lite)/Plyo(easy)/Footwork/Pre-game recovery
-// Apr 10 = day 21: Pre-game activation
-// Apr 11 = day 22: GAME DAY
+// New split: Mon=Legs, Tue=Back+Bis, Wed=Chest+Core, Thu=Tris+Shoulders, Fri=Rest, Sat=Basketball, Sun=Recovery
+// Week 1 starts Monday Apr 14, 2026
 const DAY_MAP = {
   0:'p1w1-0', 1:'p1w1-1', 2:'p1w1-2', 3:'p1w1-3', 4:'p1w1-4', 5:'p1w1-5', 6:'p1w1-6',
   7:'p1w2-0', 8:'p1w2-1', 9:'p1w2-2',10:'p1w2-3',11:'p1w2-4',12:'p1w2-5',13:'p1w2-6',
  14:'p1w3-0',15:'p1w3-1',16:'p1w3-2',17:'p1w3-3',18:'p1w3-4',19:'p1w3-5',20:'p1w3-6',
- 21:'p1w3-7',22:'p1w3-8',
 };
+
+
 
 // Week panel -> day keys
 const WEEK_DAYS = {
   p1w1: ['p1w1-0','p1w1-1','p1w1-2','p1w1-3','p1w1-4','p1w1-5','p1w1-6'],
   p1w2: ['p1w2-0','p1w2-1','p1w2-2','p1w2-3','p1w2-4','p1w2-5','p1w2-6'],
-  p1w3: ['p1w3-0','p1w3-1','p1w3-2','p1w3-3','p1w3-4','p1w3-5','p1w3-6','p1w3-7','p1w3-8'],
+  p1w3: ['p1w3-0','p1w3-1','p1w3-2','p1w3-3','p1w3-4','p1w3-5','p1w3-6'],
 };
 
-const PROGRAM_START = new Date('2026-03-20T00:00:00');
+const PROGRAM_START = new Date('2026-04-14T00:00:00');
 const LEAGUE_DATE   = new Date('2026-04-11T00:00:00');
 
 function getDayNum() {
@@ -2018,6 +2111,8 @@ function renderNinja() {
 
   renderCalendar();
   checkBadges();
+  renderSteps();
+  renderLeagueBadges();
 }
 
 // ══════════════════════════════════════════
@@ -2284,9 +2379,377 @@ function renderLightFeet() {
   </div>`;
 }
 
+
 // ══════════════════════════════════════════
-// ── TASBIH COUNTER ──
+// ── LEAGUE BADGE SYSTEM ──
 // ══════════════════════════════════════════
+
+const LoL_TIERS = [
+  { id:'iron',        name:'Iron',        color:'#7c7c7c', bg:'rgba(80,80,80,0.15)',  border:'#5a5a5a', glow:'rgba(124,124,124,0.4)',  min:1   },
+  { id:'bronze',      name:'Bronze',      color:'#cd7f32', bg:'rgba(100,60,20,0.15)', border:'#8b5e2e', glow:'rgba(205,127,50,0.4)',   min:5   },
+  { id:'silver',      name:'Silver',      color:'#b0b8c4', bg:'rgba(80,88,100,0.15)',border:'#7a8090', glow:'rgba(176,184,196,0.4)',  min:15  },
+  { id:'gold',        name:'Gold',        color:'#ffd700', bg:'rgba(100,86,0,0.15)',  border:'#b89600', glow:'rgba(255,215,0,0.5)',    min:30  },
+  { id:'platinum',    name:'Platinum',    color:'#00e4c8', bg:'rgba(0,80,70,0.15)',   border:'#00a090', glow:'rgba(0,228,200,0.45)',   min:60  },
+  { id:'emerald',     name:'Emerald',     color:'#00c45a', bg:'rgba(0,70,30,0.15)',   border:'#008040', glow:'rgba(0,196,90,0.45)',    min:90  },
+  { id:'diamond',     name:'Diamond',     color:'#a8d8f8', bg:'rgba(20,50,80,0.15)', border:'#4a90c8', glow:'rgba(168,216,248,0.5)',  min:120 },
+  { id:'master',      name:'Master',      color:'#c084fc', bg:'rgba(60,10,90,0.15)', border:'#8030b0', glow:'rgba(192,132,252,0.5)',  min:180 },
+  { id:'grandmaster', name:'Grandmaster', color:'#f87171', bg:'rgba(90,10,10,0.15)', border:'#c03030', glow:'rgba(248,113,113,0.5)',  min:270 },
+  { id:'challenger',  name:'Challenger',  color:'#fde047', bg:'rgba(90,80,0,0.15)',  border:'#c0a000', glow:'rgba(253,224,71,0.6)',   min:365 },
+];
+
+const LEAGUE_BADGES = [
+  {
+    id:'marathon', icon:'👟', goalLabel:'Marathon',
+    desc:'Days with 10k+ steps',
+    tiers:['Road Rookie','Asphalt Genin','Street Chunin','Distance Jonin','Mile Master','Track Legend','Pavement Ghost','Road Sannin','Eternal Walker','Marathon Hokage'],
+    getCount: () => Object.values(getStepsLog()).filter(v => v >= 10000).length,
+  },
+  {
+    id:'protein', icon:'🥩', goalLabel:'Iron Chef',
+    desc:'Days hitting protein goal',
+    tiers:['Kitchen Genin','Macro Rookie','Protein Chunin','Fuel Specialist','Muscle Jonin','Recovery ANBU','Nutrition Ghost','Macro Sannin','Body Architect','Iron Chef Hokage'],
+    getCount: () => {
+      const log = getNutrLog(); const goals = getNutrGoals();
+      return Object.values(log).filter(entries => Array.isArray(entries) && entries.reduce((s,e)=>s+(e.protein||0),0) >= goals.protein*0.9).length;
+    },
+  },
+  {
+    id:'dhikr', icon:'📿', goalLabel:'Spirit Keeper',
+    desc:'Days with 1000+ Astaghfirullah',
+    tiers:['First Whisper','Quiet Mind','Devoted Genin','Daily Reciter','Heart Chunin','Focused Jonin','Shadow Zikr','Silent ANBU','Soul Sannin','Spirit Hokage'],
+    getCount: () => Object.values(getTasbihLog()).filter(v => v >= 1000).length,
+  },
+  {
+    id:'workout', icon:'🏋️', goalLabel:'Iron Will',
+    desc:'Full workout sessions (80%+)',
+    tiers:['First Rep','Warm Up','Consistent Genin','Iron Routine','Grind Chunin','No Days Off','Discipline Jonin','Relentless ANBU','Ironclad Sannin','Iron Will Hokage'],
+    getCount: () => {
+      const ch = getChecked(); let count = 0;
+      Object.values(DAYS).forEach(day => {
+        if (day.isRest) return;
+        const total = day.exercises.length;
+        const done = day.exercises.filter(e => ch[e.id]).length;
+        if (total > 0 && done/total >= 0.8) count++;
+      });
+      return count;
+    },
+  },
+  {
+    id:'lightfeet', icon:'🪶', goalLabel:'Ghost Step',
+    desc:'Days with full Light Feet Protocol',
+    tiers:['Heavy Foot','Learning Walk','Ankle Genin','Soft Step','Quick Foot Chunin','Featherfoot','Court Ghost','Light Jonin','Phantom Step','Ghost Step Hokage'],
+    getCount: () => new Set(Object.values(getLFLog())).size,
+  },
+  {
+    id:'stretch', icon:'🧘', goalLabel:'Flexible Sage',
+    desc:'Days with hip flexor stretch',
+    tiers:['Stiff Rookie','Loosening Up','Stretch Genin','Open Hips','Flow Chunin','Daily Sage','APT Slayer','Limbered Jonin','Elastic ANBU','Flexible Hokage'],
+    getCount: () => {
+      const log = getMilestoneLog();
+      return Object.entries(log).filter(([k]) => k === 'ms_stretch').length;
+    },
+  },
+  {
+    id:'water', icon:'💧', goalLabel:'Hydration Lord',
+    desc:'Days hitting 3L water goal',
+    tiers:['First Sip','Getting There','Hydrated Genin','Flow Chunin','Water Walker','River Jonin','Flood ANBU','Tide Sannin','Ocean Ghost','Hydration Hokage'],
+    getCount: () => Object.values(getWaterLog()).filter(v => v >= 3000).length,
+  },
+];
+
+function getLoLTierForCount(count) {
+  if (count < 1) return null;
+  let tier = LoL_TIERS[0];
+  for (const t of LoL_TIERS) { if (count >= t.min) tier = t; }
+  return tier;
+}
+function getNextLoLTier(count) {
+  for (let i = 0; i < LoL_TIERS.length - 1; i++) {
+    if (count < LoL_TIERS[i+1].min) return LoL_TIERS[i+1];
+  }
+  return null;
+}
+function getBadgeTierName(badge, count) {
+  if (count < 1) return badge.tiers[0];
+  const tierIdx = LoL_TIERS.findIndex(t => t.id === (getLoLTierForCount(count)||LoL_TIERS[0]).id);
+  return badge.tiers[Math.min(tierIdx, badge.tiers.length - 1)];
+}
+function getBadgePct(count) {
+  const tier = getLoLTierForCount(count) || LoL_TIERS[0];
+  const next = getNextLoLTier(count);
+  if (!next) return 100;
+  return Math.min(100, Math.round(((count - tier.min) / (next.min - tier.min)) * 100));
+}
+
+function renderLeagueBadges() {
+  const el = document.getElementById('leagueBadgesCard');
+  if (!el) return;
+  const rows = LEAGUE_BADGES.map(badge => {
+    const count = badge.getCount();
+    const lolTier = getLoLTierForCount(count);
+    const nextTier = getNextLoLTier(count);
+    const tierName = getBadgeTierName(badge, count);
+    const pct = count >= 1 ? getBadgePct(count) : 0;
+    const isUnlocked = count >= 1;
+    return `
+      <div class="lb-row">
+        <div class="lb-badge" style="background:${isUnlocked?(lolTier?.bg||'var(--surface2)'):'var(--surface2)'};border-color:${isUnlocked?(lolTier?.border||'var(--dim)'):'var(--dim)'};${isUnlocked&&lolTier?'box-shadow:0 0 8px '+lolTier.glow:'opacity:0.4'};">
+          <span style="font-size:18px;">${badge.icon}</span>
+        </div>
+        <div class="lb-info">
+          <div class="lb-badge-name" style="color:${isUnlocked?(lolTier?.color||'var(--muted)'):'var(--muted)'};">${tierName}</div>
+          <div class="lb-badge-tier" style="color:${isUnlocked?(lolTier?.color||'var(--muted)'):'var(--muted)'};opacity:0.7;font-family:'DM Mono',monospace;font-size:8px;text-transform:uppercase;letter-spacing:1px;">${isUnlocked?(lolTier?.name||''):'Locked'}</div>
+        </div>
+        <div class="lb-right">
+          <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:3px;">
+            <div style="font-size:11px;color:var(--muted);">${badge.desc}</div>
+            <div style="font-family:'Barlow Condensed',sans-serif;font-weight:700;font-size:16px;color:${isUnlocked?(lolTier?.color||'var(--text)'):'var(--muted)'};">${count}</div>
+          </div>
+          <div class="lb-bar-wrap">
+            <div class="lb-bar-fill" style="width:${pct}%;background:${isUnlocked?(lolTier?.color||'var(--dim)'):'var(--dim)'};"></div>
+          </div>
+          <div class="lb-meta">
+            <span>${badge.goalLabel}</span>
+            <span>${!isUnlocked ? 'Complete 1 day to start' : nextTier ? count+'/'+nextTier.min+' → '+nextTier.name : '🏆 Max Rank'}</span>
+          </div>
+        </div>
+      </div>`;
+  }).join('');
+  el.innerHTML = `<div class="lb-card">${rows}</div>`;
+}
+
+// ── TODAY STEPS CARD (on Today tab) ──
+function renderTodayStepsCard() {
+  const el = document.getElementById('todayStepsCard');
+  if (!el) return;
+  const count = getTodaySteps();
+  const pct = Math.min(100, Math.round((count / 10000) * 100));
+  const goalHit = count >= 10000;
+
+  el.innerHTML = `
+    <div class="today-steps-wrap">
+      <div class="today-steps-label">Today's Steps</div>
+      <div style="display:flex;align-items:baseline;gap:8px;margin-bottom:6px;">
+        <div class="today-steps-count" style="color:${goalHit?'var(--green)':'var(--text)'}">${count.toLocaleString()}</div>
+        <div style="font-family:'DM Mono',monospace;font-size:9px;color:var(--muted);">/ 10,000</div>
+        ${goalHit?`<div style="font-family:'DM Mono',monospace;font-size:9px;color:var(--green);">✓ Goal</div>`:''}
+      </div>
+      <div style="height:3px;background:var(--dim);border-radius:3px;overflow:hidden;">
+        <div style="width:${pct}%;height:100%;background:linear-gradient(90deg,var(--green),#60a5fa);border-radius:3px;transition:width 0.3s;"></div>
+      </div>
+    </div>
+    <div class="today-steps-body">
+      <div style="display:flex;gap:6px;flex-wrap:wrap;padding-top:10px;">
+        <button onclick="addSteps(1000);renderTodayStepsCard();if(document.getElementById('stepsCard'))renderSteps();" style="font-family:'DM Mono',monospace;font-size:10px;padding:7px 11px;border:1px solid var(--border);background:var(--surface2);color:var(--text);border-radius:5px;cursor:pointer;">+1k</button>
+        <button onclick="addSteps(2000);renderTodayStepsCard();if(document.getElementById('stepsCard'))renderSteps();" style="font-family:'DM Mono',monospace;font-size:10px;padding:7px 11px;border:1px solid var(--border);background:var(--surface2);color:var(--text);border-radius:5px;cursor:pointer;">+2k</button>
+        <button onclick="addSteps(5000);renderTodayStepsCard();if(document.getElementById('stepsCard'))renderSteps();" style="font-family:'DM Mono',monospace;font-size:10px;padding:7px 11px;border:1px solid var(--border);background:var(--surface2);color:var(--text);border-radius:5px;cursor:pointer;">+5k</button>
+        <button onclick="setSteps(10000);renderTodayStepsCard();if(document.getElementById('stepsCard'))renderSteps();" style="font-family:'DM Mono',monospace;font-size:10px;padding:7px 11px;border:1px solid rgba(34,197,94,0.4);background:rgba(34,197,94,0.1);color:var(--green);border-radius:5px;cursor:pointer;font-weight:700;">Set 10k ✓</button>
+      </div>
+      <div style="display:flex;gap:6px;margin-top:8px;">
+        <input id="todayStepsInput" type="number" placeholder="Enter total steps" inputmode="numeric"
+          style="flex:1;background:var(--bg);border:1px solid var(--border);border-radius:5px;padding:8px 10px;color:var(--text);font-family:'DM Mono',monospace;font-size:12px;outline:none;-moz-appearance:textfield;"/>
+        <button onclick="submitTodaySteps()" style="background:var(--green);border:none;border-radius:5px;padding:8px 14px;color:#000;font-family:'DM Mono',monospace;font-size:11px;font-weight:700;cursor:pointer;">Set</button>
+      </div>
+    </div>`;
+}
+
+function submitTodaySteps() {
+  const inp = document.getElementById('todayStepsInput');
+  const val = parseInt(inp?.value);
+  if (!val || val < 0) return;
+  setSteps(val);
+  if (inp) inp.value = '';
+  renderTodayStepsCard();
+  if (document.getElementById('stepsCard')) renderSteps();
+  if (document.getElementById('leagueBadgesCard')) renderLeagueBadges();
+}
+
+// ══════════════════════════════════════════
+// ── STEPS TRACKER ──
+// ══════════════════════════════════════════
+const STEPS_GOAL = 10000;
+const STEPS_XP_GOAL = 40; // XP for hitting 10k
+// Each extra 1k above goal = ceil(40/10 * 0.25) = 1 XP extra per 1k
+
+function getStepsLog() { try { return JSON.parse(localStorage.getItem('fs2_steps')||'{}'); } catch(e) { return {}; } }
+function saveStepsLog(o) { try { localStorage.setItem('fs2_steps', JSON.stringify(o)); } catch(e) {} }
+function getTodaySteps() { return getStepsLog()[todayDateStr()] || 0; }
+
+function setSteps(count) {
+  const log = getStepsLog();
+  const today = todayDateStr();
+  const prev = log[today] || 0;
+  log[today] = Math.max(0, count);
+  saveStepsLog(log);
+
+  // XP for hitting goal
+  if (prev < STEPS_GOAL && log[today] >= STEPS_GOAL) {
+    const xpKey = 'steps_goal_' + today;
+    if (!window._exXpAwarded[xpKey]) {
+      window._exXpAwarded[xpKey] = true;
+      addXP(STEPS_XP_GOAL, '10k steps goal!');
+    }
+  }
+  // Bonus XP for each extra 1k beyond goal
+  if (log[today] > STEPS_GOAL) {
+    const extraK = Math.floor((log[today] - STEPS_GOAL) / 1000);
+    const prevExtraK = prev > STEPS_GOAL ? Math.floor((prev - STEPS_GOAL) / 1000) : 0;
+    for (let k = prevExtraK + 1; k <= extraK; k++) {
+      const bKey = 'steps_extra_' + k + '_' + today;
+      if (!window._exXpAwarded[bKey]) {
+        window._exXpAwarded[bKey] = true;
+        const bonusXP = Math.ceil(STEPS_XP_GOAL / 10 * 0.25); // = 1
+        addXP(bonusXP, `+${k}k steps bonus`);
+      }
+    }
+  }
+  renderSteps();
+  checkLeagueBadges();
+}
+
+function addSteps(n) { setSteps(getTodaySteps() + n); }
+
+function renderSteps() {
+  const el = document.getElementById('stepsCard');
+  if (!el) return;
+  const count = getTodaySteps();
+  const pct = Math.min(100, Math.round((count / STEPS_GOAL) * 100));
+  const goalHit = count >= STEPS_GOAL;
+  const extra = count > STEPS_GOAL ? `+${(count - STEPS_GOAL).toLocaleString()} bonus` : '';
+
+  el.innerHTML = `<div class="steps-card">
+    <div class="steps-top">
+      <div>
+        <div class="steps-num" style="color:${goalHit?'var(--green)':'var(--text)'}">${count.toLocaleString()}</div>
+        <div class="steps-goal">Goal: ${STEPS_GOAL.toLocaleString()} steps${extra?' · '+extra:''}</div>
+      </div>
+      <div style="flex:1;text-align:right;font-family:'DM Mono',monospace;font-size:10px;color:${goalHit?'var(--green)':'var(--muted)'};">
+        ${goalHit ? '✓ Goal Hit!' : `${(STEPS_GOAL-count).toLocaleString()} to go`}
+      </div>
+    </div>
+    <div class="steps-bar-track"><div class="steps-bar-fill" style="width:${pct}%"></div></div>
+    <div class="steps-btns">
+      <button class="steps-btn" onclick="addSteps(1000)">+1k</button>
+      <button class="steps-btn" onclick="addSteps(2000)">+2k</button>
+      <button class="steps-btn" onclick="addSteps(5000)">+5k</button>
+      <button class="steps-btn primary" onclick="setSteps(10000)">Set 10k</button>
+      <button class="steps-btn" onclick="setSteps(0)" style="color:var(--red);border-color:rgba(239,68,68,0.3);">Reset</button>
+    </div>
+    <div class="steps-custom">
+      <input class="steps-input" id="stepsInput" type="number" placeholder="Enter steps" inputmode="numeric"/>
+      <button class="steps-btn primary" onclick="submitStepsInput()">Set</button>
+    </div>
+  </div>`;
+}
+
+function submitStepsInput() {
+  const inp = document.getElementById('stepsInput');
+  const val = parseInt(inp?.value);
+  if (!val || val < 0) return;
+  setSteps(val);
+  if (inp) inp.value = '';
+}
+
+
+
+// ══════════════════════════════════════════
+// ── LEAGUE OF LEGENDS BADGE SYSTEM ──
+// ══════════════════════════════════════════
+
+const LOL_TIERS = [
+  { id:'iron',        name:'Iron',        sym:'I',  color:'#7c8b99', bg:'rgba(124,139,153,0.12)', border:'rgba(124,139,153,0.4)' },
+  { id:'bronze',      name:'Bronze',      sym:'B',  color:'#cd7f32', bg:'rgba(205,127,50,0.12)',  border:'rgba(205,127,50,0.4)'  },
+  { id:'silver',      name:'Silver',      sym:'S',  color:'#9eaab8', bg:'rgba(158,170,184,0.12)', border:'rgba(158,170,184,0.4)' },
+  { id:'gold',        name:'Gold',        sym:'G',  color:'#e8b800', bg:'rgba(232,184,0,0.12)',   border:'rgba(232,184,0,0.4)'   },
+  { id:'platinum',    name:'Platinum',    sym:'P',  color:'#00b4aa', bg:'rgba(0,180,170,0.12)',   border:'rgba(0,180,170,0.4)'   },
+  { id:'emerald',     name:'Emerald',     sym:'E',  color:'#00c45a', bg:'rgba(0,196,90,0.12)',    border:'rgba(0,196,90,0.4)'    },
+  { id:'diamond',     name:'Diamond',     sym:'D',  color:'#57b8e0', bg:'rgba(87,184,224,0.12)',  border:'rgba(87,184,224,0.4)'  },
+  { id:'master',      name:'Master',      sym:'M',  color:'#9b59b6', bg:'rgba(155,89,182,0.12)',  border:'rgba(155,89,182,0.4)'  },
+  { id:'grandmaster', name:'Grandmaster', sym:'GM', color:'#e74c3c', bg:'rgba(231,76,60,0.12)',   border:'rgba(231,76,60,0.4)'   },
+  { id:'challenger',  name:'Challenger',  sym:'C',  color:'#f5c518', bg:'rgba(245,197,24,0.12)',  border:'rgba(245,197,24,0.4)'  },
+];
+const LOL_THRESHOLDS = [0, 5, 15, 30, 60, 100, 150, 200, 300, 500];
+
+const LOL_BADGES = [
+  { id:'marathon',  icon:'\u{1F45F}', label:'Marathon',     desc:'10k Steps daily',         tierNames:['Iron Jogger','Bronze Walker','Silver Strider','Gold Pacer','Platinum Runner','Emerald Sprinter','Diamond Dasher','Master Marathoner','Grandmaster Blazer','Challenger Marathoner'], getCount:()=>Object.values(getStepsLog()).filter(v=>v>=STEPS_GOAL).length },
+  { id:'fueled',    icon:'\u{1F969}', label:'Fueled',       desc:'Daily protein goal',       tierNames:['Iron Snacker','Bronze Eater','Silver Nourished','Gold Fueled','Platinum Stacked','Emerald Engine','Diamond Diet','Master Nutrition','Grandmaster Fueled','Challenger Machine'], getCount:()=>{ const gl=getNutrGoals(); return Object.entries(getNutrLog()).filter(([,e])=>e.reduce((s,f)=>s+(f.protein||0),0)>=gl.protein*0.9).length; } },
+  { id:'devotion',  icon:'\u{1F4FF}', label:'Devotion',     desc:'1000 Dhikr daily',         tierNames:['Iron Whisper','Bronze Seeker','Silver Devoted','Gold Faithful','Platinum Pious','Emerald Blessed','Diamond Ascetic','Master Devoted','Grandmaster Saint','Challenger Saint'], getCount:()=>Object.values(getTasbihLog()).filter(v=>v>=1000).length },
+  { id:'grind',     icon:'\u{1F3CB}\uFE0F', label:'The Grind', desc:'Full workout (80%+)', tierNames:['Iron Beginner','Bronze Lifter','Silver Grinder','Gold Workhorse','Platinum Athlete','Emerald Warrior','Diamond Beast','Master Grinder','Grandmaster Elite','Challenger Beast'], getCount:()=>Object.keys(getActivityLog()).length },
+  { id:'ghost',     icon:'\u{1FAB6}', label:'Ghost Step',   desc:'Light Feet Protocol',      tierNames:['Iron Footed','Bronze Light','Silver Swift','Gold Agile','Platinum Quick','Emerald Nimble','Diamond Feather','Master Shadow','Grandmaster Wind','Challenger Ghost'], getCount:()=>new Set(Object.values(getLFLog())).size },
+  { id:'posture',   icon:'\u{1F9D8}', label:'Posture King', desc:'Hip flexor stretch daily', tierNames:['Iron Stiff','Bronze Flexible','Silver Loose','Gold Mobile','Platinum Supple','Emerald Fluid','Diamond Limber','Master Elastic','Grandmaster Flow','Challenger Limbless'], getCount:()=>{ const xpLog=getXPData().log; return new Set(xpLog.filter(e=>e.reason&&e.reason.includes('ms_stretch')).map(e=>e.date)).size; } },
+];
+
+function getLolTierForCount(count) {
+  let t=LOL_TIERS[0];
+  for(let i=0;i<LOL_THRESHOLDS.length;i++){if(count>=LOL_THRESHOLDS[i])t=LOL_TIERS[i];}
+  return t;
+}
+function getLolTierIndex(count) {
+  let idx=0;
+  for(let i=0;i<LOL_THRESHOLDS.length;i++){if(count>=LOL_THRESHOLDS[i])idx=i;}
+  return idx;
+}
+function getLolProgress(count) {
+  const idx=getLolTierIndex(count);
+  const thisT=LOL_THRESHOLDS[idx];
+  const nextT=LOL_THRESHOLDS[idx+1]||(LOL_THRESHOLDS[idx]+1);
+  return Math.min(100,Math.round(((count-thisT)/(nextT-thisT))*100));
+}
+function checkLeagueBadges() {
+  if(document.getElementById('view-ninja')?.classList.contains('active')) renderLeagueBadgesSection();
+}
+function renderLeagueBadgesSection() {
+  const el=document.getElementById('leagueBadgesSection');
+  if(!el) return;
+  el.innerHTML='<div class="lb-section">'+LOL_BADGES.map(badge=>{
+    const count=badge.getCount();
+    const tier=getLolTierForCount(count);
+    const tidx=getLolTierIndex(count);
+    const tierName=badge.tierNames[tidx];
+    const pct=getLolProgress(count);
+    const nextIdx=Math.min(tidx+1,LOL_TIERS.length-1);
+    const nextT=LOL_THRESHOLDS[nextIdx]||'—';
+    const isMax=tidx===LOL_TIERS.length-1;
+    return `<div class="lb-row">
+      <div class="lb-badge" style="background:${tier.bg};border-color:${tier.border};color:${tier.color};">${tier.sym}</div>
+      <div class="lb-info"><div class="lb-badge-name" style="color:${tier.color};">${badge.icon} ${badge.label}</div><div class="lb-tier-name" style="color:${tier.color};opacity:0.8;">${tierName}</div></div>
+      <div class="lb-progress">
+        <div class="lb-bar-track"><div class="lb-bar-fill" style="width:${pct}%;background:${tier.color};"></div></div>
+        <div class="lb-meta"><span>${count} days</span><span>${isMax?'🏆 Max':'→ '+nextT+' days'}</span></div>
+      </div>
+    </div>`;
+  }).join('')+'</div>';
+}
+
+// ── TODAY STEPS CARD ──
+function renderTodayStepsCard() {
+  const el=document.getElementById('todayStepsCard');
+  if(!el) return;
+  const count=getTodaySteps();
+  const pct=Math.min(100,Math.round((count/STEPS_GOAL)*100));
+  const goalHit=count>=STEPS_GOAL;
+  el.innerHTML=`<div class="today-steps-card">
+    <div class="tsc-header">
+      <div><div style="font-family:'DM Mono',monospace;font-size:8px;letter-spacing:2px;text-transform:uppercase;color:var(--green);margin-bottom:3px;">DAILY STEPS</div><div class="tsc-title">Steps Today</div></div>
+      <div><div class="tsc-count">${count.toLocaleString()}</div><div style="font-family:'DM Mono',monospace;font-size:9px;color:${goalHit?'var(--green)':'var(--muted)'};text-align:right;">${goalHit?'✓ 10k Hit!':Math.max(0,STEPS_GOAL-count).toLocaleString()+' to go'}</div></div>
+    </div>
+    <div class="tsc-bar"><div class="tsc-bar-fill" style="width:${pct}%"></div></div>
+    <div class="tsc-btns">
+      <button class="tsc-btn" onclick="addStepsTodayCard(1000)">+1k</button>
+      <button class="tsc-btn" onclick="addStepsTodayCard(2500)">+2.5k</button>
+      <button class="tsc-btn" onclick="addStepsTodayCard(5000)">+5k</button>
+      <button class="tsc-btn ${goalHit?'hit':''}" onclick="setSteps(10000)">10k ✓</button>
+    </div>
+    <div class="tsc-input-row">
+      <input class="tsc-input" id="todayStepsInput" type="number" placeholder="Enter total steps…" inputmode="numeric"/>
+      <button class="tsc-submit" onclick="submitTodayStepsInput()">Set</button>
+    </div>
+  </div>`;
+}
+function addStepsTodayCard(n){addSteps(n);renderTodayStepsCard();}
+function submitTodayStepsInput(){const inp=document.getElementById('todayStepsInput');const val=parseInt(inp?.value);if(!val||val<0)return;setSteps(val);if(inp)inp.value='';renderTodayStepsCard();}
+
+
 const TASBIH_GOAL = 1000;
 
 function getTasbihLog() { try { return JSON.parse(localStorage.getItem('fs2_tasbih')||'{}'); } catch(e) { return {}; } }
@@ -2414,11 +2877,11 @@ function renderTasbih() {
 // Required completions per workout type before Phase 2 unlocks
 // Each type must be completed (80%+) N times
 const PHASE2_REQUIREMENTS = [
-  { label: 'Push Day',         tag:'t-str-push', keys:['p1w1-0','p1w2-0','p1w3-0'], needed:2 },
-  { label: 'Pull Day',         tag:'t-str-pull', keys:['p1w1-1','p1w2-1','p1w3-1'], needed:2 },
-  { label: 'Leg Day',          tag:'t-str-leg',  keys:['p1w1-3','p1w2-3','p1w3-3'], needed:2 },
-  { label: 'Plyo + Core',      tag:'t-exp',      keys:['p1w1-4','p1w2-4','p1w3-4'], needed:2 },
-  { label: 'Footwork',         tag:'t-foot',     keys:['p1w1-5','p1w2-5','p1w3-5'], needed:2 },
+  { label:'Leg Day',            keys:['p1w1-0','p1w2-0','p1w3-0'], needed:2 },
+  { label:'Back + Biceps',      keys:['p1w1-1','p1w2-1','p1w3-1'], needed:2 },
+  { label:'Chest + Core',       keys:['p1w1-2','p1w2-2','p1w3-2'], needed:2 },
+  { label:'Triceps + Shoulders',keys:['p1w1-3','p1w2-3','p1w3-3'], needed:2 },
+  { label:'Basketball Day',     keys:['p1w1-5','p1w2-5','p1w3-5'], needed:2 },
 ];
 
 function getWorkoutCompletionCount(dayKeys) {
@@ -2581,6 +3044,7 @@ buildToday();
 renderNinja();
 renderLightFeet();
 renderTasbih();
+renderTodayStepsCard();
 // Render phase tabs with lock state
 setTimeout(() => renderPhaseNavTabs('p1'), 100);
 
